@@ -5,11 +5,12 @@ file 'TxParams.xslx' do |task|
   ruby 'bin/download-txparams.rb'
 end
 
-desc "Covert the Transmitter Parameters file to JSON"
+desc "Convert the Transmitter Parameters file to JSON"
 file 'TxParams.json' => 'TxParams.xslx' do |task|
   ruby 'bin/convert-txparams.rb'
 end
 
+desc "Looking authoritive FQDNs for each of the radio stations"
 file 'authoritative-fqdns.json' => 'TxParams.json' do |task|
   ruby 'bin/lookup-authoritative-fqdns.rb'
 end
