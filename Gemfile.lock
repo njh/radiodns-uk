@@ -19,7 +19,7 @@ DEPENDENCIES
   json
   nokogiri
   rake
-  roo
+  roo (~> 2.7.0)
   webrick
 
 BUNDLED WITH

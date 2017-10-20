@@ -1,2 +1,6 @@
 # Downloaded data
 TxParams.xlsx
+~$TxParams.xlsx
+
+# Generated files
+TxParams.json
