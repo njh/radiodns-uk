@@ -5,6 +5,7 @@ GEM
     mini_portile2 (2.3.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
+    radiodns (0.1.3)
     rake (12.1.0)
     roo (2.7.1)
       nokogiri (~> 1)
@@ -18,6 +19,7 @@ PLATFORMS
 DEPENDENCIES
   json
   nokogiri
+  radiodns
   rake
   roo (~> 2.7.0)
   webrick

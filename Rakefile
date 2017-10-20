@@ -10,6 +10,11 @@ file 'TxParams.json' => 'TxParams.xslx' do |task|
   ruby 'bin/convert-txparams.rb'
 end
 
+file 'authoritative-fqdns.json' => 'TxParams.json' do |task|
+  ruby 'bin/lookup-authoritative-fqdns.rb'
+end
+
+
 desc "Deleted all the generated files (based on .gitignore)"
 task :clean do
   File.foreach('.gitignore') do |line|
