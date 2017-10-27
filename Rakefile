@@ -10,9 +10,14 @@ file 'TxParams.json' => 'TxParams.xslx' do |task|
   ruby 'bin/convert-txparams.rb'
 end
 
-desc "Looking authoritive FQDNs for each of the radio stations"
+desc "Looking authoritative FQDNs for each of the radio stations"
 file 'authoritative-fqdns.json' => 'TxParams.json' do |task|
   ruby 'bin/lookup-authoritative-fqdns.rb'
+end
+
+desc "Download SI.xml files for each of the authoritative FQDNs"
+directory 'si_files' => 'authoritative-fqdns.json' do |task|
+  ruby 'bin/download-si-files.rb'
 end
 
 
