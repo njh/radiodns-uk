@@ -20,7 +20,7 @@ Dir.glob("si_files/*.xml").each do |filepath|
   begin
     doc = File.open(filepath, 'rb') { |f| Nokogiri::XML(f) }
     doc.remove_namespaces!
-    
+
     doc.xpath("/serviceInformation/services/service").each do |element|
       name = element.at('longName') || element.at('mediumName') || element.at('shortName')
       puts "  #{name.inner_text}"
@@ -70,10 +70,10 @@ Dir.glob("si_files/*.xml").each do |filepath|
           service[:genres][genre['href']] = genre.inner_text
         end
       end
-      
+
       services << service
     end
-    
+
   rescue => e
     puts "Failed to parse: #{filepath} (#{e})"
   end

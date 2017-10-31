@@ -23,7 +23,7 @@ def generate_fm(xlsx, sheet_name)
     hash = Hash[column_names.zip(row)]
 
     next if hash['station'].nil? or hash['frequency'].nil? or hash['rds_pi'].nil?
-    
+
     key = hash['station'] + '#' + hash['rds_pi']
     services[key] ||= {
       :name => hash['station'],

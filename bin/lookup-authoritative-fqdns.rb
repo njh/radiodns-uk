@@ -15,7 +15,7 @@ tx_params = JSON.parse(
 authoritative_fqdns = []
 
 tx_params[:fm].each do |service|
-  
+
   begin
     frequency = service[:transmitters].first[:frequency]
     puts "#{service[:name]} on #{frequency} / #{service[:rds_pi]}"
@@ -26,7 +26,7 @@ tx_params[:fm].each do |service|
       :freq => sprintf("%05d", frequency * 100),
       :pi => service[:rds_pi].downcase
     )
-    
+
     puts " => #{result.cname}"
     authoritative_fqdns << result.cname
 
@@ -47,7 +47,7 @@ tx_params[:dab].each do |service|
       :sid => service[:sid].downcase,
       :scids => 0
     )
-    
+
     puts " => #{result.cname}"
     authoritative_fqdns << result.cname
 
