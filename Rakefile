@@ -20,6 +20,11 @@ directory 'si_files' => 'authoritative-fqdns.json' do |task|
   ruby 'bin/download-si-files.rb'
 end
 
+desc "Build Service List from SI files"
+file 'services.json' => 'si_files' do |task|
+  ruby 'bin/build-services-json.rb'
+end
+
 
 desc "Deleted all the generated files (based on .gitignore)"
 task :clean do
