@@ -21,6 +21,7 @@ fqdns.each do |fqdn|
   begin
     service = RadioDNS::Service.new(fqdn)
     app = service.radioepg
+    raise Resolv::ResolvError if app.nil?
 
     filepath = File.join(si_dir, fqdn + '.xml')
 
