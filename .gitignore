@@ -6,4 +6,5 @@ TxParams.xlsx
 TxParams.json
 authoritative-fqdns.json
 si_files
-services.json
+
+data/services.json

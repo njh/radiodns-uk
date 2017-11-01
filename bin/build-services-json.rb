@@ -81,6 +81,8 @@ Dir.glob("si_files/*.xml").each do |filepath|
 end
 
 
-File.open('services.json', 'wb') do |file|
+Dir.mkdir 'data' unless File.exists?('data')
+
+File.open('data/services.json', 'wb') do |file|
   file.write JSON.pretty_generate(services)
 end

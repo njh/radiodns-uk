@@ -21,7 +21,7 @@ directory 'si_files' => 'authoritative-fqdns.json' do |task|
 end
 
 desc "Build Service List from SI files"
-file 'services.json' => 'si_files' do |task|
+file 'data/services.json' => 'si_files' do |task|
   ruby 'bin/build-services-json.rb'
 end
 
