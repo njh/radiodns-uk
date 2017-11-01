@@ -7,7 +7,13 @@ class Nokogiri::XML::Element
 
   def inner_text_at(path)
     node = at(path)
-    node.inner_text unless node.nil?
+    if node.nil?
+      nil
+    elsif node.inner_text.empty?
+      nil
+    else
+      node.inner_text
+    end
   end
 
 end
@@ -22,10 +28,13 @@ Dir.glob("si_files/*.xml").each do |filepath|
     doc.remove_namespaces!
 
     doc.xpath("/serviceInformation/services/service").each do |element|
-      name = element.at('longName') || element.at('mediumName') || element.at('shortName')
-      puts "  #{name.inner_text}"
+      name = element.inner_text_at('longName') || element.inner_text_at('mediumName') || element.inner_text_at('shortName')
+      next if name.nil?
+      puts "  #{name}"
 
       service = {
+        :name => name,
+        :sort_name => name.sub(/^(the|[\d\.]+|)(fm)?\s+/i, ''),
         :short_name => element.inner_text_at(:shortName),
         :medium_name => element.inner_text_at(:mediumName),
         :long_name => element.inner_text_at(:longName),
@@ -80,6 +89,7 @@ Dir.glob("si_files/*.xml").each do |filepath|
 
 end
 
+services.sort! {|a,b| a[:sort_name] <=> b[:sort_name] }
 
 Dir.mkdir 'data' unless File.exists?('data')
 
