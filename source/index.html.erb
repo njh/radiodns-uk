@@ -1,0 +1,25 @@
+---
+title: RadioDNS Services in the United Kingdom
+---
+
+<table class="table">
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+</thead>
+
+<tbody>
+  <% data.services.each do |s| %>
+    <tr>
+      <td>
+        <%= image_tag(s.logos['112x32'], :width => 112, :height => 32) unless s.logos['112x32'].nil? %>
+      </td>
+      <td><%= s.name %></td>
+      <td><%= s.short_description %></td>
+    </tr>
+  <% end %>
+</tbody>
+
+</table>

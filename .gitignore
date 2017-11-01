@@ -7,4 +7,5 @@ TxParams.json
 authoritative-fqdns.json
 si_files
 
+build/
 data/services.json

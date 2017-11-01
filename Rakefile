@@ -25,6 +25,18 @@ file 'data/services.json' => 'si_files' do |task|
   ruby 'bin/build-services-json.rb'
 end
 
+desc "Re-build the HTML site using Middleman"
+task :build => ['data/services.json'] do |task|
+  system 'bundle exec middleman build'
+end
+
+desc "Start Middleman Web Server"
+task :server => ['data/services.json'] do |task|
+  system 'bundle exec middleman server'
+end
+
+task :default => :build
+
 
 desc "Deleted all the generated files (based on .gitignore)"
 task :clean do
