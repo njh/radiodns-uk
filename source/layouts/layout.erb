@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
     <title><%= current_page.data.name %> - radiodns.uk</title>
-    <%= stylesheet_link_tag "site" %>
-    <%= javascript_include_tag "site" %>
+    <%= stylesheet_link_tag "bootstrap-4.0.0-beta.2.min.css" %>
   </head>
   <body>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
 
     <%= javascript_include_tag "jquery-3.2.1.slim.min.js" %>
+    <%= javascript_include_tag "bootstrap-4.0.0-beta.2.bundle.min.js" %>
   </body>
+
 </html>
