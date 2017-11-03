@@ -20,18 +20,18 @@ directory 'si_files' => 'authoritative-fqdns.json' do |task|
   ruby 'bin/download-si-files.rb'
 end
 
-desc "Build Service List from SI files"
-file 'data/services.json' => 'si_files' do |task|
-  ruby 'bin/build-services-json.rb'
+desc "Build Service Page files"
+directory 'source/services' => 'si_files' do |task|
+  ruby 'bin/build-service-pages.rb'
 end
 
 desc "Re-build the HTML site using Middleman"
-task :build => ['data/services.json'] do |task|
+task :build => ['source/services'] do |task|
   system 'bundle exec middleman build'
 end
 
 desc "Start Middleman Web Server"
-task :server => ['data/services.json'] do |task|
+task :server => ['source/services'] do |task|
   system 'bundle exec middleman server'
 end
 

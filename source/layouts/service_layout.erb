@@ -1,0 +1,20 @@
+<% wrap_layout :layout do %>
+  <h1><%= current_page.data.name %></h1>
+  
+  <p>
+    <%= current_page.data.long_description || current_page.data.short_description %>
+  </p>
+
+  <% unless current_page.data.links.empty? %>
+    <h2>Links</h2>
+    <% current_page.data.links.each do |link| %>
+      <ul>
+        <li><%= link_to(link, link) %></li>
+      </ul>
+    <% end %>  
+  <% end %>
+
+  <p>
+    RadioDNS FQDN: <%= current_page.data.fqdn %>
+  </p>
+<% end %>

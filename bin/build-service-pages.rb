@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'fileutils'
 require 'bundler/setup'
 Bundler.require(:default)
 
@@ -19,7 +20,6 @@ class Nokogiri::XML::Element
 end
 
 
-services = []
 
 Dir.glob("si_files/*.xml").each do |filepath|
   puts "Parsing: #{filepath}"
@@ -33,13 +33,15 @@ Dir.glob("si_files/*.xml").each do |filepath|
       puts "  #{name}"
 
       service = {
+        :id => nil,
         :name => name,
-        :sort_name => name.sub(/^(the|[\d\.]+|)(fm)?\s+/i, ''),
+        :sort_name => name.sub(/^[\d\.]+(fm)?\s+/i, '').sub(/^the\s+/i, '').downcase,
         :short_name => element.inner_text_at(:shortName),
         :medium_name => element.inner_text_at(:mediumName),
         :long_name => element.inner_text_at(:longName),
         :short_description => element.inner_text_at('mediaDescription/shortDescription'),
         :long_description => element.inner_text_at('mediaDescription/longDescription'),
+        :fqdn => File.basename(filepath, '.xml'),
         :logos => {},
         :links => [],
         :bearers => [],
@@ -65,7 +67,7 @@ Dir.glob("si_files/*.xml").each do |filepath|
 
       element.xpath("bearer").each do |xmlbearer|
         if xmlbearer['id']
-          bearer = { :id => xmlbearer['id'] }
+          bearer = { :id => xmlbearer['id'].downcase }
           bearer[:bitrate] = xmlbearer['bitrate'].to_i unless xmlbearer['bitrate'].nil?
           bearer[:cost] = xmlbearer['cost'].to_i unless xmlbearer['bitrate'].nil?
           bearer[:offset] = xmlbearer['offset'].to_i unless xmlbearer['offset'].nil?
@@ -74,25 +76,27 @@ Dir.glob("si_files/*.xml").each do |filepath|
         end
       end
 
+      ids = service[:bearers].map {|b| b[:id] }.select {|b| b.match(/^(fm|dab)/)}.sort
+      next if ids.empty?
+      service[:id] = ids.first
+
       element.xpath("genre").each do |genre|
         if genre['href']
           service[:genres][genre['href']] = genre.inner_text
         end
       end
 
-      services << service
+      path = File.join(service[:id].split(/\W+/))
+      service_file = File.join('source', 'services', path + '.html.erb')
+      FileUtils.mkdir_p(File.dirname(service_file))
+      File.open(service_file, 'wb') do |file|
+        file.puts service.to_yaml
+        file.puts "---"
+      end
     end
 
   rescue => e
-    puts "Failed to parse: #{filepath} (#{e})"
+    puts "Failed to process: #{filepath} (#{e})"
   end
 
-end
-
-services.sort! {|a,b| a[:sort_name] <=> b[:sort_name] }
-
-Dir.mkdir 'data' unless File.exists?('data')
-
-File.open('data/services.json', 'wb') do |file|
-  file.write JSON.pretty_generate(services)
 end

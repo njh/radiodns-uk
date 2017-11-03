@@ -1,3 +1,7 @@
+.bundle
+.cache
+.sass-cache
+
 # Downloaded data
 TxParams.xlsx
 ~$TxParams.xlsx
@@ -8,4 +12,4 @@ authoritative-fqdns.json
 si_files
 
 build/
-data/services.json
+source/services/

@@ -1,23 +1,31 @@
 ---
-title: RadioDNS Services in the United Kingdom
+name: RadioDNS Services in the United Kingdom
 ---
 
 <table class="table">
+
 <thead>
   <tr>
+    <th></th>
     <th>Name</th>
     <th>Description</th>
   </tr>
 </thead>
 
 <tbody>
-  <% data.services.each do |s| %>
+  <% sitemap.resources.select {|r| r.path.match(%r|^services/|)}.sort_by{|r| r.data.sort_name}.each do |r| %>
     <tr>
       <td>
-        <%= image_tag(s.logos['112x32'], :width => 112, :height => 32) unless s.logos['112x32'].nil? %>
+        <% if r.data.logos['112x32'] %>
+          <%= image_tag(r.data.logos['112x32'], :width => 112, :height => 32) %>
+        <% end %>
       </td>
-      <td><%= s.name %></td>
-      <td><%= s.short_description %></td>
+      <td>
+        <%= link_to(r.data.name, r) %>
+      </td>
+      <td>
+        <%= r.data.short_description %>
+      </td>
     </tr>
   <% end %>
 </tbody>
