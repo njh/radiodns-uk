@@ -38,13 +38,13 @@
         <div style="margin-bottom: 2em">
         <h5><%= size %></h5>
         <% width, height = size.split('x') %>
-        <%= image_tag(
+        <%= link_to( image_tag(
           current_page.data.logos[size],
           :class => 'logo img-thumbnail',
-          :alt => "#{size} Logo",
+          :alt => "#{size} #{current_page.data.name} Logo",
           :width => width,
-          :height => height
-        )
+          :height => height,
+          ), current_page.data.logos[size], :title => size, :target => '_blank')
         %>
         </div>
       <% end %>

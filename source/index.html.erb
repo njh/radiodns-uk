@@ -19,7 +19,7 @@ name: RadioDNS Services in the United Kingdom
     <tr>
       <td>
         <% if r.data.logos['112x32'] %>
-          <%= image_tag(r.data.logos['112x32'], :width => 112, :height => 32) %>
+          <%= link_to(image_tag(r.data.logos['112x32'], :width => 112, :height => 32), r) %>
         <% end %>
       </td>
       <td>
