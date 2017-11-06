@@ -87,6 +87,10 @@ Dir.glob("si_files/*.xml").each do |filepath|
           label = genre.inner_text
           if label.empty?
             label = Genres.lookup(genre['href'])
+            if label.nil?
+              puts "WARNING: unknown genre: #{genre['href']}"
+              label = "Unknown (#{genre['href']})"
+            end
           end
           service[:genres][genre['href']] = label
         end
