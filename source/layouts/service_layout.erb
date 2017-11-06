@@ -1,36 +1,60 @@
 <% wrap_layout :layout do %>
   <h1><%= current_page.data.name %></h1>
   
-  <p>
-    <%= current_page.data.long_description || current_page.data.short_description %>
-  </p>
+  <div class="row">
+    <div class="col-6">
+      <p>
+        <%= current_page.data.long_description || current_page.data.short_description %>
+      </p>
 
-  <% unless current_page.data.links.empty? %>
-    <h2>Links</h2>
-    <% current_page.data.links.each do |link| %>
-      <ul>
-        <li><%= link_to(link, link) %></li>
-      </ul>
-    <% end %>  
-  <% end %>
+      <% unless current_page.data.links.empty? %>
+        <h2>Links</h2>
+        <% current_page.data.links.each do |link| %>
+          <ul>
+            <li><%= link_to(link, link) %></li>
+          </ul>
+        <% end %>  
+      <% end %>
 
-  <% unless current_page.data.genres.empty? %>
-    <h2>Genres</h2>
-    <% current_page.data.genres.each_pair do |id,name| %>
-      <ul>
-        <li><%= name %></li>
-      </ul>
-    <% end %>  
-  <% end %>
+      <% unless current_page.data.genres.empty? %>
+        <h2>Genres</h2>
+        <% current_page.data.genres.each_pair do |id,name| %>
+          <ul>
+            <li><%= content_tag('abbr', name, :title => id) %></li>
+          </ul>
+        <% end %>  
+      <% end %>
 
-  <h2>Bearers</h2>
-  <% current_page.data.bearers.each do |bearer| %>
-    <ul>
-      <li><%= bearer.id %></li>
-    </ul>
-  <% end %>  
+      <h2>Bearers</h2>
+      <% current_page.data.bearers.each do |bearer| %>
+        <ul>
+          <li><%= bearer.id %></li>
+        </ul>
+      <% end %>
+    </div>
 
-  <p>
-    RadioDNS FQDN: <%= current_page.data.fqdn %>
-  </p>
+    <div class="col-6">
+      <% ['600x600', '320x240', '128x128', '112x32', '32x32'].each do |size| %>
+        <div style="margin-bottom: 2em">
+        <h5><%= size %></h5>
+        <% width, height = size.split('x') %>
+        <%= image_tag(
+          current_page.data.logos[size],
+          :class => 'logo img-thumbnail',
+          :alt => "#{size} Logo",
+          :width => width,
+          :height => height
+        )
+        %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <p>
+      <b>RadioDNS FQDN:</b> <%= content_tag('code', current_page.data.fqdn) %>
+    </p>
+  </div>
+
 <% end %>
