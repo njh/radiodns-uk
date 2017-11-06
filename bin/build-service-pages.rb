@@ -3,6 +3,8 @@
 require 'fileutils'
 require 'bundler/setup'
 Bundler.require(:default)
+require './lib/genres'
+
 
 class Nokogiri::XML::Element
 
@@ -82,7 +84,11 @@ Dir.glob("si_files/*.xml").each do |filepath|
 
       element.xpath("genre").each do |genre|
         if genre['href']
-          service[:genres][genre['href']] = genre.inner_text
+          label = genre.inner_text
+          if label.empty?
+            label = Genres.lookup(genre['href'])
+          end
+          service[:genres][genre['href']] = label
         end
       end
 
