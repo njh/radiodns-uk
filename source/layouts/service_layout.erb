@@ -14,6 +14,22 @@
     <% end %>  
   <% end %>
 
+  <% unless current_page.data.genres.empty? %>
+    <h2>Genres</h2>
+    <% current_page.data.genres.each_pair do |id,name| %>
+      <ul>
+        <li><%= name %></li>
+      </ul>
+    <% end %>  
+  <% end %>
+
+  <h2>Bearers</h2>
+  <% current_page.data.bearers.each do |bearer| %>
+    <ul>
+      <li><%= bearer.id %></li>
+    </ul>
+  <% end %>  
+
   <p>
     RadioDNS FQDN: <%= current_page.data.fqdn %>
   </p>
