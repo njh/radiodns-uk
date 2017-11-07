@@ -6,5 +6,7 @@ gem 'webrick'
 gem 'nokogiri'
 gem 'radiodns'
 gem 'roo', '~> 2.7.0'
+gem 'mime-types'
 
 gem 'middleman', '~> 4.2'
+gem 'middleman-s3_sync'

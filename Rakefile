@@ -35,6 +35,11 @@ task :server => ['source/services'] do |task|
   system 'bundle exec middleman server'
 end
 
+desc "Upload site to Amazon S3"
+task :publish => :build do |task|
+  system 'bundle exec middleman s3_sync'
+end
+
 task :default => :build
 
 
