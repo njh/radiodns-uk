@@ -3,33 +3,47 @@ id: home
 name: RadioDNS Services in the United Kingdom
 ---
 
+<div class="row">
+  <p id="headline" class="lead">
+    This site is a directory listing of all the radio stations in the United Kingdom
+    which have RadioDNS Hybrid Radio services available.
+  
+    The initial list of frequencies and identifiers is retrieved from the
+    <a href="https://www.ofcom.org.uk/spectrum/information/radio-tech-parameters">Ofcom Technical parameters</a>.
+    The rest of the content on site is from the RadioEPG Service Information XML
+    (aka <a href="http://www.etsi.org/deliver/etsi_ts/102800_102899/102818/03.01.01_60/ts_102818v030101p.pdf">ETSI TS 102 818</a>).
+  </p>
+</div>
 
-<table class="table table-responsive">
 
-<thead>
-  <tr>
-    <th scope="col"></th>
-    <th scope="col">Name</th>
-    <th scope="col">Description</th>
-  </tr>
-</thead>
+<div class="row">
+  <table class="table table-responsive">
 
-<tbody>
-  <% sitemap.resources.select {|r| r.path.match(%r|^services/|)}.sort_by{|r| r.data.sort_name}.each do |r| %>
+  <thead>
     <tr>
-      <td>
-        <% if r.data.logos['112x32'] %>
-          <%= link_to(image_tag(r.data.logos['112x32'], :width => 112, :height => 32), r) %>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to(r.data.name, r) %>
-      </td>
-      <td>
-        <%= r.data.short_description %>
-      </td>
+      <th scope="col"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
     </tr>
-  <% end %>
-</tbody>
+  </thead>
 
-</table>
+  <tbody>
+    <% sitemap.resources.select {|r| r.path.match(%r|^services/|)}.sort_by{|r| r.data.sort_name}.each do |r| %>
+      <tr>
+        <td>
+          <% if r.data.logos['112x32'] %>
+            <%= link_to(image_tag(r.data.logos['112x32'], :width => 112, :height => 32), r) %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to(r.data.name, r) %>
+        </td>
+        <td>
+          <%= r.data.short_description %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+  </table>
+</div>

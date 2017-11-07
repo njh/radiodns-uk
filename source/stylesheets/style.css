@@ -1,3 +1,8 @@
 .bg-charlottes-locks { background-color: #dd5f24; }
 
 .navbar { border-bottom: 3px #a5441c solid; }
+
+
+#headline {
+  padding: 2.0ex;
+}
