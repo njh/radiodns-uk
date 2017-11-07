@@ -24,3 +24,5 @@ activate :s3_sync do |s3_sync|
   s3_sync.index_document        = 'index.html'
   s3_sync.error_document        = 'error.html'
 end
+
+default_caching_policy :public => true, :max_age => 3600
