@@ -1,8 +1,27 @@
 .bg-charlottes-locks { background-color: #dd5f24; }
 
-.navbar { border-bottom: 3px #a5441c solid; }
+.navbar { border-bottom: 3px #b24c1c solid; }
 
 
 #headline {
   padding: 2.0ex;
+}
+
+.footer
+{
+  padding-top: 2.0ex;
+  padding-bottom: 2.0ex;
+  margin-top: 4.0ex;
+  border-top: 3px #b24c1c solid;
+  color: #ffffff;
+  text-align: center;
+  background-color: #dd5f24;
+}
+
+a { color: #1c82b2; }
+
+a:hover { color: #125270; }
+
+.footer a {
+  color: #156286;
 }
