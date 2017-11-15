@@ -12,6 +12,7 @@ page "services/*", :layout => :service_layout
 activate :directory_indexes
 set :trailing_slash, false
 
+page "/googleaa77a87172eb8ceb.html", :directory_index => false
 
 
 activate :s3_sync do |s3_sync|
