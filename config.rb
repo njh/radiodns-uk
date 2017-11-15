@@ -19,7 +19,7 @@ page "/googleaa77a87172eb8ceb.html", :directory_index => false
 
 
 activate :s3_sync do |s3_sync|
-  s3_sync.bucket                = 'www.radiodns.uk'
+  s3_sync.bucket                = 'origin.radiodns.uk'
   s3_sync.region                = 'eu-west-1'
   s3_sync.aws_access_key_id     = ENV['RADIODNS_UK_AWS_KEY']
   s3_sync.aws_secret_access_key = ENV['RADIODNS_UK_AWS_SECRET']
