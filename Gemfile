@@ -10,3 +10,4 @@ gem 'mime-types'
 
 gem 'middleman', '~> 4.2'
 gem 'middleman-s3_sync'
+gem 'middleman-search_engine_sitemap'

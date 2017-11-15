@@ -99,6 +99,9 @@ GEM
       parallel
       ruby-progressbar
       unf
+    middleman-search_engine_sitemap (1.4.0)
+      builder
+      middleman-core (~> 4.0)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
@@ -148,6 +151,7 @@ DEPENDENCIES
   json
   middleman (~> 4.2)
   middleman-s3_sync
+  middleman-search_engine_sitemap
   mime-types
   nokogiri
   radiodns
