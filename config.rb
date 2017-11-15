@@ -10,6 +10,7 @@ page "services/*", :layout => :service_layout
 
 
 activate :directory_indexes
+set :trailing_slash, false
 
 
 
