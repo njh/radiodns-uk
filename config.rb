@@ -13,7 +13,7 @@ activate :directory_indexes
 set :trailing_slash, false
 
 ## Search Engine Optimisation
-set :url_root, 'http://www.radiodns.uk'
+set :url_root, 'https://www.radiodns.uk'
 activate :search_engine_sitemap, default_change_frequency: "weekly"
 page "/googleaa77a87172eb8ceb.html", :directory_index => false
 
