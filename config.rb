@@ -17,6 +17,8 @@ set :url_root, 'https://www.radiodns.uk'
 activate :search_engine_sitemap, default_change_frequency: "weekly"
 page "/googleaa77a87172eb8ceb.html", :directory_index => false
 
+# Redirects from old URLs
+activate :alias
 
 activate :s3_sync do |s3_sync|
   s3_sync.bucket                = 'origin.radiodns.uk'

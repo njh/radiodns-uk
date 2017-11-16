@@ -21,6 +21,9 @@ class Nokogiri::XML::Element
 
 end
 
+def id_to_path(id)
+  File.join(['services'] + id.split(/\W+/))
+end
 
 
 Dir.glob("si_files/*.xml").each do |filepath|
@@ -80,7 +83,8 @@ Dir.glob("si_files/*.xml").each do |filepath|
 
       ids = service[:bearers].map {|b| b[:id] }.select {|b| b.match(/^(fm|dab)/)}.sort
       next if ids.empty?
-      service[:id] = ids.first
+      service[:id] = ids.shift
+      service[:alias] = ids.map { |id| id_to_path(id) + '/' }
 
       element.xpath("genre").each do |genre|
         if genre['href']
@@ -96,8 +100,7 @@ Dir.glob("si_files/*.xml").each do |filepath|
         end
       end
 
-      path = File.join(service[:id].split(/\W+/))
-      service_file = File.join('source', 'services', path + '.html.erb')
+      service_file = File.join('source', id_to_path(service[:id]) + '.html.erb')
       FileUtils.mkdir_p(File.dirname(service_file))
       File.open(service_file, 'wb') do |file|
         file.puts service.to_yaml
