@@ -28,7 +28,8 @@ name: RadioDNS Services in the United Kingdom
   </thead>
 
   <tbody>
-    <% sitemap.resources.select {|r| r.path.match(%r|^services/|)}.sort_by{|r| r.data.sort_name}.each do |r| %>
+    <% resources = sitemap.resources.select {|r| r.class == Middleman::Sitemap::Resource } %>
+    <% resources.select {|r| r.path.match(%r|^services/|)}.sort_by{|r| r.data.sort_name}.each do |r| %>
       <tr>
         <td>
           <% if r.data.logos['112x32'] %>
