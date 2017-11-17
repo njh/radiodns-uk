@@ -38,14 +38,26 @@
         <div style="margin-bottom: 2em">
         <h5><%= size %></h5>
         <% width, height = size.split('x') %>
-        <%= link_to( image_tag(
-          current_page.data.logos[size],
-          :class => 'logo img-thumbnail',
-          :alt => "#{size} #{current_page.data.name} Logo",
-          :width => width,
-          :height => height,
-          ), current_page.data.logos[size], :title => size, :target => '_blank')
-        %>
+        
+        <% if current_page.data.logos[size] %>
+          <%= link_to( image_tag(
+            current_page.data.logos[size],
+            :class => 'logo img-thumbnail',
+            :alt => "#{size} #{current_page.data.name} Logo",
+            :width => width,
+            :height => height,
+            ), current_page.data.logos[size], :title => size, :target => '_blank')
+          %>
+        <% else %>
+          <%= image_tag(
+            "/images/placeholder/#{size}.svg",
+            :class => 'logo img-thumbnail',
+            :alt => "No logo available at #{size}",
+            :width => width,
+            :height => height,
+            )
+          %>
+        <% end %>
         </div>
       <% end %>
     </div>
