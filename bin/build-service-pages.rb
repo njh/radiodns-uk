@@ -59,8 +59,19 @@ def process_service(element, fqdn)
   end
 
   element.xpath("link").each do |link|
-    if link['uri']
-      service[:links] << link['uri']
+    begin
+      next unless link['uri']
+      if link['uri'] =~ /^(\w+):/
+        uri = URI.parse(link['uri'])
+      else
+        uri = URI.parse("http://#{link['uri']}")
+      end
+      if !uri.opaque and uri.path.empty?
+        uri.path = '/'
+      end
+      service[:links] << uri.to_s
+    rescue URI::InvalidURIError => e
+      $stderr.puts "Invalid Link: #{link} (#{e})"
     end
   end
 
@@ -100,7 +111,6 @@ def process_service(element, fqdn)
     file.puts service.to_yaml
     file.puts "---"
   end
-
 end
 
 
