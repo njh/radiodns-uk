@@ -92,7 +92,7 @@ Dir.glob("si_files/*.xml").each do |filepath|
           if label.empty?
             label = Genres.lookup(genre['href'])
             if label.nil?
-              puts "WARNING: unknown genre: #{genre['href']}"
+              $stderr.puts "WARNING: unknown genre: #{genre['href']}"
               label = "Unknown (#{genre['href']})"
             end
           end
@@ -109,7 +109,7 @@ Dir.glob("si_files/*.xml").each do |filepath|
     end
 
   rescue => e
-    puts "Failed to process: #{filepath} (#{e})"
+    $stderr.puts "Failed to process: #{filepath} (#{e})"
   end
 
 end
