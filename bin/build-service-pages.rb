@@ -48,7 +48,7 @@ def process_service(element, fqdn)
   }
 
   element.xpath("mediaDescription/multimedia").each do |multimedia|
-    if multimedia['width'] && multimedia['height']
+    if multimedia['width'] && multimedia['height'] && multimedia['url']
       key = multimedia['width'] + 'x' + multimedia['height']
       service[:logos][key] = multimedia['url']
     elsif multimedia['type'] == 'logo_colour_square'
