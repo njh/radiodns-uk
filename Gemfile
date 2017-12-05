@@ -7,6 +7,7 @@ gem 'nokogiri'
 gem 'radiodns'
 gem 'roo', '~> 2.7.0'
 gem 'mime-types'
+gem 'titleize'
 
 gem 'middleman', '~> 4.2'
 gem 'middleman-alias'

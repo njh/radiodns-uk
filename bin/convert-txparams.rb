@@ -4,6 +4,15 @@ require 'bundler/setup'
 Bundler.require(:default)
 
 
+class String
+  def titleize_if_caps
+    if self =~ /^[A-Z\W]+$/
+      self.titleize
+    else
+      self
+    end
+  end
+end
 
 def clean_column_names(sheet, header_column=1)
   sheet.row(header_column).map do |col|
@@ -34,7 +43,7 @@ def generate_fm(xlsx, sheet_name)
 
     services[key][:transmitters] << {
       :frequency => hash['frequency'],
-      :site => hash['site'],
+      :site => hash['site'].titleize_if_caps,
       :area => hash['area'],
       :lat => hash['lat'],
       :long => hash['long'],
@@ -77,7 +86,7 @@ def generate_dab(xlsx, sheet_name)
       }
 
       services[eid][sid][:transmitters] << {
-        :name => hash['site'],
+        :name => hash['site'].titleize_if_caps,
         :frequency => hash['freq'],
         :block => hash['block'],
         :area => hash['transmitter_area'],
