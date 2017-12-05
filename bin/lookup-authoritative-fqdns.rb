@@ -23,7 +23,7 @@ tx_params[:fm].each do |service|
     result = RadioDNS::Resolver.resolve(
       :bearer => 'fm',
       :ecc => RADIODNS_ECC,
-      :freq => sprintf("%05d", frequency * 100),
+      :freq => sprintf("%05d", frequency.to_f * 100),
       :pi => service[:rds_pi].downcase
     )
 

@@ -5,7 +5,7 @@ Bundler.require(:default)
 
 
 
-def clean_column_names(sheet, header_column=2)
+def clean_column_names(sheet, header_column=1)
   sheet.row(header_column).map do |col|
     col.to_s.strip.downcase.gsub(/\W+/,'_').sub(/_$/,'')
   end
@@ -18,7 +18,7 @@ def generate_fm(xlsx, sheet_name)
   sheet = xlsx.sheet(sheet_name)
   column_names = clean_column_names(sheet)
 
-  (3..sheet.last_row).each do |row_num|
+  (2..sheet.last_row).each do |row_num|
     row = sheet.row(row_num)
     hash = Hash[column_names.zip(row)]
 
@@ -52,7 +52,7 @@ def generate_dab(xlsx, sheet_name)
   sheet = xlsx.sheet(sheet_name)
   column_names = clean_column_names(sheet)
 
-  (3..sheet.last_row).each do |row_num|
+  (2..sheet.last_row).each do |row_num|
     row = sheet.row(row_num)
     hash = Hash[column_names.zip(row)]
 
