@@ -4,6 +4,7 @@ require 'fileutils'
 require 'bundler/setup'
 Bundler.require(:default)
 require './lib/genres'
+require './lib/bearer_resolver'
 
 
 class Nokogiri::XML::Element
@@ -77,7 +78,20 @@ def process_service(element, fqdn)
 
   element.xpath("bearer").each do |xmlbearer|
     if xmlbearer['id']
-      bearer = { :id => xmlbearer['id'].downcase }
+      # Ignore web streams for now
+      bearer_id = xmlbearer['id'].downcase
+      next if bearer_id =~ /^http/
+
+      bearer_fdqn = resolve_bearer_id(bearer_id)
+      if bearer_fdqn.nil?
+        $stderr.puts "  => Unable to resolve bearer #{bearer_id}"
+        next
+      elsif bearer_fdqn != fqdn
+        $stderr.puts "  => FQDN does not match for bearer #{bearer_id} = #{bearer_fdqn}"
+        next
+      end
+
+      bearer = { :id => bearer_id }
       bearer[:bitrate] = xmlbearer['bitrate'].to_i unless xmlbearer['bitrate'].nil?
       bearer[:cost] = xmlbearer['cost'].to_i unless xmlbearer['bitrate'].nil?
       bearer[:offset] = xmlbearer['offset'].to_i unless xmlbearer['offset'].nil?
@@ -88,7 +102,7 @@ def process_service(element, fqdn)
 
   ids = service[:bearers].map {|b| b[:id] }.select {|b| b.match(/^(fm|dab)/)}.sort
   if ids.empty?
-    $stderr.puts "Warning: service has no valid bearers"
+    $stderr.puts "  => Warning: service has no valid bearers"
     return
   end
 
@@ -137,4 +151,5 @@ Dir.glob("si_files/*.xml").each do |filepath|
     $stderr.puts "Failed to parse file: #{filepath} (#{e})"
   end
 
+  puts
 end
