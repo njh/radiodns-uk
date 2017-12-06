@@ -87,7 +87,11 @@ def process_service(element, fqdn)
   end
 
   ids = service[:bearers].map {|b| b[:id] }.select {|b| b.match(/^(fm|dab)/)}.sort
-  return if ids.empty?
+  if ids.empty?
+    $stderr.puts "Warning: service has no valid bearers"
+    return
+  end
+
   service[:id] = ids.shift
   service[:alias] = ids.map { |id| id_to_path(id) + '/' }
 
