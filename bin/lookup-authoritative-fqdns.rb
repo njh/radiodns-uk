@@ -2,9 +2,7 @@
 
 require 'bundler/setup'
 Bundler.require(:default)
-
-RADIODNS_ECC = 'ce1'
-
+require './lib/bearer_resolver'
 
 tx_params = JSON.parse(
   File.read('TxParams.json'),
@@ -15,44 +13,39 @@ tx_params = JSON.parse(
 authoritative_fqdns = []
 
 tx_params[:fm].each do |service|
+  frequency = service[:transmitters].first[:frequency]
+  puts "#{service[:name]} on #{frequency} / #{service[:rds_pi]}"
 
-  begin
-    frequency = service[:transmitters].first[:frequency]
-    puts "#{service[:name]} on #{frequency} / #{service[:rds_pi]}"
+  fdqn = resolve_bearer_id(
+    :bearer => 'fm',
+    :freq => sprintf("%05d", frequency.to_f * 100),
+    :pi => service[:rds_pi].downcase
+  )
 
-    result = RadioDNS::Resolver.resolve(
-      :bearer => 'fm',
-      :ecc => RADIODNS_ECC,
-      :freq => sprintf("%05d", frequency.to_f * 100),
-      :pi => service[:rds_pi].downcase
-    )
-
-    puts " => #{result.cname}"
-    authoritative_fqdns << result.cname
-
-  rescue Resolv::ResolvError
+  if fdqn.nil?
     puts " => No RadioDNS entry"
+  else
+    puts " => #{fdqn}"
+    authoritative_fqdns << fdqn
   end
 end
 
 
 tx_params[:dab].each do |service|
-  begin
-    puts "#{service[:name]} on #{service[:eid]} / #{service[:sid]}"
+  puts "#{service[:name]} on #{service[:eid]} / #{service[:sid]}"
 
-    result = RadioDNS::Resolver.resolve(
-      :bearer => 'dab',
-      :ecc => RADIODNS_ECC,
-      :eid => service[:eid].downcase,
-      :sid => service[:sid].downcase,
-      :scids => 0
-    )
+  fdqn = resolve_bearer_id(
+    :bearer => 'dab',
+    :eid => service[:eid].downcase,
+    :sid => service[:sid].downcase,
+    :scids => 0
+  )
 
-    puts " => #{result.cname}"
-    authoritative_fqdns << result.cname
-
-  rescue Resolv::ResolvError
+  if fdqn.nil?
     puts " => No RadioDNS entry"
+  else
+    puts " => #{fdqn}"
+    authoritative_fqdns << fdqn
   end
 end
 
