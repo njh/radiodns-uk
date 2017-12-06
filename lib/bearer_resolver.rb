@@ -14,7 +14,7 @@ def resolve_bearer_id(params)
       )
     elsif params.is_a?(String) and params.match(/^\w+:\w+/)
       # Convert to DNS entry
-      fqdn = params.split(/\W+/).reverse.push(RadioDNS::Resolver.root_domain).join('.')
+      fqdn = params.split(/\W+/).reverse.push('radiodns.org').join('.')
     else
       $stderr.puts "Warning: Unable to parse bearer: #{params}"
       return nil
