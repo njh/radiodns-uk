@@ -1,7 +1,7 @@
 RadioDNS.uk
 ===========
 
-This is the code repository that generates the [radiodns.uk] website, a directory 
+This is the code repository that generates the [radiodns.uk] website, a directory
 listing of all the radio stations in the United Kingdom which have [RadioDNS] Hybrid Radio
 services available
 
