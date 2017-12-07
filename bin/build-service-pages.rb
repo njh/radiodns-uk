@@ -78,9 +78,10 @@ def process_service(element, fqdn)
 
   element.xpath("bearer").each do |xmlbearer|
     if xmlbearer['id']
-      # Ignore web streams for now
       bearer_id = xmlbearer['id'].downcase
-      next if bearer_id =~ /^http/
+
+      # Ignore bearers that aren't UK DAB/FM for now
+      next unless bearer_id =~ /^(fm|dab):(gb|ce1)/
 
       bearer_fdqn = resolve_bearer_id(bearer_id)
       if bearer_fdqn.nil?
@@ -100,7 +101,7 @@ def process_service(element, fqdn)
     end
   end
 
-  ids = service[:bearers].map {|b| b[:id] }.select {|b| b.match(/^(fm|dab)/)}.sort
+  ids = service[:bearers].map {|b| b[:id] }.sort
   if ids.empty?
     $stderr.puts "  => Warning: service has no valid bearers"
     return
