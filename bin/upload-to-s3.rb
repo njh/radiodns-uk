@@ -67,12 +67,19 @@ filelist.each_pair do |localpath,remotepath|
   end
 
   File.open(localpath, 'rb') do |file|
+    body = file.read
+    
+    if body.match(%r|<meta http-equiv=refresh content="0; url=(\S+)" />|)
+      website_redirect_location = "https://www.radiodns.uk#{$1}"
+    end
+
     bucket.put_object(
       :key => remotepath,
       :acl => 'public-read',
+      :website_redirect_location => website_redirect_location,
       :content_type => mime_type,
       :cache_control => CACHE_CONTROL,
-      :body => file,
+      :body => body
     )
   end
 end
