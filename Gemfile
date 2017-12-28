@@ -11,5 +11,6 @@ gem 'titleize'
 
 gem 'middleman', '~> 4.2'
 gem 'middleman-alias'
-gem 'middleman-s3_sync'
 gem 'middleman-search_engine_sitemap'
+
+gem 'aws-sdk-s3', '~> 1.8.0'
