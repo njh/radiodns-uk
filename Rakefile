@@ -37,7 +37,7 @@ end
 
 desc "Upload site to Amazon S3"
 task :publish => :build do |task|
-  ruby 'bin/update-to-s3.rb'
+  ruby 'bin/upload-to-s3.rb'
 end
 
 task :default => :build
