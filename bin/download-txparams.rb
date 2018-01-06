@@ -21,7 +21,7 @@ file_uri = nil
 html_doc = Nokogiri::HTML(res.body)
 html_doc.css("a").each do |a|
   href_uri = URI.parse(a['href'])
-  if File.basename(href_uri.path) == filename
+  if File.basename(href_uri.path).match?(/(TxParams|TechParams)\.xlsx/)
     file_uri = href_uri
   end
 end
