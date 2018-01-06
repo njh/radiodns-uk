@@ -3,9 +3,12 @@ id: home
 name: RadioDNS Services in the United Kingdom
 ---
 
+<% resources = sitemap.resources.select {|r| r.class == Middleman::Sitemap::Resource } %>
+<% services = resources.select {|r| r.path.match(%r|^services/|)}.sort_by {|r| r.data.sort_name} %>
+
 <div class="row">
   <p id="headline" class="lead">
-    This site is a directory listing of all the radio stations in the United Kingdom
+    This site is a directory listing of the <em><%= services.count %></em> radio stations in the United Kingdom
     which have RadioDNS Hybrid Radio services available.
 
     The initial list of frequencies and identifiers is retrieved from the
@@ -28,19 +31,18 @@ name: RadioDNS Services in the United Kingdom
   </thead>
 
   <tbody>
-    <% resources = sitemap.resources.select {|r| r.class == Middleman::Sitemap::Resource } %>
-    <% resources.select {|r| r.path.match(%r|^services/|)}.sort_by{|r| r.data.sort_name}.each do |r| %>
+    <% services.each do |service| %>
       <tr>
         <td>
-          <% if r.data.logos['112x32'] %>
-            <%= link_to(image_tag(r.data.logos['112x32'], :width => 112, :height => 32), r) %>
+          <% if service.data.logos['112x32'] %>
+            <%= link_to(image_tag(service.data.logos['112x32'], :width => 112, :height => 32), service) %>
           <% end %>
         </td>
         <td>
-          <%= link_to(r.data.name, r) %>
+          <%= link_to(service.data.name, service) %>
         </td>
         <td>
-          <%= r.data.short_description %>
+          <%= service.data.short_description %>
         </td>
       </tr>
     <% end %>
