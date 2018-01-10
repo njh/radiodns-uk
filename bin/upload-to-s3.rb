@@ -45,11 +45,8 @@ puts "Uploading: #{filelist.keys.count} files"
 
 
 
-client = Aws::S3::Client.new(:region => 'eu-west-1')
-bucket = Aws::S3::Bucket.new(
-  'origin.radiodns.uk',
-  :client => client
-)
+s3 = Aws::S3::Resource.new(:region => 'eu-west-1')
+bucket = s3.bucket('origin.radiodns.uk')
 
 raise "Error: S3 bucket does not exist" unless bucket.exists?
 
@@ -67,19 +64,20 @@ filelist.each_pair do |localpath,remotepath|
   end
 
   File.open(localpath, 'rb') do |file|
-    body = file.read
-    
-    if body.match(%r|<meta http-equiv=refresh content="0; url=(\S+)" />|)
-      website_redirect_location = "https://www.radiodns.uk#{$1}"
+    if localpath.match(/html$/)
+      body = file.read
+      if body.match(%r|<meta http-equiv=refresh content="0; url=(\S+)" />|)
+        website_redirect_location = "https://www.radiodns.uk#{$1}"
+      end
     end
 
-    bucket.put_object(
-      :key => remotepath,
+    file.rewind
+    bucket.object(remotepath).upload_file(
+      file,
       :acl => 'public-read',
       :website_redirect_location => website_redirect_location,
       :content_type => mime_type,
-      :cache_control => CACHE_CONTROL,
-      :body => body
+      :cache_control => CACHE_CONTROL
     )
   end
 end
