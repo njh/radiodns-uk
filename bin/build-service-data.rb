@@ -97,7 +97,7 @@ def process_service(element, fqdn)
   end
 
   if service[:bearers].empty?
-    $stderr.puts "  => Warning: service has no valid bearers"
+    $stderr.puts "  => Warning: service has no UK DAB or FM bearers"
     return
   end
 
