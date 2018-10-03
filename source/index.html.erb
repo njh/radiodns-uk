@@ -36,7 +36,7 @@ name: RadioDNS Services in the United Kingdom
       <tr>
         <td>
           <% if service.data.logos['112x32'] %>
-            <%= link_to(image_tag(service.data.logos['112x32'], :width => 112, :height => 32), service) %>
+            <%= link_to(image_tag(service.data.logos['112x32'].url, :width => 112, :height => 32), service) %>
           <% end %>
         </td>
         <td>

@@ -21,6 +21,19 @@ class Nokogiri::XML::Element
 
 end
 
+def get_filesize(url)
+  uri = URI.parse(url)
+  response = Net::HTTP.get_response(uri)
+  case response
+  when Net::HTTPSuccess then
+    response['Content-Length'].to_i
+  when Net::HTTPRedirection then
+    get_filesize(response['location'])
+  else
+    $stderr.puts " => Failed to get file size for #{url}"
+  end
+end
+
 
 def process_service(element, fqdn)
   name = element.content_at('longName') || element.content_at('mediumName') || element.content_at('shortName')
@@ -44,13 +57,18 @@ def process_service(element, fqdn)
   }
 
   element.xpath("mediaDescription/multimedia").each do |multimedia|
-    if multimedia['width'] && multimedia['height'] && multimedia['url']
-      key = multimedia['width'] + 'x' + multimedia['height']
-      service[:logos][key] = multimedia['url']
-    elsif multimedia['type'] == 'logo_colour_square'
-      service[:logos]['32x32'] = multimedia['url']
+    key = if multimedia['type'] == 'logo_colour_square'
+      '32x32'
     elsif multimedia['type'] == 'logo_colour_rectangle'
-      service[:logos]['112x32'] = multimedia['url']
+      '112x32'
+    elsif multimedia['width'] && multimedia['height']
+      multimedia['width'] + 'x' + multimedia['height']
+    end
+
+    unless key.nil?
+      service[:logos][key] = {
+        :url => multimedia['url']
+      }
     end
   end
 
