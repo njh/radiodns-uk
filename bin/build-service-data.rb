@@ -6,8 +6,19 @@ Bundler.require(:default)
 require './lib/genres'
 require './lib/bearer_resolver'
 
-unless Nokogiri::XML::Node.respond_to?(:content_at)
-  require './lib/ext/content_at.rb'
+class Nokogiri::XML::Element
+
+  def content_at(path)
+    node = at(path)
+    if node.nil?
+      nil
+    elsif node.inner_text.empty?
+      nil
+    else
+      node.inner_text
+    end
+  end
+
 end
 
 
