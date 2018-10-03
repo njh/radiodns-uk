@@ -13,4 +13,5 @@ authoritative-fqdns.json
 si_files
 
 build/
+source/services.json
 source/services/

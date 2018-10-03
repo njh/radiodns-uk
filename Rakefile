@@ -20,8 +20,13 @@ directory 'si_files' => 'authoritative-fqdns.json' do |task|
   ruby 'bin/download-si-files.rb'
 end
 
+desc "Build Service Data files"
+file 'source/services.json' => 'si_files' do |task|
+  ruby 'bin/build-service-data.rb'
+end
+
 desc "Build Service Page files"
-directory 'source/services' => 'si_files' do |task|
+directory 'source/services' => 'source/services.json' do |task|
   ruby 'bin/build-service-pages.rb'
 end
 

@@ -4,7 +4,8 @@ name: RadioDNS Services in the United Kingdom
 ---
 
 <% resources = sitemap.resources.select {|r| r.class == Middleman::Sitemap::Resource } %>
-<% services = resources.select {|r| r.path.match(%r|^services/|)}.sort_by {|r| r.data.sort_name} %>
+<% pages = resources.select {|r| File.extname(r.path) == ".html" } %>
+<% services = pages.select {|r| r.path.match(%r|^services/|)}.sort_by {|r| r.data.sort_name} %>
 
 <div class="row">
   <p id="headline" class="lead">
