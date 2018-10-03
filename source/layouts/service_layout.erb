@@ -26,9 +26,9 @@
       <% end %>
 
       <h2>Bearers</h2>
-      <% current_page.data.bearers.each do |bearer| %>
+      <% current_page.data.bearers.each_pair do |bearer_id, bearer| %>
         <ul>
-          <li><%= bearer.id %></li>
+          <li><%= bearer_id %></li>
         </ul>
       <% end %>
     </div>

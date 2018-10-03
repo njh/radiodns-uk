@@ -22,10 +22,11 @@ services.each do |service|
   end
 
   # Alias is used by Middleman to create redirects
-  ids = service[:bearers].map {|b| b[:id] }
-  service[:alias] = ids.drop(1).map { |id| id_to_path(id) + '/' }
+  ids = service[:bearers].keys.map {|id| id.to_s }
+  ids.delete_if {|id| id == service[:id]}
+  service[:alias] = ids.map {|id| id_to_path(id) + '/'}
 
-  # Write HTML ERB file for middleman
+  # Write HTML ERB file for Middleman
   service_html_filepath = File.join('source', id_to_path(service[:id]) + '.html.erb')
   File.open(service_html_filepath, 'wb') do |file|
     file.puts service.to_yaml

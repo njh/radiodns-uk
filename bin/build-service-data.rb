@@ -39,7 +39,7 @@ def process_service(element, fqdn)
     :fqdn => fqdn,
     :logos => {},
     :links => [],
-    :bearers => [],
+    :bearers => {},
     :genres => {}
   }
 
@@ -78,6 +78,12 @@ def process_service(element, fqdn)
       # Ignore bearers that aren't UK DAB/FM for now
       next unless bearer_id =~ /^(fm|dab):(gb|ce1)/
 
+      # Check for duplicates
+      if service[:bearers].has_key?(bearer_id)
+        $stderr.puts "  => Warning: service has duplicate beaerer IDs"
+        return
+      end
+
       bearer_fdqn = resolve_bearer_id(bearer_id)
       if bearer_fdqn.nil?
         $stderr.puts "  => Unable to resolve bearer #{bearer_id}"
@@ -87,12 +93,12 @@ def process_service(element, fqdn)
         next
       end
 
-      bearer = { :id => bearer_id }
+      bearer = {}
       bearer[:bitrate] = xmlbearer['bitrate'].to_i unless xmlbearer['bitrate'].nil?
       bearer[:cost] = xmlbearer['cost'].to_i unless xmlbearer['bitrate'].nil?
       bearer[:offset] = xmlbearer['offset'].to_i unless xmlbearer['offset'].nil?
       bearer[:mimeValue] = xmlbearer['mimeValue'] unless xmlbearer['mimeValue'].nil?
-      service[:bearers] << bearer
+      service[:bearers][bearer_id] = bearer
     end
   end
 
@@ -101,8 +107,7 @@ def process_service(element, fqdn)
     return
   end
 
-  service[:bearers].sort_by! { |b| b[:id] }
-  service[:id] = service[:bearers].first[:id]
+  service[:id] = service[:bearers].keys.sort.first
 
   element.xpath("genre").each do |genre|
     if genre['href']
