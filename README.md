@@ -1,11 +1,11 @@
 RadioDNS.uk
 ===========
 
-This is the code repository that generates the [radiodns.uk] website, a directory
+This is the code repository that generates the [radiodns.uk] website. This website is a directory
 listing of all the radio stations in the United Kingdom which have [RadioDNS] Hybrid Radio
-services available
+services available.
 
-It is a statically generated website, with the HTML built and deployed using [Ruby] and [Middleman].
+This website is statically generated and the HTML is built and deployed using [Ruby] and [Middleman].
 
 
 The steps to generate the site are:
@@ -46,7 +46,7 @@ And then open the following URL in your browser: [http://localhost:3000/]
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/njh/radiodns-uk.
-This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+This project is intended to be a safe and welcoming space for collaboration. Contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
