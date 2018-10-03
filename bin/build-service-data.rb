@@ -149,6 +149,8 @@ Dir.glob("si_files/*.xml").each do |filepath|
   puts
 end
 
+services.sort_by! {|s| s[:sort_name]}
+
 # Write all the services to a single file
 File.open('source/services.json', 'wb') do |file|
   file.write JSON.pretty_generate(services)
