@@ -7,7 +7,7 @@
     <%= tag('link', :rel => :canonical, :href => File.join(app.config.url_root, current_page.url)) %>
 
     <title><%= current_page.data.name %> - radiodns.uk</title>
-    <%= stylesheet_link_tag "bootstrap-4.0.0-beta.2.min.css" %>
+    <%= stylesheet_link_tag "bootstrap.min.css" %>
     <%= stylesheet_link_tag "style.css" %>
   </head>
   <body>
@@ -20,7 +20,7 @@
     <%= partial "footer" %>
 
     <%= javascript_include_tag "jquery-3.2.1.slim.min.js" %>
-    <%= javascript_include_tag "bootstrap-4.0.0-beta.2.bundle.min.js" %>
+    <%= javascript_include_tag "bootstrap.bundle.min.js" %>
   </body>
 
 </html>
