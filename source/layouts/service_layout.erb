@@ -28,7 +28,16 @@
       <h2>Bearers</h2>
       <ul>
         <% current_page.data.bearers.each_pair do |bearer_id, bearer| %>
-          <li><%= bearer_id %></li>
+          <% if bearer_id.match(/^dab:ce1\.(\w{4})/) %>
+            <% res = sitemap.find_resource_by_page_id($1) %>
+            <% unless res.nil? %>
+              <li>DAB: <%= link_to(res.data.name, res) %></li>
+            <% else %>
+              <li>Unknown DAB multiplex: <%= bearer_id %></li>
+            <% end %>
+          <% else %>
+            <li><%= bearer_id %></li>
+          <% end %>
         <% end %>
       </ul>
     </div>
