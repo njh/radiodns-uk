@@ -16,3 +16,17 @@ activate :search_engine_sitemap, default_change_frequency: "weekly"
 
 # Redirects from old URLs
 activate :alias
+
+
+
+helpers do
+  def path_for_bearer(bearer_id)
+    '/services/' + bearer_id.split(/\W+/).join('/')
+  end
+
+  def find_resource_by_bearer_id(bearer_id)
+    path = path_for_bearer(bearer_id) + '/index.html'
+    p path
+    app.sitemap.find_resource_by_destination_path(path)
+  end
+end
