@@ -6,8 +6,6 @@ page '/*.xml', layout: false
 page '/*.json', layout: false
 page '/*.txt', layout: false
 
-page "services/*", :layout => :service_layout
-
 
 activate :directory_indexes
 set :trailing_slash, false

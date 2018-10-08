@@ -27,6 +27,7 @@ services.each do |service|
   service[:alias] = ids.map {|id| id_to_path(id) + '/'}
 
   # Write HTML ERB file for Middleman
+  service[:layout] = :service_layout
   service_html_filepath = File.join('source', id_to_path(service[:id]) + '.html.erb')
   File.open(service_html_filepath, 'wb') do |file|
     file.puts service.to_yaml
