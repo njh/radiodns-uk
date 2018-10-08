@@ -41,12 +41,12 @@
 
         <% if current_page.data.logos[size] %>
           <%= link_to( image_tag(
-            current_page.data.logos[size],
+            current_page.data.logos[size].url,
             :class => 'logo img-thumbnail',
             :alt => "#{size} #{current_page.data.name} Logo",
             :width => width,
             :height => height,
-            ), current_page.data.logos[size], :title => size, :target => '_blank')
+            ), current_page.data.logos[size].url, :title => size, :target => '_blank')
           %>
         <% else %>
           <%= image_tag(
