@@ -26,7 +26,6 @@ helpers do
 
   def find_resource_by_bearer_id(bearer_id)
     path = path_for_bearer(bearer_id) + '/index.html'
-    p path
     app.sitemap.find_resource_by_destination_path(path)
   end
 end
