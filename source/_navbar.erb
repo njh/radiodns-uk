@@ -1,13 +1,14 @@
-<nav class="navbar navbar-dark bg-charlottes-locks">
+<nav class="navbar navbar-expand-md navbar-dark bg-charlottes-locks">
   <a class="navbar-brand" href="/">
     <img src="/images/radiodns.uk-logo.png" width="185" height="35" alt="radiodns.uk" />
   </a>
 
-  <div class="justify-content-end">
-    <ul class="navbar-nav">
-      <li class="nav-item <%= current_page.page_id == 'home' ? 'active' : '' %>">
-        <a class="nav-link" href="/">Home</a>
-      </li>
-    </ul>
-  </div>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item <%= current_page.page_id == 'home' ? 'active' : '' %>">
+      <a class="nav-link" href="/">Home</a>
+    </li>
+    <li class="nav-item <%= current_path.match(%r|^multiplexes/|) ? 'active' : '' %>">
+      <a class="nav-link" href="/multiplexes">Multiplexes</a>
+    </li>
+  </ul>
 </nav>
