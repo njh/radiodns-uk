@@ -1,0 +1,47 @@
+---
+id: multiplexes
+name: List of DAB Multiplexes in the United Kingdom
+---
+
+<% resources = sitemap.resources.select {|r| r.class == Middleman::Sitemap::Resource } %>
+<% pages = resources.select {|r| File.extname(r.path) == ".html" } %>
+<% multiplexes = pages.select {|r| r.path.match(%r|^multiplexes/|)}.sort_by {|r| r.data.name} %>
+
+<div class="row">
+  <table class="table table-responsive">
+
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Area</th>
+      <th scope="col">Block</th>
+      <th scope="col">Services</th>
+      <th scope="col">Transmitters</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% multiplexes.each do |multiplex| %>
+      <% next if multiplex.data.area.nil? %>
+      <tr>
+        <td>
+          <%= link_to(multiplex.data.name, multiplex) %>
+        </td>
+        <td>
+          <%= multiplex.data.area %>
+        </td>
+        <td>
+          <%= multiplex.data.block %>
+        </td>
+        <td>
+          <%= multiplex.data.services.count %>
+        </td>
+        <td>
+          <%= multiplex.data.transmitter_count %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+  </table>
+</div>
