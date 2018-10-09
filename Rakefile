@@ -20,9 +20,19 @@ directory 'si_files' => 'authoritative-fqdns.json' do |task|
   ruby 'bin/download-si-files.rb'
 end
 
-desc "Build Service Data files"
+desc "Build Multiplex Data file"
+file 'source/multiplexes.json' => 'TxParams.json' do |task|
+  ruby 'bin/build-multiplex-data.rb'
+end
+
+desc "Build Service Data file"
 file 'source/services.json' => 'si_files' do |task|
   ruby 'bin/build-service-data.rb'
+end
+
+desc "Build Multiplex Page files"
+directory 'source/multiplexes' => 'source/multiplexes.json' do |task|
+  ruby 'bin/build-multiplex-pages.rb'
 end
 
 desc "Build Service Page files"
@@ -31,12 +41,12 @@ directory 'source/services' => 'source/services.json' do |task|
 end
 
 desc "Re-build the HTML site using Middleman"
-task :build => ['source/services'] do |task|
+task :build => ['source/multiplexes', 'source/services'] do |task|
   system 'bundle exec middleman build'
 end
 
 desc "Start Middleman Web Server"
-task :server => ['source/services'] do |task|
+task :server => ['source/multiplexes', 'source/services'] do |task|
   system 'bundle exec middleman server'
 end
 
