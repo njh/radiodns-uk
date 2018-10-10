@@ -1,7 +1,7 @@
 Bundler.require(:default)
 require 'json'
 
-RADIODNS_ECC = 'ce1'
+RADIODNS_GCC = 'ce1'
 CACHE_FILENAME = 'bearer_cache.json'
 BEARER_CACHE = {}
 
@@ -9,7 +9,7 @@ BEARER_CACHE = {}
 def resolve_bearer_id(params)
   if params.is_a?(Hash)
     fqdn = RadioDNS::Resolver.construct_fqdn(
-      params.merge(:ecc => RADIODNS_ECC)
+      params.merge(:ecc => RADIODNS_GCC)
     )
   elsif params.is_a?(String) and params.match(/^\w+:\w+/)
     # Convert to DNS entry
