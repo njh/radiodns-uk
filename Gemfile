@@ -1,16 +1,18 @@
 source "https://rubygems.org"
 
+gem 'tilt', '~> 2.0.6'
+gem 'erubi', '~> 1.5'
+gem 'roda', '~> 3.12'
+gem 'sequel', '~> 5'
+gem 'sqlite3', '~> 1.3.13'
+
 gem 'json'
 gem 'rake'
-gem 'webrick'
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.8.5'
 gem 'radiodns'
 gem 'roo', '~> 2.7.0'
-gem 'mime-types'
 gem 'titleize'
 
-gem 'middleman', '~> 4.2'
-gem 'middleman-alias'
-gem 'middleman-search_engine_sitemap'
-
-gem 'aws-sdk-s3', '~> 1.8.0'
+group :development do
+  gem 'sequel-annotate'
+end
