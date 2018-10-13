@@ -1,0 +1,42 @@
+<% content_for :page_title, "List of DAB Multiples in the UK" %>
+
+<h1><%= content_for :page_title %></h1>
+
+<div class="row">
+  <table class="table table-responsive">
+
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Area</th>
+      <th scope="col">Block</th>
+      <th scope="col">Services</th>
+      <th scope="col">Transmitters</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @multiplexes.each do |multiplex| %>
+      <% next if multiplex.area.nil? %>
+      <tr>
+        <td>
+          <a href="/multiplexes/<%= multiplex.eid %>"><%= multiplex.name %></a>
+        </td>
+        <td>
+          <%= multiplex.area %>
+        </td>
+        <td>
+          <%= multiplex.block %>
+        </td>
+        <td>
+          <%#= multiplex.services.count %>
+        </td>
+        <td>
+          <%#= multiplex.transmitters.count %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+  </table>
+</div>
