@@ -5,6 +5,7 @@ gem 'erubi', '~> 1.5'
 gem 'roda', '~> 3.12'
 gem 'sequel', '~> 5'
 gem 'sqlite3', '~> 1.3.13'
+gem 'rack-unreloader', '~> 1.6.0'
 
 gem 'json'
 gem 'rake'
