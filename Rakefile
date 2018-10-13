@@ -1,5 +1,10 @@
 #!/usr/bin/env ruby
 
+require 'rake'
+
+Dir.glob('lib/tasks/*.rake').each { |r| import r }  
+
+
 desc "Download the Transmitter Parameters file from Ofcom"
 file 'TxParams.xslx' do |task|
   ruby 'bin/download-txparams.rb'

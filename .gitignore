@@ -11,6 +11,7 @@ TxParams.json
 bearer_cache.json
 authoritative-fqdns.json
 si_files
+*.sqlite
 
 build/
 source/services.json

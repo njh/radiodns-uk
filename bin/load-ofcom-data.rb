@@ -1,0 +1,96 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+Bundler.require(:default)
+
+require 'net/https'
+require 'uri'
+require_relative '../models'
+
+filename = 'TxParams.xlsx'
+
+
+def download_ofcom_data(filename)
+  # First: download the Technical parameters HTML page from Ofcom
+  uri = URI.parse('https://www.ofcom.org.uk/spectrum/information/radio-tech-parameters')
+  res = Net::HTTP.get_response(uri)
+  unless res.is_a?(Net::HTTPSuccess)
+    raise "Failed to get radio-tech-parameters: #{res}"
+  end
+
+
+  # Second: find the link to TxParams.xslx
+  file_uri = nil
+  html_doc = Nokogiri::HTML(res.body)
+  html_doc.css("a").each do |a|
+    href_uri = URI.parse(a['href'])
+    if File.basename(href_uri.path).match?(/(TxParams|TechParams)\.xlsx/)
+      file_uri = href_uri
+    end
+  end
+
+  if file_uri.nil?
+    raise "Failed to find link to #{filename}"
+  end
+
+
+  # Third: download the file
+  puts "Downloading: #{file_uri}"
+  File.open(filename, 'wb') do |file|
+    begin
+      Net::HTTP.get_response(file_uri) do |resp|
+        resp.read_body do |segment|
+          file.write(segment)
+        end
+      end
+    rescue => exp
+      File.delete(filename)
+      raise exp
+    end
+  end
+end
+
+
+def clean_column_names(sheet, header_column=1)
+  sheet.row(header_column).map do |col|
+    col.to_s.strip.downcase.gsub(/\W+/,'_').sub(/_$/,'').to_sym
+  end
+end
+
+def import_dab(xlsx, sheet_name)
+  services = {}
+
+  sheet = xlsx.sheet(sheet_name)
+  column_names = clean_column_names(sheet)
+
+  (2..sheet.last_row).each do |row_num|
+    row = sheet.row(row_num)
+    hash = Hash[column_names.zip(row)]
+    next if hash[:eid].nil?
+
+    multiplex = Multiplex.find_or_create(:eid => hash[:eid].downcase)
+    multiplex.name ||= hash[:ensemble]
+    multiplex.area ||= hash[:ensemble_area]
+    multiplex.licence_number ||= hash[:licence]
+    multiplex.frequency ||= hash[:frequency]
+    multiplex.block ||= hash[:block]
+    multiplex.updated_at ||= hash['date']
+    multiplex.save
+  end
+end
+
+
+
+if File.exist?(filename)
+  puts "#{filename} has already been downloaded"
+else
+  download_ofcom_data(filename)
+end
+
+
+
+xlsx = Roo::Spreadsheet.open('TxParams.xlsx')
+puts "TxParams Sheets: #{xlsx.sheets.join(', ')}"
+
+import_dab(xlsx, 'DAB')
+
