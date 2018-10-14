@@ -75,12 +75,13 @@ def import_dab(xlsx, sheet_name)
   (2..sheet.last_row).each do |row_num|
     row = sheet.row(row_num)
     hash = Hash[column_names.zip(row)]
-    next if hash[:eid].nil?
 
+    # Parse National Grid Reference (OSGB36) - we only use 6-digits
     if hash[:ngr] =~ /^([A-Z]{2})\s*(\d{3,5})\s*(\d{3,5})$/
       ngr = $1 + $2[0,3] + $3[0,3] 
     else
       $stderr.puts "Failed to parse National Grid Reference: #{hash[:ngr]}"
+      next
     end
 
     transmitter = Transmitter.find_or_create(:ngr => ngr)
@@ -91,6 +92,7 @@ def import_dab(xlsx, sheet_name)
     transmitter.updated_at ||= hash[:date]
     transmitter.save
 
+    next if hash[:eid].nil?
     multiplex = Multiplex.find_or_create(:eid => hash[:eid].downcase)
     multiplex.name ||= hash[:ensemble]
     multiplex.area ||= hash[:ensemble_area]
@@ -105,6 +107,23 @@ def import_dab(xlsx, sheet_name)
       multiplex.add_transmitter(transmitter)
     end
 
+    
+    # There can be up to 20 services per ensemble
+    (1..20).each do |num|
+      sid = hash["sid_#{num}_hex".to_sym]
+      next if sid.nil?
+
+      bearer = Bearer.find_or_create(
+        :type => Bearer::TYPE_DAB,
+        :eid => hash[:eid],
+        :sid => sid
+      )
+      
+      bearer.from_ofcom = true
+      bearer.ofcom_label ||= hash["serv_label#{num}".to_sym]
+      bearer.multiplex_id = multiplex.id
+      bearer.save
+    end
   end
 end
 
