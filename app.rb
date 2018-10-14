@@ -15,12 +15,14 @@ class App < Roda
       r.redirect '/multiplexes'
     end
 
-    r.on 'multiplexes' do
-      r.get do
-        @multiplexes = Multiplex.order(:name).all
-        view('multiplexes_index')
-      end
+    r.get 'multiplexes' do
+      @multiplexes = Multiplex.order(:name).all
+      view('multiplexes_index')
+    end
 
+    r.get 'multiplexes', String do |eid|
+      @multiplex = Multiplex.find(:eid => eid)
+      view('multiplexes_show')
     end
   end
 end
