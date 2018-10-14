@@ -24,5 +24,15 @@ class App < Roda
       @multiplex = Multiplex.find(:eid => eid.upcase)
       view('multiplexes_show')
     end
+
+    r.get 'transmitters' do
+      @transmitters = Transmitter.order(:name).all
+      view('transmitters_index')
+    end
+
+    r.get 'transmitters', String do |ngr|
+      @transmitter = Transmitter.find(:ngr => ngr.upcase)
+      view('transmitters_show')
+    end
   end
 end

@@ -1,0 +1,46 @@
+<% content_for :page_title, @transmitter.name %>
+
+<h1><%= @transmitter.name %> Transmitter</h1>
+
+<dl class="row">
+  <dt class="col-sm-3">Area</dt>
+  <dd class="col-sm-9"><%= @transmitter.area %></dd>
+  <dt class="col-sm-3">National Grid Reference</dt>
+  <dd class="col-sm-9"><%= @transmitter.ngr %></dd>
+  <dt class="col-sm-3">WGS84 Co-ordinates</dt>
+  <dd class="col-sm-9"><%= @transmitter.lat %>, <%= @transmitter.long %></dd>
+</dl>
+
+<h3>DAB Multiplexes</h3>
+<table class="table table-sm table-responsive">
+
+  <thead>
+    <tr>
+      <th scope="col">EID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Block</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transmitter.multiplexes.each do |multiplex| %>
+      <tr>
+        <td>
+          <%= multiplex.eid %>
+        </td>
+        <td>
+          <a href="/multiplexes/<%= multiplex.eid.downcase %>"><%= multiplex.name %></a>
+        </td>
+        <td>
+          <%= multiplex.block %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="row">
+  <p class="text-secondary mt-3">
+    This page uses data from Ofcom that was last updated: <%= @transmitter.updated_at %>.
+  </p>
+</div>
