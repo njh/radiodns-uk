@@ -1,0 +1,24 @@
+<% content_for :page_title, @multiplex.name %>
+
+<h1><%= @multiplex.name %></h1>
+
+<dl class="row">
+  <dt class="col-sm-3">Licensed Area</dt>
+  <dd class="col-sm-9"><%= @multiplex.area %></dd>
+  <dt class="col-sm-3">Frequency</dt>
+  <dd class="col-sm-9"><%= @multiplex.block %> (<%= @multiplex.frequency %> MHz)</dd>
+  <dt class="col-sm-3">Ofcom License Number</dt>
+  <dd class="col-sm-9"><%= @multiplex.licence_number %></dd>
+  <dt class="col-sm-3">Number of Transmitters</dt>
+  <dd class="col-sm-9"><%#= @multiplex.transmitters.count %></dd>
+</dl>
+
+<h3>Services</h3>
+<ul>
+</ul>
+
+<div class="row">
+  <p class="text-secondary mt-3">
+    This page uses data from Ofcom that was last updated: <%= @multiplex.updated_at %>.
+  </p>
+</div>
