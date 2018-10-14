@@ -57,6 +57,15 @@ def clean_column_names(sheet, header_column=1)
   end
 end
 
+def titleize_if_caps(str)
+  if str =~ /^[A-Z\W]+$/
+    str.titleize
+  else
+    str
+  end
+end
+
+
 def import_dab(xlsx, sheet_name)
   services = {}
 
@@ -68,14 +77,34 @@ def import_dab(xlsx, sheet_name)
     hash = Hash[column_names.zip(row)]
     next if hash[:eid].nil?
 
+    if hash[:ngr] =~ /^([A-Z]{2})\s*(\d{3,5})\s*(\d{3,5})$/
+      ngr = $1 + $2[0,3] + $3[0,3] 
+    else
+      $stderr.puts "Failed to parse National Grid Reference: #{hash[:ngr]}"
+    end
+
+    transmitter = Transmitter.find_or_create(:ngr => ngr)
+    transmitter.name ||= titleize_if_caps(hash[:site])
+    transmitter.area ||= hash[:transmitter_area]
+    transmitter.lat ||= hash[:lat]
+    transmitter.long ||= hash[:long]
+    transmitter.updated_at ||= hash[:date]
+    transmitter.save
+
     multiplex = Multiplex.find_or_create(:eid => hash[:eid].downcase)
     multiplex.name ||= hash[:ensemble]
     multiplex.area ||= hash[:ensemble_area]
     multiplex.licence_number ||= hash[:licence]
-    multiplex.frequency ||= hash[:frequency]
+    multiplex.frequency ||= hash[:freq]
     multiplex.block ||= hash[:block]
-    multiplex.updated_at ||= hash['date']
+    multiplex.updated_at ||= hash[:date]
     multiplex.save
+
+    # Link the transmitter to the multiplex
+    unless multiplex.transmitters.include?(transmitter)
+      multiplex.add_transmitter(transmitter)
+    end
+
   end
 end
 

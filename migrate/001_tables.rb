@@ -2,10 +2,13 @@ Sequel.migration do
   change do
     create_table(:bearers) do
       primary_key :id
-      column :from_ofcom, TrueClass # boolean
-      column :type, String
+      column :type, Integer, :size => 1, :index => true
       column :frequency, String, :size => 6 # for FM
-      column :service_id, String, :size => 4
+      column :sid, String, :size => 4, :index => true
+      column :eid, String, :size => 4, :index => true
+      column :multiplex_id, Integer, :index => true
+      column :from_ofcom, TrueClass # boolean
+      column :ofcom_label, String
     end
 
     create_table(:services) do
@@ -16,11 +19,12 @@ Sequel.migration do
 
     create_table(:transmitters) do
       primary_key :id
+      column :ngr, String, :size => 8, :unique => true
       column :name, String
       column :area, String
-      column :lat, String
-      column :long, String
-      column :updated_at, DateTime
+      column :lat, Float
+      column :long, Float
+      column :updated_at, Date
     end
 
     create_table(:multiplexes) do
@@ -31,7 +35,13 @@ Sequel.migration do
       column :block, String
       column :frequency, String
       column :licence_number, String
-      column :updated_at, DateTime
+      column :updated_at, Date
+    end
+
+    create_table(:multiplexes_transmitters) do
+      column :transmitter_id, Integer
+      column :multiplex_id, Integer
+      index [:transmitter_id, :multiplex_id], :unique => true
     end
   end
 end
