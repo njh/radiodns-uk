@@ -12,6 +12,7 @@ bearer_cache.json
 authoritative-fqdns.json
 si_files
 *.sqlite
+coverage/
 
 build/
 source/services.json
