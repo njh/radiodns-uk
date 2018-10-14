@@ -11,6 +11,7 @@
   <dd class="col-sm-9"><%= @transmitter.lat %>, <%= @transmitter.long %></dd>
 </dl>
 
+<% unless @transmitter.multiplexes.count == 0 %>
 <h3>DAB Multiplexes</h3>
 <table class="table table-sm table-responsive">
 
@@ -38,6 +39,37 @@
     <% end %>
   </tbody>
 </table>
+<% end %>
+
+<% unless @transmitter.bearers.count == 0 %>
+<h3>FM Services</h3>
+<table class="table table-sm table-responsive">
+
+  <thead>
+    <tr>
+      <th scope="col">Frequency</th>
+      <th scope="col">SID</th>
+      <th scope="col">Label</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transmitter.bearers.each do |bearer| %>
+      <tr>
+        <td>
+          <%= bearer.frequency %> MHz
+        </td>
+        <td>
+          <%= bearer.sid %>
+        </td>
+        <td>
+          <%= bearer.ofcom_label %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
 
 <div class="row">
   <p class="text-secondary mt-3">

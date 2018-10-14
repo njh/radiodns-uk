@@ -2,7 +2,8 @@ class Bearer < Sequel::Model
   TYPE_DAB = 1
   TYPE_FM = 2
 
-  many_to_one :multiplex
+  many_to_one :multiplex      # DAB
+  many_to_many :transmitters  # FM
 
 end
 
