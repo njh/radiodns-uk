@@ -1,6 +1,6 @@
 <% content_for :page_title, @multiplex.name %>
 
-<h1><%= @multiplex.name %></h1>
+<h1><%= @multiplex.name %> Multiplex</h1>
 
 <dl class="row">
   <dt class="col-sm-3">Licensed Area</dt>
@@ -14,8 +14,30 @@
 </dl>
 
 <h3>Services</h3>
-<ul>
-</ul>
+<table class="table table-sm table-responsive">
+
+  <thead>
+    <tr>
+      <th scope="col">SID</th>
+      <th scope="col">Label</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @multiplex.bearers.each do |bearer| %>
+      <tr>
+        <td>
+          <%= bearer.sid %>
+        </td>
+        <td>
+          <%= bearer.ofcom_label %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
 
 <div class="row">
   <p class="text-secondary mt-3">
