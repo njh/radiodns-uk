@@ -21,7 +21,7 @@ class App < Roda
     end
 
     r.get 'multiplexes', String do |eid|
-      @multiplex = Multiplex.find(:eid => eid)
+      @multiplex = Multiplex.find(:eid => eid.upcase)
       view('multiplexes_show')
     end
   end
