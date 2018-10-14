@@ -17,10 +17,9 @@
 
   <tbody>
     <% @multiplexes.each do |multiplex| %>
-      <% next if multiplex.area.nil? %>
       <tr>
         <td>
-          <a href="/multiplexes/<%= multiplex.eid %>"><%= multiplex.name %></a>
+          <a href="/multiplexes/<%= multiplex.eid.downcase %>"><%= multiplex.name %></a>
         </td>
         <td>
           <%= multiplex.area %>

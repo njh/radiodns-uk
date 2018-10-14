@@ -93,7 +93,7 @@ def import_dab(xlsx, sheet_name)
     transmitter.save
 
     next if hash[:eid].nil?
-    multiplex = Multiplex.find_or_create(:eid => hash[:eid].downcase)
+    multiplex = Multiplex.find_or_create(:eid => hash[:eid])
     multiplex.name ||= hash[:ensemble]
     multiplex.area ||= hash[:ensemble_area]
     multiplex.licence_number ||= hash[:licence]
