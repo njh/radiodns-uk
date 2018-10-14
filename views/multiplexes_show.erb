@@ -38,6 +38,30 @@
 </table>
 
 
+<h3>Transmitters</h3>
+<table class="table table-sm table-responsive">
+
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Area</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @multiplex.transmitters.each do |transmitter| %>
+      <tr>
+        <td>
+          <a href="/transmitters/<%= transmitter.ngr.downcase %>"><%= transmitter.name %></a>
+        </td>
+        <td>
+          <%= transmitter.area %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 
 <div class="row">
   <p class="text-secondary mt-3">
