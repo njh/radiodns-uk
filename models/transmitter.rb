@@ -1,7 +1,8 @@
 require 'digest'
 
 class Transmitter < Sequel::Model
-  many_to_many :multiplexes
+  many_to_many :multiplexes  # DAB
+  many_to_many :bearers      # FM
 
 end
 

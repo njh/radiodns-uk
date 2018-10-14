@@ -65,10 +65,17 @@ def titleize_if_caps(str)
   end
 end
 
+# Parse National Grid Reference (OSGB36) - we only use 6-digits
+def parse_ngr(ngr)
+  if ngr =~ /^([A-Z]{2})\s*(\d{3,5})\s*(\d{3,5})$/
+    $1 + $2[0,3] + $3[0,3] 
+  else
+    $stderr.puts "Failed to parse National Grid Reference: #{ngr}"
+  end
+end
 
-def import_dab(xlsx, sheet_name)
-  services = {}
 
+def import_fm(xlsx, sheet_name)
   sheet = xlsx.sheet(sheet_name)
   column_names = clean_column_names(sheet)
 
@@ -76,17 +83,52 @@ def import_dab(xlsx, sheet_name)
     row = sheet.row(row_num)
     hash = Hash[column_names.zip(row)]
 
-    # Parse National Grid Reference (OSGB36) - we only use 6-digits
-    if hash[:ngr] =~ /^([A-Z]{2})\s*(\d{3,5})\s*(\d{3,5})$/
-      ngr = $1 + $2[0,3] + $3[0,3] 
-    else
-      $stderr.puts "Failed to parse National Grid Reference: #{hash[:ngr]}"
-      next
-    end
+    next if hash[:station].nil? or hash[:frequency].nil? or hash[:rds_pi].nil?
+
+    ngr = parse_ngr(hash[:ngr])
+    next if ngr.nil?
 
     transmitter = Transmitter.find_or_create(:ngr => ngr)
     transmitter.name ||= titleize_if_caps(hash[:site])
-    transmitter.area ||= hash[:transmitter_area]
+    transmitter.area ||= titleize_if_caps(hash[:area])
+    transmitter.lat ||= hash[:lat]
+    transmitter.long ||= hash[:long]
+    transmitter.updated_at ||= hash[:date]
+    transmitter.save
+
+    bearer = Bearer.find_or_create(
+      :type => Bearer::TYPE_FM,
+      :frequency => hash[:frequency],
+      :sid => hash[:rds_pi]
+    )
+    
+    bearer.from_ofcom = true
+    bearer.ofcom_label ||= hash[:station]
+    bearer.save
+
+    # Link the bearer to the transmitter
+    unless bearer.transmitters.include?(transmitter)
+      bearer.add_transmitter(transmitter)
+    end
+
+  end
+end
+
+
+def import_dab(xlsx, sheet_name)
+  sheet = xlsx.sheet(sheet_name)
+  column_names = clean_column_names(sheet)
+
+  (2..sheet.last_row).each do |row_num|
+    row = sheet.row(row_num)
+    hash = Hash[column_names.zip(row)]
+
+    ngr = parse_ngr(hash[:ngr])
+    next if ngr.nil?
+
+    transmitter = Transmitter.find_or_create(:ngr => ngr)
+    transmitter.name ||= titleize_if_caps(hash[:site])
+    transmitter.area ||= titleize_if_caps(hash[:transmitter_area])
     transmitter.lat ||= hash[:lat]
     transmitter.long ||= hash[:long]
     transmitter.updated_at ||= hash[:date]
@@ -141,4 +183,9 @@ xlsx = Roo::Spreadsheet.open('TxParams.xlsx')
 puts "TxParams Sheets: #{xlsx.sheets.join(', ')}"
 
 import_dab(xlsx, 'DAB')
+import_fm(xlsx, 'VHF')
 
+puts "   DAB Bearers: #{Bearer.where(:type => Bearer::TYPE_DAB).count}"
+puts "    FM Bearers: #{Bearer.where(:type => Bearer::TYPE_FM).count}"
+puts "  Transmitters: #{Transmitter.count}"
+puts "   Multiplexes: #{Multiplex.count}"

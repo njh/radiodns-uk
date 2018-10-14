@@ -39,9 +39,15 @@ Sequel.migration do
     end
 
     create_table(:multiplexes_transmitters) do
-      column :transmitter_id, Integer
       column :multiplex_id, Integer
-      index [:transmitter_id, :multiplex_id], :unique => true
+      column :transmitter_id, Integer
+      index [:multiplex_id, :transmitter_id], :unique => true
+    end
+
+    create_table(:bearers_transmitters) do
+      column :bearer_id, Integer
+      column :transmitter_id, Integer
+      index [:bearer_id, :transmitter_id], :unique => true
     end
   end
 end
