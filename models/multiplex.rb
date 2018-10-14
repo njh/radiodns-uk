@@ -1,4 +1,6 @@
 class Multiplex < Sequel::Model
+  one_to_many :bearers
+  many_to_many :transmitters
 
 end
 
@@ -11,6 +13,6 @@ end
 #  block          | varchar(255) |
 #  frequency      | varchar(255) |
 #  licence_number | varchar(255) |
-#  updated_at     | timestamp    |
+#  updated_at     | date         |
 # Indexes:
 #  sqlite_autoindex_multiplexes_1 | UNIQUE (eid)
