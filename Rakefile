@@ -8,16 +8,6 @@ RSpec::Core::RakeTask.new(:spec)
 Dir.glob('lib/tasks/*.rake').each { |r| import r }  
 
 
-desc "Download the Transmitter Parameters file from Ofcom"
-file 'TxParams.xslx' do |task|
-  ruby 'bin/download-txparams.rb'
-end
-
-desc "Convert the Transmitter Parameters file to JSON"
-file 'TxParams.json' => 'TxParams.xslx' do |task|
-  ruby 'bin/convert-txparams.rb'
-end
-
 desc "Looking authoritative FQDNs for each of the radio stations"
 file 'authoritative-fqdns.json' => 'TxParams.json' do |task|
   ruby 'bin/lookup-authoritative-fqdns.rb'
