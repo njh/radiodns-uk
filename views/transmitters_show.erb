@@ -50,6 +50,7 @@
       <th scope="col">Frequency</th>
       <th scope="col">SID</th>
       <th scope="col">Label</th>
+      <th scope="col">Authoritative FQDN</th>
     </tr>
   </thead>
 
@@ -64,6 +65,9 @@
         </td>
         <td>
           <%= bearer.ofcom_label %>
+        </td>
+        <td>
+          <%= bearer.authority.fqdn || '-' %>
         </td>
       </tr>
     <% end %>
