@@ -6,9 +6,16 @@ Sequel.migration do
       column :frequency, String, :size => 6 # for FM
       column :sid, String, :size => 4, :index => true
       column :eid, String, :size => 4, :index => true
+      column :scids, String, :size => 1, :index => true, :default => '0'
       column :multiplex_id, Integer, :index => true
+      column :authority_id, Integer, :index => true
       column :from_ofcom, TrueClass # boolean
       column :ofcom_label, String
+    end
+
+    create_table(:authorities) do
+      primary_key :id
+      column :fqdn, String, :unique => true
     end
 
     create_table(:services) do
