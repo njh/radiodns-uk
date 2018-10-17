@@ -15,6 +15,16 @@ class App < Roda
       r.redirect '/multiplexes'
     end
 
+    r.get 'authorities' do
+      @authorities = Authority.valid.order(:name)
+      view('authorities_index')
+    end
+
+    r.get 'authorities', String do |fqdn|
+      @authority = Authority.find(:fqdn => fqdn)
+      view('authorities_show')
+    end
+
     r.get 'multiplexes' do
       @multiplexes = Multiplex.order(:name).all
       view('multiplexes_index')
