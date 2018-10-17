@@ -13,6 +13,7 @@ gem 'nokogiri', '~> 1.8.5'
 gem 'radiodns'
 gem 'roo', '~> 2.7.0'
 gem 'titleize'
+gem 'public_suffix'
 
 group :development do
   gem 'sequel-annotate'

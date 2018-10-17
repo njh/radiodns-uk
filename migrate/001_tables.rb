@@ -16,6 +16,14 @@ Sequel.migration do
     create_table(:authorities) do
       primary_key :id
       column :fqdn, String, :unique => true
+      column :name, String
+      column :description, String
+      column :link, String
+      column :logo, String
+      column :have_radioepg, TrueClass # boolean
+      column :have_radiotag, TrueClass # boolean
+      column :have_radiovis, TrueClass # boolean
+      column :have_radioweb, TrueClass # boolean
     end
 
     create_table(:services) do
