@@ -14,7 +14,7 @@ Sequel.migration do
       column :cost, Integer
       column :offset, Integer
       column :mime_type, String
-      column :from_ofcom, TrueClass # boolean
+      column :from_ofcom, FalseClass, :default => false # boolean
       column :ofcom_label, String
     end
 

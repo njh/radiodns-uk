@@ -99,7 +99,7 @@ end
 #  cost         | integer      |
 #  offset       | integer      |
 #  mime_type    | varchar(255) |
-#  from_ofcom   | boolean      |
+#  from_ofcom   | boolean      | DEFAULT 0
 #  ofcom_label  | varchar(255) |
 # Indexes:
 #  bearers_authority_id_index | (authority_id)
