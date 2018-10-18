@@ -10,6 +10,18 @@ describe Bearer do
       )
     }
 
+    describe "parsing bearer URI" do
+      let(:params) { Bearer.parse_uri("fm:ce1.c6b1.10280") }
+
+      it 'returns the correct type, frequency and sid' do
+        expect(params).to eql(
+          :type => Bearer::TYPE_FM,
+          :frequency => 102.8,
+          :sid => 'C6B1'
+        )
+      end
+    end
+
     describe '#uri' do
       it 'creates a FM bearer URI' do
         expect(bearer.uri).to eql("fm:ce1.c6b1.10280")
@@ -37,6 +49,19 @@ describe Bearer do
         :sid => 'C0CB'
       )
     }
+
+    describe "parsing bearer URI" do
+      let(:params) { Bearer.parse_uri("dab:ce1.c19e.c0cb.0") }
+
+      it 'returns the correct type, eid, sid and scids' do
+        expect(params).to eql(
+          :type => Bearer::TYPE_DAB,
+          :eid => 'C19E',
+          :sid => 'C0CB',
+          :scids => '0'
+        )
+      end
+    end
 
     describe '#uri' do
       it 'creates a DAB bearer URI' do

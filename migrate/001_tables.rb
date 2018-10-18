@@ -9,6 +9,11 @@ Sequel.migration do
       column :scids, String, :size => 1, :index => true, :default => '0'
       column :multiplex_id, Integer, :index => true
       column :authority_id, Integer, :index => true
+      column :service_id, Integer, :index => true
+      column :bitrate, Integer
+      column :cost, Integer
+      column :offset, Integer
+      column :mime_type, String
       column :from_ofcom, TrueClass # boolean
       column :ofcom_label, String
     end
@@ -28,8 +33,13 @@ Sequel.migration do
 
     create_table(:services) do
       primary_key :id
-      column :from_ofcom, TrueClass # boolean
-      column :rds_ps, String
+      column :default_bearer_id, Integer
+      column :sort_name, String
+      column :short_name, String
+      column :medium_name, String
+      column :long_name, String
+      column :short_description, String
+      column :long_description, String, :text => true 
     end
 
     create_table(:transmitters) do

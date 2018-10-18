@@ -35,6 +35,42 @@ class App < Roda
       view('multiplexes_show')
     end
 
+    r.get 'services' do
+      @services = Service.order(:sort_name).all
+      view('services_index')
+    end
+
+    r.on 'services' do
+      # FIXME: there must be a nicer way of passing 'r'
+      def services_show(r)
+        @service = @bearer.service
+        if @bearer.path != @service.path
+          r.redirect(@service.path, 301)
+        else
+          view('services_show')
+        end
+      end
+
+      r.get 'dab', String, String, String, String do |gcc, eid, sid, scids|
+        @bearer = Bearer.find(
+          :type => Bearer::TYPE_DAB,
+          :eid => eid.upcase,
+          :sid => sid.upcase,
+          :scids => scids.upcase
+        )
+        services_show(r)
+      end
+      
+      r.get 'fm', String, String, String do |gcc, sid, frequency|
+        @bearer = Bearer.find(
+          :type => Bearer::TYPE_FM,
+          :frequency => frequency.to_f / 100,
+          :sid => sid.upcase
+        )
+        services_show(r)
+      end
+    end
+
     r.get 'transmitters' do
       @transmitters = Transmitter.order(:name).all
       view('transmitters_index')
@@ -45,4 +81,6 @@ class App < Roda
       view('transmitters_show')
     end
   end
+  
+
 end

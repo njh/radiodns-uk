@@ -1,0 +1,29 @@
+<div class="row">
+  <table class="table table-responsive">
+
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @services.each do |service| %>
+      <tr>
+        <td>
+          <%# add back logo here %>
+        </td>
+        <td>
+          <a href="<%= service.path %>"><%= service.name %></a>
+        </td>
+        <td>
+          <%= service.short_description %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+  </table>
+</div>

@@ -1,0 +1,25 @@
+<% content_for :page_title, @service.name %>
+
+<h1><%= @service.name %></h1>
+
+<div class="row">
+  <div class="col-6">
+    <p>
+      <%= @service.description %>
+    </p>
+
+    <h2>Bearers</h2>
+    <ul>
+      <% @service.bearers.each do |bearer| %>
+        <li><%= bearer.uri %></li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>
+
+<div class="row">
+  <p>
+    <b>RadioDNS FQDN:</b> <code><%= @service.authority.fqdn %></code>
+  </p>
+</div>
