@@ -14,18 +14,18 @@ class Bearer < Sequel::Model
   
   def self.parse_uri(str)
     if str =~ /^dab:(\w{3}).(\w{4}).(\w{4})\.(\w)$/
-      new(
+      {
         :type => TYPE_DAB,
         :eid => $2.upcase,
         :sid => $3.upcase,
         :scids => $4.upcase
-      )
+      }
     elsif str =~ /^fm:(\w{3})\.(\w{4})\.(\d{5})$/
-      new(
+      {
         :type => TYPE_FM,
         :sid => $2.upcase,
         :frequency => $3.to_f / 100
-      )
+      }
     else
       nil
     end

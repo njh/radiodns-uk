@@ -57,7 +57,14 @@ def validate_bearers(authority, xml)
         next
       end
 
-      fqdn = params.resolve_fqdn
+      # Find or initialise a new bearer
+      bearer = Bearer.find(params) || Bearer.new(params)
+      if bearer.authority_id.nil?
+         $stderr.puts "  => Warning: not an Ofcom bearer #{bearer_id}"
+      end
+
+      # Check that the bearer matches
+      fqdn = bearer.authority.fqdn
       if fqdn.nil?
         $stderr.puts "  => Unable to resolve bearer #{bearer_id}"
         next
@@ -66,8 +73,7 @@ def validate_bearers(authority, xml)
         next
       end
 
-      bearer = Bearer.find_or_create(params.to_hash)
-      bearer.authority = authority
+      # Update/create the bearer
       bearer.bitrate = xmlbearer['bitrate'].to_i unless xmlbearer['bitrate'].nil?
       bearer.cost = xmlbearer['cost'].to_i unless xmlbearer['bitrate'].nil?
       bearer.offset = xmlbearer['offset'].to_i unless xmlbearer['offset'].nil?
@@ -84,36 +90,29 @@ end
 
 
 def process_service(authority, xml)
-  service = Service.new(
-    :short_name => xml.content_at('./shortName'),
-    :medium_name => xml.content_at('./mediumName'),
-    :long_name => xml.content_at('./longName'),
-    :short_description => xml.content_at('./mediaDescription/shortDescription'),
-    :long_description => xml.content_at('./mediaDescription/longDescription')
-  )
-  
-  if service.name.nil?
-    $stderr.puts "Service has no name"
-    return
-  else
-    $stderr.puts "  #{service.name}"
-  end
-
+  puts "  #{xml.content_at('./mediumName')}"
   bearers = validate_bearers(authority, xml)
   if bearers.empty?
     $stderr.puts "  => Warning: service has no valid UK DAB or FM bearers"
     return
   end
+
+  # FIXME: find a better way of choosing a default bearer
+  default_bearer = bearers.sort_by { |b| b.uri }.first
   
-  # Create the service
+  # Get the existing service or create a new one
+  service = default_bearer.service || Service.new
+  service.short_name = xml.content_at('./shortName')
+  service.medium_name = xml.content_at('./mediumName')
+  service.long_name = xml.content_at('./longName')
+  service.short_description = xml.content_at('./mediaDescription/shortDescription')
+  service.long_description = xml.content_at('./mediaDescription/longDescription')
+  service.authority_id = authority.id
+  service.default_bearer_id = default_bearer.id
   service.save
 
-  # Add the service ID to each of the bearers
+  # Update the service ID to each of the bearers
   bearers.each { |b| b.update(:service_id => service.id) }
-  
-  # FIXME: do this better
-  default_bearer = bearers.sort_by { |b| b.uri }.first
-  service.update(:default_bearer_id => default_bearer.id)
 end
 
 

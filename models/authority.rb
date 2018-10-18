@@ -6,7 +6,8 @@ require 'uri'
 
 class Authority < Sequel::Model
   one_to_many :bearers
-  
+  one_to_many :services, :order => :sort_name
+
   dataset_module do
     def valid
       exclude({:fqdn => nil})

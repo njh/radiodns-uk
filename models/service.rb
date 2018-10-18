@@ -1,5 +1,6 @@
 class Service < Sequel::Model
   one_to_many :bearers
+  many_to_one :authority
   one_to_one :default_bearer, :class => :Bearer
 
   def before_save
@@ -21,10 +22,6 @@ class Service < Sequel::Model
     default_bearer.path
   end
 
-  def authority
-    default_bearer.authority
-  end
-
   def to_s
     name
   end
@@ -34,6 +31,7 @@ end
 # Columns:
 #  id                | integer      | PRIMARY KEY AUTOINCREMENT
 #  default_bearer_id | integer      |
+#  authority_id      | integer      |
 #  sort_name         | varchar(255) |
 #  short_name        | varchar(255) |
 #  medium_name       | varchar(255) |

@@ -34,6 +34,7 @@ Sequel.migration do
     create_table(:services) do
       primary_key :id
       column :default_bearer_id, Integer
+      column :authority_id, Integer
       column :sort_name, String
       column :short_name, String
       column :medium_name, String
