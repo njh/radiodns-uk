@@ -53,15 +53,15 @@ class Authority < Sequel::Model
         File.open(si_filepath, 'wb') do |file|
           file.write res.body
         end
-        set(:have_radioepg => true)
+        update(:have_radioepg => true)
       else
         DB.log_info("No SI file for #{fqdn} : #{res.message}")
-        set(:have_radioepg => false)
+        update(:have_radioepg => false)
       end
 
     rescue Resolv::ResolvError
       DB.log_info("No RadioEPG DNS entry for #{fqdn}")
-      set(:have_radioepg => false)
+      update(:have_radioepg => false)
     end
   end
 
