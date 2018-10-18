@@ -49,7 +49,7 @@
     <tr>
       <th scope="col">Frequency</th>
       <th scope="col">SID</th>
-      <th scope="col">Label</th>
+      <th scope="col">Service</th>
       <th scope="col">Authoritative FQDN</th>
     </tr>
   </thead>
@@ -64,7 +64,11 @@
           <%= bearer.sid %>
         </td>
         <td>
-          <%= bearer.ofcom_label %>
+          <% if bearer.service %>
+            <a href="<%= bearer.path %>"><%= bearer.service.name %></a>
+          <% else %>
+            <%= bearer.ofcom_label %>
+          <% end %>
         </td>
         <td>
           <%= bearer.authority.fqdn || '-' %>
