@@ -35,19 +35,26 @@ class Authority < Sequel::Model
   def si_filepath
     File.join(Authority.si_dir, fqdn + '.xml')
   end
-
-  def download_si_file
+  
+  def si_uri
     begin
       service = RadioDNS::Service.new(fqdn)
       app = service.radioepg
-      raise Resolv::ResolvError if app.nil?
-
-      uri = URI::HTTP.build(
+      URI::HTTP.build(
         :host => app.host,
         :port => app.port,
         :path => '/radiodns/spi/3.1/SI.xml'
       )
+    rescue Resolv::ResolvError
+    end
+  end
 
+  def download_si_file
+    uri = si_uri
+    if uri.nil?
+      DB.log_info("No RadioEPG DNS entry for #{fqdn}")
+      update(:have_radioepg => false)
+    else
       res = Net::HTTP.get_response(uri)
       if res.is_a?(Net::HTTPSuccess)
         File.open(si_filepath, 'wb') do |file|
@@ -58,10 +65,6 @@ class Authority < Sequel::Model
         DB.log_info("No SI file for #{fqdn} : #{res.message}")
         update(:have_radioepg => false)
       end
-
-    rescue Resolv::ResolvError
-      DB.log_info("No RadioEPG DNS entry for #{fqdn}")
-      update(:have_radioepg => false)
     end
   end
 
