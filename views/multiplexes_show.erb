@@ -29,7 +29,11 @@
           <%= bearer.sid %>
         </td>
         <td>
-          <%= bearer.ofcom_label %>
+          <% if bearer.service %>
+            <a href="<%= bearer.path %>"><%= bearer.service.name %></a>
+          <% else %>
+            <%= bearer.ofcom_label %>
+          <% end %>
         </td>
         <td>
           <%= bearer.authority.fqdn || '-' %>
