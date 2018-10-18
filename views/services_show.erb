@@ -20,6 +20,7 @@
 
 <div class="row">
   <p>
-    <b>RadioDNS FQDN:</b> <code><%= @service.authority.fqdn %></code>
+    <b>RadioDNS FQDN:</b>
+    <a href="/authorities/<%= @service.authority.fqdn %>"><%= @service.authority.fqdn %></a>
   </p>
 </div>
