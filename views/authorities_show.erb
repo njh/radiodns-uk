@@ -32,3 +32,13 @@
 
   </div>    
 </div>
+
+<h2>Services</h2>
+
+<ul>
+  <% @authority.services.each do |service| %>
+    <li>
+      <a href="<%= service.path %>"><%= service.name %></a>
+    </li>
+  <% end %>
+</ul>
