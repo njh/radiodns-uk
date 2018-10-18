@@ -50,7 +50,7 @@ class Bearer < Sequel::Model
   end
 
   def resolve!
-    set(
+    update(
       :authority => Authority.find_or_create(:fqdn => resolve_fqdn)
     )
   end
