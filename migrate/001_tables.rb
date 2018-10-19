@@ -84,6 +84,12 @@ Sequel.migration do
       index [:service_id, :size], :unique => true
     end
 
+    create_table(:genres) do
+      primary_key :id
+      column :urn, String, :index => true
+      column :name, String
+    end
+
   end
 end
 
