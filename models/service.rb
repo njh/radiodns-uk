@@ -1,7 +1,8 @@
 class Service < Sequel::Model
   one_to_many :bearers
   many_to_one :authority
-  one_to_one :default_bearer, :class => :Bearer
+  many_to_one :default_bearer, :class => :Bearer
+  one_to_many :links
   one_to_many :logos
   many_to_many :genres
   one_to_one :logo_colour_square, :class => :Logo do |ds|

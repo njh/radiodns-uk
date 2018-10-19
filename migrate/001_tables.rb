@@ -76,6 +76,14 @@ Sequel.migration do
       index [:bearer_id, :transmitter_id], :unique => true
     end
 
+    create_table(:links) do
+      primary_key :id
+      column :service_id, Integer, :index => true
+      column :uri, String, :index => true
+      column :description, String
+      column :mime_type, String
+    end
+
     create_table(:logos) do
       primary_key :id
       column :service_id, Integer, :index => true
