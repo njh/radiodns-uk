@@ -18,6 +18,30 @@ class Nokogiri::XML::Element
   end
 end
 
+def process_links(service, xml)
+  xml.xpath("./link").each do |element|
+    begin
+      next unless element['uri']
+      if element['uri'] =~ /^(\w+):/
+        uri = URI.parse(element['uri'])
+      else
+        uri = URI.parse("http://#{element['uri']}")
+      end
+      if !uri.opaque and uri.path.empty?
+        uri.path = '/'
+      end
+      
+      link = Link.find_or_create(:uri => uri.to_s, :service => service)
+      link.update(
+        :mime_type => element['mimeValue'],
+        :description => element['description']
+      )
+    rescue URI::InvalidURIError => e
+      $stderr.puts "  => Warning: Invalid Link: #{link} (#{e})"
+    end
+  end
+end
+
 def parse_logos(element)
   logos = {}
   element.xpath("./mediaDescription/multimedia").each do |multimedia|
@@ -154,9 +178,9 @@ def process_service(authority, xml)
   # Update the service ID to each of the bearers
   bearers.each { |b| b.update(:service_id => service.id) }
   
+  process_links(service, xml)
   process_logos(service, xml)
   process_genres(service, xml)
-
 end
 
 

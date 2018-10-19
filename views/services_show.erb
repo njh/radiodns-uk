@@ -8,6 +8,15 @@
       <%= @service.description %>
     </p>
 
+    <% unless @service.links.empty? %>
+    <h2>Links</h2>
+    <ul>
+      <% @service.links.each do |link| %>
+        <li><a href="<%= link.uri %>"><%= link.description || link.uri %></a></li>
+      <% end %>
+    </ul>
+    <% end %>
+
     <% unless @service.genres.empty? %>
     <h2>Genres</h2>
     <ul>
