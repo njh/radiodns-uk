@@ -16,6 +16,20 @@
     </ul>
   </div>
 
+  <div class="col-6">
+    <% @service.logos_set.each do |logo| %>
+      <div style="margin-bottom: 2em">
+      <h5><%= logo.size %></h5>
+        <img class="img-thumbnail"
+             src="<%= logo.url %>"
+             width="<%= logo.width %>"
+             height="<%= logo.height %>"
+             alt="<%= @service.name %> <%= logo.size %> Logo"
+        />
+      </div>
+    <% end %>
+  </div>
+
 </div>
 
 <div class="row">
