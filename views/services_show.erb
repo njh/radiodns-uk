@@ -8,6 +8,15 @@
       <%= @service.description %>
     </p>
 
+    <% unless @service.genres.empty? %>
+    <h2>Genres</h2>
+    <ul>
+      <% @service.genres.each do |genre| %>
+        <li><abbr title="<%= genre.urn %>"><%= genre.name %></abbr></li>
+      <% end %>
+    </ul>
+    <% end %>
+
     <h2>Bearers</h2>
     <ul>
       <% @service.bearers.each do |bearer| %>

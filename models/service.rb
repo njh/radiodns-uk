@@ -3,6 +3,7 @@ class Service < Sequel::Model
   many_to_one :authority
   one_to_one :default_bearer, :class => :Bearer
   one_to_many :logos
+  many_to_many :genres
   one_to_one :logo_colour_square, :class => :Logo do |ds|
     ds.where(:size => '32x32')
   end
