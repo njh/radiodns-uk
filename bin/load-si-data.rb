@@ -36,6 +36,15 @@ def parse_logos(element)
   return logos
 end
 
+def process_logos(service, xml)
+  logos = parse_logos(xml)
+  logos.each do |size, properties|
+    logo = Logo.find_or_create(:service => service, :size => size)
+    logo.update(properties)
+  end
+end
+
+
 def validate_bearers(authority, xml)
   bearers = {}
   xml.xpath("bearer").each do |xmlbearer|
@@ -110,6 +119,8 @@ def process_service(authority, xml)
   service.authority_id = authority.id
   service.default_bearer_id = default_bearer.id
   service.save
+  
+  process_logos(service, xml)
 
   # Update the service ID to each of the bearers
   bearers.each { |b| b.update(:service_id => service.id) }

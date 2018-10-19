@@ -2,6 +2,13 @@ class Service < Sequel::Model
   one_to_many :bearers
   many_to_one :authority
   one_to_one :default_bearer, :class => :Bearer
+  one_to_many :logos
+  one_to_one :logo_colour_square, :class => :Logo do |ds|
+    ds.where(:size => '32x32')
+  end
+  one_to_one :logo_colour_rectangle, :class => :Logo do |ds|
+    ds.where(:size => '112x32')
+  end
 
   def before_save
     self.sort_name = name.
@@ -19,7 +26,14 @@ class Service < Sequel::Model
   end
 
   def path
-    default_bearer.path
+    default_bearer.path unless default_bearer.nil?
+  end
+
+  # Return the set of logos defiend by Project Logo
+  # https://radiodns.org/get-involved/project-logo/technical-details/
+  def logos_set
+    sizes = ['600x600', '320x240', '128x128', '112x32', '32x32']
+    logos_dataset.where(:size => sizes).sort {|a,b| b.pixels <=> a.pixels}
   end
 
   def to_s

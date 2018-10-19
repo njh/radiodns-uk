@@ -13,7 +13,13 @@
     <% @services.each do |service| %>
       <tr>
         <td>
-          <%# add back logo here %>
+          <% unless service.logo_colour_rectangle.nil? %>
+            <a href="<%= service.path %>">
+            <img src="<%= service.logo_colour_rectangle.url %>"
+                 width="112" height="32"
+                 alt="Logo for <%= service.name %>"
+            /></a>
+          <% end %>
         </td>
         <td>
           <a href="<%= service.path %>"><%= service.name %></a>
