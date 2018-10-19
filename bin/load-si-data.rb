@@ -99,7 +99,7 @@ end
 
 
 def process_service(authority, xml)
-  puts "  #{xml.content_at('./mediumName')}"
+  puts "  #{xml.content_at('./longName') || xml.content_at('./mediumName')}"
   bearers = validate_bearers(authority, xml)
   if bearers.empty?
     $stderr.puts "  => Warning: service has no valid UK DAB or FM bearers"
