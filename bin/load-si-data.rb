@@ -44,6 +44,37 @@ def process_logos(service, xml)
   end
 end
 
+def parse_genres(xml)
+  genres = {}
+  xml.xpath("./genre").each do |element|
+    urn = element['href']
+    if urn.nil?
+      $stderr.puts "  => Warning: no href defined for genre"
+    else
+      if genres.has_key?(urn)
+        $stderr.puts "  => Warning: duplicate genre: #{urn}"
+      else
+        genres[urn] = element.inner_text
+      end
+    end
+  end
+  return genres
+end
+
+def process_genres(service, xml)
+  genres = parse_genres(xml)
+  genres.keys.each do |urn|
+    genre = Genre.find(:urn => urn)
+    if genre.nil?
+      $stderr.puts "  => Warning: unknown genre: #{urn}"
+    else
+      if service.genres_dataset.where(:genre_id => genre.id).empty?
+        service.add_genre(genre)
+      end
+    end
+  end
+end
+
 
 def validate_bearers(authority, xml)
   bearers = {}
@@ -119,11 +150,13 @@ def process_service(authority, xml)
   service.authority_id = authority.id
   service.default_bearer_id = default_bearer.id
   service.save
-  
-  process_logos(service, xml)
 
   # Update the service ID to each of the bearers
   bearers.each { |b| b.update(:service_id => service.id) }
+  
+  process_logos(service, xml)
+  process_genres(service, xml)
+
 end
 
 
