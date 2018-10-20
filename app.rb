@@ -12,7 +12,7 @@ class App < Roda
     r.public
 
     r.root do
-      r.redirect '/multiplexes'
+      r.redirect '/services'
     end
 
     r.get 'authorities' do
