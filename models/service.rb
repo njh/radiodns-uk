@@ -5,6 +5,15 @@ class Service < Sequel::Model
   one_to_many :links
   one_to_many :logos
   many_to_many :genres
+  one_to_many :dab_bearers, :class => :Bearer do |ds|
+    ds.where(:type => Bearer::TYPE_DAB).
+       eager(:multiplex)
+  end
+  one_to_many :fm_bearers, :class => :Bearer do |ds|
+    ds.where(:type => Bearer::TYPE_FM).
+       eager(:transmitters).
+       order(Sequel.desc(:frequency))
+  end
   one_to_one :logo_colour_square, :class => :Logo do |ds|
     ds.where(:size => '32x32')
   end
