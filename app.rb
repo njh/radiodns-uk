@@ -8,6 +8,10 @@ class App < Roda
   plugin :public
   plugin :content_for
 
+  plugin :not_found do
+    view("error_page")
+  end
+
   route do |r|
     r.public
 
