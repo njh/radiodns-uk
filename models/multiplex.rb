@@ -2,6 +2,9 @@ class Multiplex < Sequel::Model
   one_to_many :bearers
   many_to_many :transmitters
 
+  def path
+    "/multiplexes/#{eid.downcase}"
+  end
 end
 
 # Table: multiplexes
