@@ -19,7 +19,7 @@
     <% @multiplexes.each do |multiplex| %>
       <tr>
         <td>
-          <a href="/multiplexes/<%= multiplex.eid.downcase %>"><%= multiplex.name %></a>
+          <a href="<%= multiplex.path %>"><%= multiplex.name %></a>
         </td>
         <td>
           <%= multiplex.area %>
