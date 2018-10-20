@@ -16,7 +16,7 @@
     <% @transmitters.each do |transmitter| %>
       <tr>
         <td>
-          <a href="/transmitters/<%= transmitter.ngr.downcase %>"><%= transmitter.name %></a>
+          <a href="<%= transmitter.path %>"><%= transmitter.name %></a>
         </td>
         <td>
           <%= transmitter.area %>
