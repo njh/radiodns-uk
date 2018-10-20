@@ -9,7 +9,7 @@
     </p>
 
     <% unless @service.links.empty? %>
-    <h2>Links</h2>
+    <h3>Links</h3>
     <ul>
       <% @service.links.each do |link| %>
         <li><a href="<%= link.uri %>"><%= link.description || link.uri %></a></li>
@@ -18,7 +18,7 @@
     <% end %>
 
     <% unless @service.genres.empty? %>
-    <h2>Genres</h2>
+    <h3>Genres</h3>
     <ul>
       <% @service.genres.each do |genre| %>
         <li><abbr title="<%= genre.urn %>"><%= genre.name %></abbr></li>
@@ -26,12 +26,72 @@
     </ul>
     <% end %>
 
-    <h2>Bearers</h2>
-    <ul>
-      <% @service.bearers.each do |bearer| %>
-        <li><%= bearer.uri %></li>
-      <% end %>
-    </ul>
+    <% unless @service.dab_bearers.empty? %>
+    <h3>DAB Multiplexes</h3>
+    <table class="table table-sm table-responsive">
+      <thead>
+        <tr>
+          <th scope="col">Bearer ID</th>
+          <th scope="col">Multiplex Name</th>
+          <th scope="col">Block</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @service.dab_bearers.each do |bearer| %>
+          <tr>
+            <td>
+              <%= bearer.uri %>
+            </td>
+            <td>
+              <a href="<%= bearer.multiplex.path %>"><%= bearer.multiplex.name %></a>
+            </td>
+            <td>
+              <%= bearer.multiplex.block %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% end %>
+
+    <% unless @service.fm_bearers.empty? %>
+    <h3>FM Transmitters</h3>
+    <table class="table table-sm table-responsive">
+      <thead>
+        <tr>
+          <th scope="col">Bearer ID</th>
+          <th scope="col">Frequency</th>
+          <th scope="col">Transmitters</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @service.fm_bearers.each do |bearer| %>
+          <tr>
+            <td>
+              <%= bearer.uri %>
+            </td>
+            <td>
+              <%= bearer.frequency %> MHz
+            </td>
+            <td>
+              <% if bearer.transmitters.count > 1 %>
+              <ul>
+                <% bearer.transmitters.each do |transmitter| %>
+                  <li><a href="<%= transmitter.path %>"><%= transmitter.name %></a></li>
+                <% end %>
+              </ul>
+              <% elsif bearer.transmitters.count == 1 %>
+                <% transmitter = bearer.transmitters.first %>
+                <a href="<%= transmitter.path %>"><%= transmitter.name %></a>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% end %>
   </div>
 
   <div class="col-6">
