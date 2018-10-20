@@ -5,7 +5,7 @@ require 'rspec/core/rake_task'
 
 RSpec::Core::RakeTask.new(:spec)
 
-Dir.glob('lib/tasks/*.rake').each { |r| import r }  
+Dir.glob('tasks/*.rake').each { |r| import r }
 
 
 desc "Looking authoritative FQDNs for each of the radio stations"
