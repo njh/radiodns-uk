@@ -4,6 +4,10 @@ class Transmitter < Sequel::Model
   many_to_many :multiplexes  # DAB
   many_to_many :bearers      # FM
 
+  def path
+    "/transmitters/#{ngr.downcase}"
+  end
+
 end
 
 # Table: transmitters
