@@ -18,7 +18,7 @@ end
 # Columns:
 #  id         | integer      | PRIMARY KEY AUTOINCREMENT
 #  service_id | integer      |
-#  size       | varchar(9)   |
+#  size       | varchar(12)  |
 #  url        | varchar(255) |
 # Indexes:
 #  logos_service_id_index      | (service_id)
