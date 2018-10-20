@@ -12,6 +12,24 @@ class App < Roda
     view("error_page")
   end
 
+  plugin :error_handler do |e|
+    case e
+    when Sequel::NoMatchingRow
+      if e.dataset
+        @page_title = "#{e.dataset.model} Not Found"
+      else
+        @page_title = "Database Entry Not Found"
+      end
+      response.status = 404
+      view("error_page")
+    else
+      next super(e) if ENV['RACK_ENV'] == 'development'
+      @page_title = "Internal Server Error"
+      response.status = 500
+      view("error_page")
+    end
+  end
+
   route do |r|
     r.public
 
@@ -25,7 +43,7 @@ class App < Roda
     end
 
     r.get 'authorities', String do |fqdn|
-      @authority = Authority.find(:fqdn => fqdn)
+      @authority = Authority.first!(:fqdn => fqdn)
       view('authorities_show')
     end
 
@@ -35,7 +53,7 @@ class App < Roda
     end
 
     r.get 'multiplexes', String do |eid|
-      @multiplex = Multiplex.find(:eid => eid.upcase)
+      @multiplex = Multiplex.first!(:eid => eid.upcase)
       view('multiplexes_show')
     end
 
@@ -50,6 +68,7 @@ class App < Roda
       # FIXME: there must be a nicer way of passing 'r'
       def services_show(r)
         @service = @bearer.service
+        raise Sequel::NoMatchingRow.new(Service) if @service.nil?
         if @bearer.path != @service.path
           r.redirect(@service.path, 301)
         else
@@ -58,7 +77,7 @@ class App < Roda
       end
 
       r.get 'dab', String, String, String, String do |gcc, eid, sid, scids|
-        @bearer = Bearer.find(
+        @bearer = Bearer.first!(
           :type => Bearer::TYPE_DAB,
           :eid => eid.upcase,
           :sid => sid.upcase,
@@ -66,9 +85,9 @@ class App < Roda
         )
         services_show(r)
       end
-      
+
       r.get 'fm', String, String, String do |gcc, sid, frequency|
-        @bearer = Bearer.find(
+        @bearer = Bearer.first!(
           :type => Bearer::TYPE_FM,
           :frequency => frequency.to_f / 100,
           :sid => sid.upcase
@@ -83,10 +102,9 @@ class App < Roda
     end
 
     r.get 'transmitters', String do |ngr|
-      @transmitter = Transmitter.find(:ngr => ngr.upcase)
+      @transmitter = Transmitter.first!(:ngr => ngr.upcase)
       view('transmitters_show')
     end
   end
-  
 
 end
