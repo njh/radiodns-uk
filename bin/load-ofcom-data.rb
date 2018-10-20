@@ -68,7 +68,7 @@ end
 # Parse National Grid Reference (OSGB36) - we only use 6-digits
 def parse_ngr(ngr)
   if ngr =~ /^([A-Z]{2})\s*(\d{3,5})\s*(\d{3,5})$/
-    $1 + $2[0,3] + $3[0,3] 
+    $1 + $2[0,3] + $3[0,3]
   else
     $stderr.puts "Failed to parse National Grid Reference: #{ngr}"
   end
@@ -101,7 +101,7 @@ def import_fm(xlsx, sheet_name)
       :frequency => hash[:frequency],
       :sid => hash[:rds_pi]
     )
-    
+
     bearer.from_ofcom = true
     bearer.ofcom_label ||= hash[:station]
     bearer.save
@@ -149,7 +149,7 @@ def import_dab(xlsx, sheet_name)
       multiplex.add_transmitter(transmitter)
     end
 
-    
+
     # There can be up to 20 services per ensemble
     (1..20).each do |num|
       sid = hash["sid_#{num}_hex".to_sym]
@@ -160,7 +160,7 @@ def import_dab(xlsx, sheet_name)
         :eid => hash[:eid],
         :sid => sid
       )
-      
+
       bearer.from_ofcom = true
       bearer.ofcom_label ||= hash["serv_label#{num}".to_sym]
       bearer.multiplex_id = multiplex.id

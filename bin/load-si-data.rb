@@ -30,7 +30,7 @@ def process_links(service, xml)
       if !uri.opaque and uri.path.empty?
         uri.path = '/'
       end
-      
+
       link = Link.find_or_create(:uri => uri.to_s, :service => service)
       link.update(
         :mime_type => element['mimeValue'],
@@ -114,7 +114,7 @@ def validate_bearers(authority, xml)
         $stderr.puts "  => Warning: service has duplicate beaerer IDs"
         next
       end
-      
+
       params = Bearer.parse_uri(bearer_id)
       if params.nil?
         $stderr.puts "  => Warning: invalid bearer: #{bearer_id}"
@@ -163,7 +163,7 @@ def process_service(authority, xml)
 
   # FIXME: find a better way of choosing a default bearer
   default_bearer = bearers.sort_by { |b| b.uri }.first
-  
+
   # Get the existing service or create a new one
   service = default_bearer.service || Service.new
   service.short_name = xml.content_at('./shortName')
@@ -177,7 +177,7 @@ def process_service(authority, xml)
 
   # Update the service ID to each of the bearers
   bearers.each { |b| b.update(:service_id => service.id) }
-  
+
   process_links(service, xml)
   process_logos(service, xml)
   process_genres(service, xml)
@@ -206,8 +206,8 @@ Authority.valid.each do |authority|
   unless File.exist?(filepath)
     puts "File does not exist: #{filepath}"
     next
-  end 
-  
+  end
+
   begin
     doc = File.open(filepath, 'rb') { |f| Nokogiri::XML(f) }
     doc.remove_namespaces!
