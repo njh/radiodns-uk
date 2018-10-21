@@ -44,10 +44,18 @@
               <%= bearer.uri %>
             </td>
             <td>
-              <a href="<%= bearer.multiplex.path %>"><%= bearer.multiplex.name %></a>
+              <% unless bearer.multiplex.nil? %>
+                <a href="<%= bearer.multiplex.path %>"><%= bearer.multiplex.name %></a>
+              <% else %>
+                Unknown
+              <% end %>
             </td>
             <td>
-              <%= bearer.multiplex.block %>
+              <% unless bearer.multiplex.nil? %>
+                <%= bearer.multiplex.block %>
+              <% else %>
+                Unknown
+              <% end %>
             </td>
           </tr>
         <% end %>
