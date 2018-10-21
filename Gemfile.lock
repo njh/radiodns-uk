@@ -48,6 +48,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler (= 1.13.6)
   erubi (~> 1.5)
   json
   nokogiri (~> 1.8.5)
@@ -66,4 +67,4 @@ DEPENDENCIES
   titleize
 
 BUNDLED WITH
-   1.16.1
+   1.13.6

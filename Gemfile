@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+gem 'bundler', '1.13.6'
+
 gem 'tilt', '~> 2.0.6'
 gem 'erubi', '~> 1.5'
 gem 'roda', '~> 3.12'
