@@ -86,21 +86,21 @@ end
 
 # Table: bearers
 # Columns:
-#  id           | integer      | PRIMARY KEY AUTOINCREMENT
-#  type         | integer      |
-#  frequency    | varchar(6)   |
-#  sid          | varchar(4)   |
-#  eid          | varchar(4)   |
-#  scids        | varchar(1)   | DEFAULT '0'
-#  multiplex_id | integer      |
-#  authority_id | integer      |
-#  service_id   | integer      |
-#  bitrate      | integer      |
-#  cost         | integer      |
-#  offset       | integer      |
-#  mime_type    | varchar(255) |
-#  from_ofcom   | boolean      | DEFAULT 0
-#  ofcom_label  | varchar(255) |
+#  id           | integer          | PRIMARY KEY AUTOINCREMENT
+#  type         | integer          |
+#  frequency    | double precision |
+#  sid          | varchar(4)       |
+#  eid          | varchar(4)       |
+#  scids        | varchar(1)       | DEFAULT '0'
+#  multiplex_id | integer          |
+#  authority_id | integer          |
+#  service_id   | integer          |
+#  bitrate      | integer          |
+#  cost         | integer          |
+#  offset       | integer          |
+#  mime_type    | varchar(255)     |
+#  from_ofcom   | boolean          | DEFAULT 0
+#  ofcom_label  | varchar(255)     |
 # Indexes:
 #  bearers_authority_id_index | (authority_id)
 #  bearers_eid_index          | (eid)

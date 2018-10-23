@@ -3,7 +3,7 @@ Sequel.migration do
     create_table(:bearers) do
       primary_key :id
       column :type, Integer, :size => 1, :index => true
-      column :frequency, String, :size => 6 # for FM
+      column :frequency, Float # for FM
       column :sid, String, :size => 4, :index => true
       column :eid, String, :size => 4, :index => true
       column :scids, String, :size => 1, :index => true, :default => '0'
@@ -59,7 +59,7 @@ Sequel.migration do
       column :name, String
       column :area, String
       column :block, String
-      column :frequency, String
+      column :frequency, Float
       column :licence_number, String
       column :updated_at, Date
     end
