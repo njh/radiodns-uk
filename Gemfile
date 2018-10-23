@@ -7,7 +7,6 @@ gem 'erubi', '~> 1.5'
 gem 'roda', '~> 3.12'
 gem 'sequel', '~> 5'
 gem 'sqlite3', '~> 1.3.13'
-gem 'rack-unreloader', '~> 1.6.0'
 gem 'thin', '~> 1.7.2'
 
 gem 'json'
@@ -22,4 +21,5 @@ group :development do
   gem 'sequel-annotate'
   gem 'rspec', '~> 3.7.0'
   gem 'simplecov'
+  gem 'shotgun'
 end

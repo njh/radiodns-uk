@@ -1,12 +1,5 @@
-dev = ENV['RACK_ENV'] == 'development'
+#!/usr/bin/env ruby
 
-if dev
-  require 'logger'
-  logger = Logger.new($stdout)
-end
+require_relative 'app'
 
-require 'rack/unreloader'
-Unreloader = Rack::Unreloader.new(subclasses: %w'Roda Sequel::Model', logger: logger, reload: dev){App}
-require_relative 'models'
-Unreloader.require('app.rb'){'App'}
-run(dev ? Unreloader : App.freeze.app)
+run App
