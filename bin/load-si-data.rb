@@ -201,7 +201,9 @@ end
 
 
 Authority.valid.each do |authority|
-  puts "Loading: #{authority}"
+  puts "Loading SI file for: #{authority}"
+  authority.download_si_file
+
   filepath = authority.si_filepath
   unless File.exist?(filepath)
     puts "File does not exist: #{filepath}"
