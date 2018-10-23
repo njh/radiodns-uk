@@ -84,16 +84,11 @@
               <%= bearer.frequency %> MHz
             </td>
             <td>
-              <% if bearer.transmitters.count > 1 %>
-              <ul>
+              <ul class="list-unstyled">
                 <% bearer.transmitters.each do |transmitter| %>
                   <li><a href="<%= transmitter.path %>"><%= transmitter.name %></a></li>
                 <% end %>
               </ul>
-              <% elsif bearer.transmitters.count == 1 %>
-                <% transmitter = bearer.transmitters.first %>
-                <a href="<%= transmitter.path %>"><%= transmitter.name %></a>
-              <% end %>
             </td>
           </tr>
         <% end %>
