@@ -1,0 +1,17 @@
+[Unit]
+Description=RadioDNS.uk Web App
+After=network.target nss-lookup.target
+
+[Service]
+ExecStart=/usr/bin/bundle exec thin -p 8153 start
+WorkingDirectory=/srv/www/radiodns-uk
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=radiodns-uk
+User=radiodns-uk
+Group=radiodns-uk
+Environment=RACK_ENV=production
+
+[Install]
+WantedBy=multi-user.target

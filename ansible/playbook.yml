@@ -1,0 +1,104 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+  - name: Install Debian Packages
+    apt:
+      name:
+        - libsqlite3-dev
+        - libxml2-dev
+        - zlib1g-dev
+        - nginx
+        - ruby
+        - bundler
+      state: present
+
+  - name: "Ensure group radiodns-uk exists"
+    group:
+      name: radiodns-uk
+      state: present
+
+  - name: "Ensure user radiodns-uk exists"
+    user:
+      name: radiodns-uk
+      comment: 'RadioDNS.uk'
+      group: radiodns-uk
+      shell: /bin/bash
+      createhome: yes
+      home: /home/radiodns-uk
+      system: yes
+
+  - name: 'Set permissions for .ssh'
+    file:
+      path: /home/radiodns-uk/.ssh
+      state: directory
+      owner: radiodns-uk
+      group: radiodns-uk
+      mode: 0755
+
+  - name: 'Copy accross SSH authorized keys file'
+    copy:
+      src: authorized_keys
+      dest: /home/radiodns-uk/.ssh/authorized_keys
+      owner: radiodns-uk
+      group: radiodns-uk
+      mode: 0644
+
+  - name: 'Create /srv/www/empty'
+    file:
+      path: /srv/www/empty
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
+
+  - name: 'Create /srv/www/radiodns-uk'
+    file:
+      path: /srv/www/radiodns-uk
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
+
+  - name: 'Checkout code from github'
+    git:
+      repo: 'https://github.com/njh/radiodns-uk.git'
+      dest: /srv/www/radiodns-uk
+
+  - name: 'Ensure ruby bundle is up to date'
+    bundler:
+      state: present
+      exclude_groups: development
+      deployment_mode: yes
+
+  - name: 'Install systemd service file'
+    copy:
+      src: radiodns-uk.service
+      dest: /etc/systemd/system/radiodns-uk.service
+
+  - name: 'Start systemd service for web app'
+    systemd:
+      state: started
+      name: radiodns-uk
+      daemon_reload: yes
+
+  - name: 'Copy accross Nginx configuration file'
+    copy:
+      src: nginx.conf
+      dest: /etc/nginx/sites-available/radiodns-uk
+    notify:
+    - 'Restart Nginx'
+
+  - name: 'Enable Nginx configuration file'
+    file:
+      src: /etc/nginx/sites-available/radiodns-uk
+      dest: /etc/nginx/sites-enabled/radiodns-uk
+      state: link
+    notify:
+    - 'Restart Nginx'
+
+  handlers:
+  - name: 'Restart Nginx'
+    become: true
+    service: name=nginx state=restarted

@@ -8,6 +8,7 @@ gem 'roda', '~> 3.12'
 gem 'sequel', '~> 5'
 gem 'sqlite3', '~> 1.3.13'
 gem 'rack-unreloader', '~> 1.6.0'
+gem 'thin', '~> 1.7.2'
 
 gem 'json'
 gem 'rake'
