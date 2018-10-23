@@ -69,6 +69,7 @@
   - name: 'Ensure ruby bundle is up to date'
     bundler:
       state: present
+      chdir: /srv/www/radiodns-uk
       exclude_groups: development
       deployment_mode: yes
 
