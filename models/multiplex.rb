@@ -1,6 +1,6 @@
 class Multiplex < Sequel::Model
-  one_to_many :bearers
-  many_to_many :transmitters
+  one_to_many :bearers, :order => :sid
+  many_to_many :transmitters, :order => :name
 
   def path
     "/multiplexes/#{eid.downcase}"

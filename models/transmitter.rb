@@ -1,7 +1,7 @@
 require 'digest'
 
 class Transmitter < Sequel::Model
-  many_to_many :multiplexes  # DAB
+  many_to_many :multiplexes, :order => :name  # DAB
   many_to_many :bearers      # FM
 
   def path

@@ -1,5 +1,5 @@
 class Genre < Sequel::Model
-  many_to_many :services
+  many_to_many :services, :order => :sort_name
 
 end
 

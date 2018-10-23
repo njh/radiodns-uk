@@ -8,7 +8,7 @@ class Bearer < Sequel::Model
   TYPE_FM = 2
 
   many_to_one :multiplex      # DAB
-  many_to_many :transmitters  # FM
+  many_to_many :transmitters, :order => :name # FM
   many_to_one :authority
   many_to_one :service
   

@@ -4,7 +4,7 @@ class Service < Sequel::Model
   many_to_one :default_bearer, :class => :Bearer
   one_to_many :links
   one_to_many :logos
-  many_to_many :genres
+  many_to_many :genres, :order => :name
   one_to_many :dab_bearers, :class => :Bearer do |ds|
     ds.where(:type => Bearer::TYPE_DAB).
        eager(:multiplex)
@@ -12,7 +12,7 @@ class Service < Sequel::Model
   one_to_many :fm_bearers, :class => :Bearer do |ds|
     ds.where(:type => Bearer::TYPE_FM).
        eager(:transmitters).
-       order(Sequel.desc(:frequency))
+       order(:frequency)
   end
   one_to_one :logo_colour_square, :class => :Logo do |ds|
     ds.where(:size => '32x32')
