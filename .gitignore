@@ -1,21 +1,12 @@
 .bundle
-.cache
-.sass-cache
+/coverage/
+/vendor/ 
+
+/ansible/*.retry
 
 # Downloaded data
-TxParams.xlsx
-~$TxParams.xlsx
-
-# Generated files
-TxParams.json
-bearer_cache.json
-authoritative-fqdns.json
-si_files
+/TxParams.xlsx
+/~$TxParams.xlsx
+/si_files
 *.sqlite
-coverage/
 
-build/
-source/services.json
-source/services/
-source/multiplexes.json
-source/multiplexes/c*
