@@ -105,6 +105,15 @@ class App < Roda
       @transmitter = Transmitter.first!(:ngr => ngr.upcase)
       view('transmitters_show')
     end
+
+    r.get 'sitemap.xml' do
+      models = [Authority, Multiplex, Service, Transmitter]
+      @paths = ['/']
+      @paths += models.map {|m| "/#{m.table_name}"}
+      @paths += models.map {|m| m.all.map {|a| a.path} }.flatten
+      response['Content-Type'] = 'application/xml'
+      render('sitemap')
+    end
   end
 
 
