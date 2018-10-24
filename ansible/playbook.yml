@@ -57,21 +57,29 @@
     file:
       path: /srv/www/radiodns-uk
       state: directory
-      owner: root
-      group: root
+      owner: radiodns-uk
+      group: radiodns-uk
       mode: 0755
 
   - name: 'Checkout code from github'
+    become: yes
+    become_user: radiodns-uk
     git:
       repo: 'https://github.com/njh/radiodns-uk.git'
       dest: /srv/www/radiodns-uk
+    notify:
+    - 'Restart Ruby App'
 
   - name: 'Ensure ruby bundle is up to date'
+    become: yes
+    become_user: radiodns-uk
     bundler:
       state: present
       chdir: /srv/www/radiodns-uk
       exclude_groups: development
       deployment_mode: yes
+    notify:
+    - 'Restart Ruby App'
 
   - name: 'Install systemd service file'
     copy:
@@ -103,3 +111,6 @@
   - name: 'Restart Nginx'
     become: true
     service: name=nginx state=restarted
+  - name: 'Restart Ruby App'
+    become: true
+    service: name=radiodns-uk state=restarted
