@@ -35,10 +35,14 @@
 
 <h2>Services</h2>
 
-<ul>
-  <% @authority.services.each do |service| %>
-    <li>
-      <a href="<%= service.path %>"><%= service.name %></a>
-    </li>
-  <% end %>
-</ul>
+<% unless @authority.services.empty? %>
+  <ul>
+    <% @authority.services.each do |service| %>
+      <li>
+        <a href="<%= service.path %>"><%= service.name %></a>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p><em>This authority does not define any UK DAB or FM services.</em></p>
+<% end %>

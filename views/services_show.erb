@@ -8,6 +8,11 @@
       <%= @service.description %>
     </p>
 
+    <dl class="row">
+      <dt class="col-sm-3">Authority:</dt>
+      <dd class="col-sm-9"><%== link_to_authority(@service.authority) %></dd>
+    </dl>
+
     <% unless @service.links.empty? %>
     <h3>Links</h3>
     <ul>
@@ -114,8 +119,4 @@
 </div>
 
 <div class="row">
-  <p>
-    <b>RadioDNS FQDN:</b>
-    <a href="/authorities/<%= @service.authority.fqdn %>"><%= @service.authority.fqdn %></a>
-  </p>
 </div>

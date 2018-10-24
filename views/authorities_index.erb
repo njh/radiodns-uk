@@ -16,7 +16,7 @@
     <% @authorities.each do |authority| %>
       <tr>
         <td>
-          <a href="/authorities/<%= authority.fqdn %>"><%= authority.fqdn %></a>
+          <a href="<%= authority.path %>"><%= authority.fqdn %></a>
         </td>
         <td>
           <%= authority.name %>

@@ -71,7 +71,7 @@
           <% end %>
         </td>
         <td>
-          <%= bearer.authority.fqdn || '-' %>
+          <%== link_to_authority(bearer.authority) %>
         </td>
       </tr>
     <% end %>

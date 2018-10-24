@@ -14,6 +14,10 @@ class Authority < Sequel::Model
     end
   end
   
+  def path
+    "/authorities/#{fqdn}"
+  end
+
   def name
     unless self[:name].nil?
       self[:name]
