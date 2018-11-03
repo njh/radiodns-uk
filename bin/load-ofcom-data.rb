@@ -75,6 +75,23 @@ def parse_ngr(ngr)
 end
 
 
+def create_fm_bearer(label, frequency, pi_code, transmitter)
+  bearer = Bearer.find_or_create(
+    :type => Bearer::TYPE_FM,
+    :frequency => frequency.to_f,
+    :sid => pi_code
+  )
+
+  bearer.from_ofcom = true
+  bearer.ofcom_label ||= label
+  bearer.save
+
+  # Link the bearer to the transmitter
+  unless bearer.transmitters.include?(transmitter)
+    bearer.add_transmitter(transmitter)
+  end
+end
+
 def import_fm(xlsx, sheet_name)
   sheet = xlsx.sheet(sheet_name)
   column_names = clean_column_names(sheet)
@@ -96,21 +113,11 @@ def import_fm(xlsx, sheet_name)
     transmitter.updated_at ||= hash[:date]
     transmitter.save
 
-    bearer = Bearer.find_or_create(
-      :type => Bearer::TYPE_FM,
-      :frequency => hash[:frequency],
-      :sid => hash[:rds_pi]
-    )
-
-    bearer.from_ofcom = true
-    bearer.ofcom_label ||= hash[:station]
-    bearer.save
-
-    # Link the bearer to the transmitter
-    unless bearer.transmitters.include?(transmitter)
-      bearer.add_transmitter(transmitter)
-    end
-
+    create_fm_bearer(hash[:station], hash[:frequency], hash[:rds_pi], transmitter)
+    
+    unless hash[:switched_pi].nil?
+      create_fm_bearer(hash[:station], hash[:frequency], hash[:switched_pi], transmitter)
+    end    
   end
 end
 
