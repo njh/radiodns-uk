@@ -3,7 +3,7 @@
 <h1><%= @authority.name %></h1>
 
 <div class="row">
-  <div class="col-8">
+  <div class="col-md-8">
 
     <dl class="row">
       <dt class="col-sm-4">Fully Qualified Domain Name</dt>
@@ -20,13 +20,13 @@
 
   </div>
 
-  <div class="col-4">
+  <div class="col-md-4">
 
     <% unless @authority.logo.nil? %>
       <img
         src="<%= @authority.logo %>"
         width="320" height="240"
-        class="img-thumbnail"
+        class="img-thumbnail mb-3"
         alt="<%= @authority.name %> 320x240 Logo" />
     <% end %>
 

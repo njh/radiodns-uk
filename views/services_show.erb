@@ -3,7 +3,7 @@
 <h1><%= @service.name %></h1>
 
 <div class="row">
-  <div class="col-6">
+  <div class="col-md-6">
     <p>
       <%= @service.description %>
     </p>
@@ -102,7 +102,7 @@
     <% end %>
   </div>
 
-  <div class="col-6">
+  <div class="col-md-6">
     <% @service.logos_set.each do |logo| %>
       <div style="margin-bottom: 2em">
       <h5><%= logo.size %></h5>
