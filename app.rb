@@ -114,6 +114,11 @@ class App < Roda
       response['Content-Type'] = 'application/xml'
       render('sitemap')
     end
+
+    r.get 'gems' do
+      @specs = Gem::loaded_specs.values.sort_by(&:name)
+      view('gems')
+    end
   end
 
 
