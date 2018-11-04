@@ -1,0 +1,26 @@
+<% height ||= 500 %>
+
+<div id="map" style="height: <%= height %>px"></div>
+
+<script type="text/javascript">
+  var mymap = L.map('map').setView([<%= transmitters.first.lat %>, <%= transmitters.first.long %>], 13);
+
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibmpoIiwiYSI6ImNqbzJ3Ymd6OTBvbWszcW5zcGZqMzV5czkifQ.xsaghFKffSmqMcBgzacAcw', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+      '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+      'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox.streets'
+  }).addTo(mymap);
+  
+  var transmitters = new L.featureGroup();
+  <% transmitters.each do |transmitter| %>
+  L.marker([<%= transmitter.lat %>, <%= transmitter.long %>]).addTo(transmitters)
+    .bindPopup('<b><a href="<%= transmitter.path %>"><%= transmitter.name %></a></b><br /><%= transmitter.ngr %>');
+  <% end %>
+  transmitters.addTo(mymap);
+
+  if (Object.keys(transmitters.getLayers()).length > 1) {
+    mymap.fitBounds(transmitters.getBounds().pad(0.1));
+  }
+</script>

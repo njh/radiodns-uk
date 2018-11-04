@@ -2,72 +2,80 @@
 
 <h1><%= @multiplex.name %> Multiplex</h1>
 
-<dl class="row">
-  <dt class="col-sm-3">Licensed Area</dt>
-  <dd class="col-sm-9"><%= @multiplex.area %></dd>
-  <dt class="col-sm-3">Frequency</dt>
-  <dd class="col-sm-9"><%= @multiplex.block %> (<%= @multiplex.frequency %> MHz)</dd>
-  <dt class="col-sm-3">Ofcom License Number</dt>
-  <dd class="col-sm-9"><%= @multiplex.licence_number %></dd>
-</dl>
+<div class="row">
 
-<h3>Services</h3>
-<table class="table table-sm table-responsive">
+  <div class="col-md-7">
+    <dl class="row">
+      <dt class="col-sm-4">Licensed Area</dt>
+      <dd class="col-sm-8"><%= @multiplex.area %></dd>
+      <dt class="col-sm-4">Frequency</dt>
+      <dd class="col-sm-8"><%= @multiplex.block %> (<%= @multiplex.frequency %> MHz)</dd>
+      <dt class="col-sm-4">Ofcom License Number</dt>
+      <dd class="col-sm-8"><%= @multiplex.licence_number %></dd>
+    </dl>
 
-  <thead>
-    <tr>
-      <th scope="col">SID</th>
-      <th scope="col">Label</th>
-      <th scope="col">Authoritative FQDN</th>
-    </tr>
-  </thead>
+    <h3>Services</h3>
+    <table class="table table-sm table-responsive">
 
-  <tbody>
-    <% @multiplex.bearers.each do |bearer| %>
-      <tr>
-        <td>
-          <%= bearer.sid %>
-        </td>
-        <td>
-          <% if bearer.service %>
-            <a href="<%= bearer.path %>"><%= bearer.service.name %></a>
-          <% else %>
-            <%= bearer.ofcom_label %>
-          <% end %>
-        </td>
-        <td>
-          <%== link_to_authority(bearer.authority) %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <thead>
+        <tr>
+          <th scope="col">SID</th>
+          <th scope="col">Label</th>
+          <th scope="col">Authoritative FQDN</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @multiplex.bearers.each do |bearer| %>
+          <tr>
+            <td>
+              <%= bearer.sid %>
+            </td>
+            <td>
+              <% if bearer.service %>
+                <a href="<%= bearer.path %>"><%= bearer.service.name %></a>
+              <% else %>
+                <%= bearer.ofcom_label %>
+              <% end %>
+            </td>
+            <td>
+              <%== link_to_authority(bearer.authority) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
 
-<h3>Transmitters</h3>
-<table class="table table-sm table-responsive">
+    <h3>Transmitters</h3>
+    <table class="table table-sm table-responsive">
 
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Area</th>
-    </tr>
-  </thead>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Area</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @multiplex.transmitters.each do |transmitter| %>
-      <tr>
-        <td>
-          <a href="<%= transmitter.path %>"><%= transmitter.name %></a>
-        </td>
-        <td>
-          <%= transmitter.area %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @multiplex.transmitters.each do |transmitter| %>
+          <tr>
+            <td>
+              <a href="<%= transmitter.path %>"><%= transmitter.name %></a>
+            </td>
+            <td>
+              <%= transmitter.area %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
+  <div class="col-md-5">
+    <%== partial('map', :locals => {:transmitters => @multiplex.transmitters}) %>
+  </div>
+</div>
 
 <div class="row">
   <p class="text-secondary mt-3">

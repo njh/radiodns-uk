@@ -7,8 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <title><%= content_for :page_title %> - radiodns.uk</title>
-    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
-    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/leaflet/leaflet.css" />
+
+    <script type="text/javascript" src="/javascripts/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="/javascripts/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/leaflet/leaflet.js"></script>
   </head>
   <body>
     <header>
@@ -20,9 +25,6 @@
     </div>
 
     <%== partial "footer" %>
-
-    <script src="/javascripts/jquery-3.2.1.slim.min.js"></script>
-    <script src="/javascripts/bootstrap.bundle.min.js"></script>
   </body>
 
 </html>

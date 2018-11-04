@@ -2,82 +2,91 @@
 
 <h1><%= @transmitter.name %> Transmitter</h1>
 
-<dl class="row">
-  <dt class="col-sm-3">Area</dt>
-  <dd class="col-sm-9"><%= @transmitter.area %></dd>
-  <dt class="col-sm-3">National Grid Reference</dt>
-  <dd class="col-sm-9"><%= @transmitter.ngr %></dd>
-  <dt class="col-sm-3">WGS84 Co-ordinates</dt>
-  <dd class="col-sm-9"><%= @transmitter.lat %>, <%= @transmitter.long %></dd>
-</dl>
+<div class="row">
 
-<% unless @transmitter.multiplexes.count == 0 %>
-<h3>DAB Multiplexes</h3>
-<table class="table table-sm table-responsive">
+  <div class="col-md-7">
+    <dl class="row">
+      <dt class="col-sm-4">Area</dt>
+      <dd class="col-sm-8"><%= @transmitter.area %></dd>
+      <dt class="col-sm-4">National Grid Reference</dt>
+      <dd class="col-sm-8"><%= @transmitter.ngr %></dd>
+      <dt class="col-sm-4">WGS84 Co-ordinates</dt>
+      <dd class="col-sm-8"><%= @transmitter.lat %>, <%= @transmitter.long %></dd>
+    </dl>
 
-  <thead>
-    <tr>
-      <th scope="col">EID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Block</th>
-    </tr>
-  </thead>
+    <% unless @transmitter.multiplexes.count == 0 %>
+    <h3>DAB Multiplexes</h3>
+    <table class="table table-sm table-responsive">
 
-  <tbody>
-    <% @transmitter.multiplexes.each do |multiplex| %>
-      <tr>
-        <td>
-          <%= multiplex.eid %>
-        </td>
-        <td>
-          <a href="<%= multiplex.path %>"><%= multiplex.name %></a>
-        </td>
-        <td>
-          <%= multiplex.block %>
-        </td>
-      </tr>
+      <thead>
+        <tr>
+          <th scope="col">EID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Block</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @transmitter.multiplexes.each do |multiplex| %>
+          <tr>
+            <td>
+              <%= multiplex.eid %>
+            </td>
+            <td>
+              <a href="<%= multiplex.path %>"><%= multiplex.name %></a>
+            </td>
+            <td>
+              <%= multiplex.block %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
     <% end %>
-  </tbody>
-</table>
-<% end %>
 
-<% unless @transmitter.bearers.count == 0 %>
-<h3>FM Services</h3>
-<table class="table table-sm table-responsive">
+    <% unless @transmitter.bearers.count == 0 %>
+    <h3>FM Services</h3>
+    <table class="table table-sm table-responsive">
 
-  <thead>
-    <tr>
-      <th scope="col">Frequency</th>
-      <th scope="col">SID</th>
-      <th scope="col">Service</th>
-      <th scope="col">Authoritative FQDN</th>
-    </tr>
-  </thead>
+      <thead>
+        <tr>
+          <th scope="col">Frequency</th>
+          <th scope="col">SID</th>
+          <th scope="col">Service</th>
+          <th scope="col">Authoritative FQDN</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @transmitter.bearers.each do |bearer| %>
-      <tr>
-        <td>
-          <%= bearer.frequency %> MHz
-        </td>
-        <td>
-          <%= bearer.sid %>
-        </td>
-        <td>
-          <% if bearer.service %>
-            <a href="<%= bearer.path %>"><%= bearer.service.name %></a>
-          <% else %>
-            <%= bearer.ofcom_label %>
-          <% end %>
-        </td>
-        <td>
-          <%== link_to_authority(bearer.authority) %>
-        </td>
-      </tr>
+      <tbody>
+        <% @transmitter.bearers.each do |bearer| %>
+          <tr>
+            <td>
+              <%= bearer.frequency %> MHz
+            </td>
+            <td>
+              <%= bearer.sid %>
+            </td>
+            <td>
+              <% if bearer.service %>
+                <a href="<%= bearer.path %>"><%= bearer.service.name %></a>
+              <% else %>
+                <%= bearer.ofcom_label %>
+              <% end %>
+            </td>
+            <td>
+              <%== link_to_authority(bearer.authority) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
     <% end %>
-  </tbody>
-</table>
-<% end %>
+  </div>
+  
+  <div class="col-md-5">
+    <%== partial('map', :locals => {:transmitters => [@transmitter]}) %>
+  </div>
+</div>
 
 <div class="row">
   <p class="text-secondary mt-3">
