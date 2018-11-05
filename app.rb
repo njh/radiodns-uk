@@ -30,6 +30,13 @@ class App < Roda
     end
   end
 
+  if ENV['RACK_ENV'] == 'production'
+    plugin :default_headers,
+      'Cache-Control' => 'public,max-age=3600',
+      'Strict-Transport-Security' => 'max-age=16070400; includeSubDomains',
+      'X-Frame-Options' => 'deny'
+  end    
+
   route do |r|
     r.public
 
