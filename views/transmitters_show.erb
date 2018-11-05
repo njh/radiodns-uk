@@ -12,6 +12,8 @@
       <dd class="col-sm-8"><%= @transmitter.ngr %></dd>
       <dt class="col-sm-4">WGS84 Co-ordinates</dt>
       <dd class="col-sm-8"><%= @transmitter.lat %>, <%= @transmitter.long %></dd>
+      <dt class="col-sm-4">Site Height</dt>
+      <dd class="col-sm-8"><%= @transmitter.site_height %>m</dd>
     </dl>
 
     <% unless @transmitter.multiplexes.count == 0 %>

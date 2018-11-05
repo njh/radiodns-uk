@@ -50,6 +50,7 @@ Sequel.migration do
       column :area, String
       column :lat, Float
       column :long, Float
+      column :site_height, Integer
       column :updated_at, Date
     end
 

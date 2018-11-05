@@ -110,6 +110,7 @@ def import_fm(xlsx, sheet_name)
     transmitter.area ||= titleize_if_caps(hash[:area])
     transmitter.lat ||= hash[:lat]
     transmitter.long ||= hash[:long]
+    transmitter.site_height ||= hash[:site_ht]
     transmitter.updated_at ||= hash[:date]
     transmitter.save
 
@@ -138,6 +139,7 @@ def import_dab(xlsx, sheet_name)
     transmitter.area ||= titleize_if_caps(hash[:transmitter_area])
     transmitter.lat ||= hash[:lat]
     transmitter.long ||= hash[:long]
+    transmitter.site_height ||= hash[:site_height]
     transmitter.updated_at ||= hash[:date]
     transmitter.save
 
