@@ -19,8 +19,8 @@
   <tbody>
   <% @specs.each do |spec| %>
     <tr>
-      <td><a href="<%= spec.homepage %>"><%= spec.name %></a></td>
-      <td><a href="http://rubygems.org/gems/<%= spec.name %>/versions/<%= spec.version %>"><%= spec.version %></td>
+      <td><%== link_to(spec.name, spec.homepage) %></a></td>
+      <td><%== link_to(spec.version, "http://rubygems.org/gems/#{spec.name}/versions/#{spec.version}") %></td>
       <td><%= spec.summary %></td>
     </tr>
  <% end %>

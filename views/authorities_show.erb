@@ -12,9 +12,7 @@
       <dd class="col-sm-8"><%= @authority.description || 'n/a' %></dd>
       <% unless @authority.link.nil? %>
         <dt class="col-sm-4">Website</dt>
-        <dd class="col-sm-8">
-          <a href="<%= @authority.link %>"><%= @authority.link %></a>
-        </dd>
+        <dd class="col-sm-8"><%== link_to(@authority.link) %></dd>
       <% end %>
     </dl>
 
@@ -38,9 +36,7 @@
 <% unless @authority.services.empty? %>
   <ul>
     <% @authority.services.each do |service| %>
-      <li>
-        <a href="<%= service.path %>"><%= service.name %></a>
-      </li>
+      <li><%== link_to(service.name, service.path) %></li>
     <% end %>
   </ul>
 <% else %>

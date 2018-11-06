@@ -16,7 +16,7 @@
     <% @transmitters.each do |transmitter| %>
       <tr>
         <td>
-          <a href="<%= transmitter.path %>"><%= transmitter.name %></a>
+          <%== link_to(transmitter.name, transmitter.path) %>
         </td>
         <td>
           <%= transmitter.area %>

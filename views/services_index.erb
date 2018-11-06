@@ -25,7 +25,7 @@
           <% end %>
         </td>
         <td>
-          <a href="<%= service.path %>"><%= service.name %></a>
+          <%== link_to(service.name, service.path) %>
         </td>
         <td>
           <%= service.short_description %>

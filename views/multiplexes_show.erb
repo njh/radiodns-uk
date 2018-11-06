@@ -33,7 +33,7 @@
             </td>
             <td>
               <% if bearer.service %>
-                <a href="<%= bearer.path %>"><%= bearer.service.name %></a>
+                <%== link_to(bearer.service.name, bearer.path) %>
               <% else %>
                 <%= bearer.ofcom_label %>
               <% end %>
@@ -61,7 +61,7 @@
         <% @multiplex.transmitters.each do |transmitter| %>
           <tr>
             <td>
-              <a href="<%= transmitter.path %>"><%= transmitter.name %></a>
+              <%== link_to(transmitter.name, transmitter.path) %>
             </td>
             <td>
               <%= transmitter.area %>

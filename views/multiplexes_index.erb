@@ -23,7 +23,7 @@
           <%= multiplex.eid %>
         </td>
         <td>
-          <a href="<%= multiplex.path %>"><%= multiplex.name %></a>
+          <%== link_to(multiplex.name, multiplex.path) %>
         </td>
         <td>
           <%= multiplex.area %>

@@ -16,7 +16,7 @@
   var transmitters = new L.featureGroup();
   <% transmitters.each do |transmitter| %>
   L.marker([<%= transmitter.lat %>, <%= transmitter.long %>]).addTo(transmitters)
-    .bindPopup('<b><a href="<%= transmitter.path %>"><%= transmitter.name %></a></b><br /><%= transmitter.ngr %>');
+    .bindPopup('<b><%== link_to(transmitter.name, transmitter.path) %></b><br /><%= transmitter.ngr %>');
   <% end %>
   transmitters.addTo(mymap);
 

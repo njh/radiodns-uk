@@ -17,7 +17,7 @@
     <h3>Links</h3>
     <ul>
       <% @service.links.each do |link| %>
-        <li><a href="<%= link.uri %>"><%= link.description || link.uri %></a></li>
+        <li><%== link_to(link.description || link.uri, link.uri) %></li>
       <% end %>
     </ul>
     <% end %>
@@ -50,7 +50,7 @@
             </td>
             <td>
               <% unless bearer.multiplex.nil? %>
-                <a href="<%= bearer.multiplex.path %>"><%= bearer.multiplex.name %></a>
+                <%== link_to(bearer.multiplex.name, bearer.multiplex.path) %>
               <% else %>
                 Unknown
               <% end %>
@@ -91,7 +91,7 @@
             <td>
               <ul class="list-unstyled">
                 <% bearer.transmitters.each do |transmitter| %>
-                  <li><a href="<%= transmitter.path %>"><%= transmitter.name %></a></li>
+                  <li><%== link_to(transmitter.name, transmitter.path) %></li>
                 <% end %>
               </ul>
             </td>

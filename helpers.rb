@@ -1,8 +1,23 @@
 require 'erubi'
 
+def content_tag(element, body=nil, options={})
+  attr = options.map {|key, value| "#{Erubi.h key}=\"#{Erubi.h value}\""}.join(' ')
+  attr = ' ' + attr unless attr.empty?
+  unless body.nil?
+    "<#{Erubi.h element}#{attr}>#{Erubi.h body}</#{Erubi.h element}>"
+  else
+    "<#{Erubi.h element}#{attr} />"
+  end
+end
+
+def link_to(text, href=nil, options={})
+  options[:href] ||= (href || text)
+  content_tag('a', text, options)
+end
+
 def link_to_authority(authority)
   if authority && authority.fqdn
-    "<a href=\"#{authority.path}\">#{authority.fqdn}</a>"
+    link_to(authority.fqdn, authority.path)
   else
     tick_cross(false) + ' No RadioDNS'
   end
