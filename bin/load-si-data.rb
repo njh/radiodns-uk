@@ -111,7 +111,7 @@ def validate_bearers(authority, xml)
 
       # Check for duplicates
       if bearers.has_key?(bearer_id)
-        $stderr.puts "  => Warning: service has duplicate beaerer IDs"
+        $stderr.puts "  => Warning: service has duplicate bearer IDs"
         next
       end
 
