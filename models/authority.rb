@@ -42,15 +42,27 @@ class Authority < Sequel::Model
   end
   
   def si_uri
-    begin
-      service = RadioDNS::Service.new(fqdn)
-      app = service.radioepg
+    unless radioepg_server.nil?
+      host, port = radioepg_server.split(':')
       URI::HTTP.build(
-        :host => app.host,
-        :port => app.port,
+        :host => host,
+        :port => port,
         :path => '/radiodns/spi/3.1/SI.xml'
       )
-    rescue Resolv::ResolvError
+    end
+  end
+
+  def lookup_applications!
+    service = RadioDNS::Service.new(fqdn)
+    [:radiotag, :radioepg, :radiovis, :radioweb].each do |type|
+      key = "#{type}_server".to_sym
+      begin
+        service = RadioDNS::Service.new(fqdn)
+        app = service.application(type)
+        update(key => "#{app.host}:#{app.port}")
+      rescue Resolv::ResolvError
+        update(key => nil)
+      end
     end
   end
 
@@ -58,17 +70,15 @@ class Authority < Sequel::Model
     uri = si_uri
     if uri.nil?
       DB.log_info("No RadioEPG DNS entry for #{fqdn}")
-      update(:have_radioepg => false)
     else
       res = Net::HTTP.get_response(uri)
       if res.is_a?(Net::HTTPSuccess)
         File.open(si_filepath, 'wb') do |file|
           file.write res.body
         end
-        update(:have_radioepg => true)
       else
         DB.log_info("No SI file for #{fqdn} : #{res.message}")
-        update(:have_radioepg => false)
+        update(:radioepg_server => nil)
       end
     end
   end
@@ -77,15 +87,15 @@ end
 
 # Table: authorities
 # Columns:
-#  id            | integer      | PRIMARY KEY AUTOINCREMENT
-#  fqdn          | varchar(255) |
-#  name          | varchar(255) |
-#  description   | varchar(255) |
-#  link          | varchar(255) |
-#  logo          | varchar(255) |
-#  have_radioepg | boolean      |
-#  have_radiotag | boolean      |
-#  have_radiovis | boolean      |
-#  have_radioweb | boolean      |
+#  id              | integer      | PRIMARY KEY AUTOINCREMENT
+#  fqdn            | varchar(255) |
+#  name            | varchar(255) |
+#  description     | varchar(255) |
+#  link            | varchar(255) |
+#  logo            | varchar(255) |
+#  radioepg_server | varchar(255) |
+#  radiotag_server | varchar(255) |
+#  radiovis_server | varchar(255) |
+#  radioweb_server | varchar(255) |
 # Indexes:
 #  sqlite_autoindex_authorities_1 | UNIQUE (fqdn)

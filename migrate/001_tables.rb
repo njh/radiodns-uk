@@ -25,10 +25,10 @@ Sequel.migration do
       column :description, String
       column :link, String
       column :logo, String
-      column :have_radioepg, TrueClass # boolean
-      column :have_radiotag, TrueClass # boolean
-      column :have_radiovis, TrueClass # boolean
-      column :have_radioweb, TrueClass # boolean
+      column :radioepg_server, String
+      column :radiotag_server, String
+      column :radiovis_server, String
+      column :radioweb_server, String
     end
 
     create_table(:services) do

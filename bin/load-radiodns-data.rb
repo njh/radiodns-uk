@@ -16,3 +16,8 @@ Bearer.all.each do |bearer|
     puts " => #{bearer.authority.fqdn}"
   end
 end
+
+
+Authority.valid.each do |authority|
+  authority.lookup_applications!
+end

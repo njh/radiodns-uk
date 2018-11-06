@@ -202,15 +202,20 @@ end
 
 Authority.valid.each do |authority|
   puts "Loading SI file for: #{authority}"
-  authority.download_si_file
-
-  filepath = authority.si_filepath
-  unless File.exist?(filepath)
-    puts "File does not exist: #{filepath}"
-    next
-  end
 
   begin
+    authority.download_si_file
+    if authority.si_uri.nil?
+      puts " => No RadioEPG"
+      next
+    end
+
+    filepath = authority.si_filepath
+    unless File.exist?(filepath)
+      puts "Error: file does not exist: #{filepath}"
+      next
+    end
+
     doc = File.open(filepath, 'rb') { |f| Nokogiri::XML(f) }
     doc.remove_namespaces!
 
@@ -234,7 +239,6 @@ Authority.valid.each do |authority|
   rescue => e
     $stderr.puts "Failed to parse file: #{filepath} (#{e})"
     $stderr.puts e.backtrace.join("\n")
-    authority.update(:have_radioepg => false)
   end
 
   puts
