@@ -1,20 +1,19 @@
 RadioDNS.uk
 ===========
 
-This is the code repository that generates the [radiodns.uk] website. This website is a directory
+This is the code repository that powers the [radiodns.uk] website. The website is a directory
 listing of all the radio stations in the United Kingdom which have [RadioDNS] Hybrid Radio
-services available.
+services available. Transmitter and DAB multiple information comes from [Ofcom].
 
-This website is statically generated and the HTML is built and deployed using [Ruby] and [Middleman].
+The website written in [Ruby] and uses the [Sequel] and [Roda] gems.
 
 
-The steps to generate the site are:
+The steps to build the site are:
 
-1. Download the [Transmitter Parameters] spreadsheet from Ofcom
-2. Convert the Transmitter Parameters spreadsheet to a JSON document
+1. Load the list of TV Anytime genre files into the database
+2. Load the [Transmitter Parameters] spreadsheet from Ofcom into the database
 3. For each service on FM and DAB, lookup the Authoritative FQDN using radiodns.org
-4. For each Authoritative FQDN, attempt to download the Service Information (SI.xml) file
-5. Generate a webpage for each service listed in the Service Information files
+4. For each Authoritative FQDN, attempt to load the Service Information (SI.xml) file
 
 
 
@@ -30,17 +29,35 @@ Then install all the dependencies:
 
     $ bundle install
 
-To build a copy of the website on your local machine run:
+To initialise the database run:
 
-    $ rake build
+    $ bundle exec rake db:migrate
 
-This will download the required data, and generate all the HTML files.
+Then fill it up with data using:
 
-You can then run a web-server locally on your machine to view the site:
+    $ bundle exec rake load:all
 
-    $ rake server
+Run `rake -T` to see a list of the individual tasks:
 
-And then open the following URL in your browser: [http://localhost:3000/]
+    $ bundle exec rake -T
+    rake clean             # Deleted all the generated files (based on .gitignore)
+    rake db:annotate       # Annotate Sequel models
+    rake db:migrate        # Migrate database to latest version
+    rake load:all          # Load all data into the database
+    rake load:authorities  # Load authority information for each bearer from ra...
+    rake load:genres       # Load TVA genre data into the database
+    rake load:ofcom        # Load Ofcom data into the database
+    rake load:si           # Load SI files into the database
+    rake publish           # Publish the local SQLite database to the web server
+    rake spec              # Run RSpec code examples
+
+You can then run a local webserver using:
+
+    $ bundle exec shotgun
+    
+Shotgun will reload the application after every request, which makes development much easier.
+
+And then open the following URL in your browser: [http://localhost:9393/]
 
 
 ## Contributing
@@ -55,11 +72,13 @@ The gem is available as open source under the terms of the [MIT License].
 
 
 
+[Bundler]:                   http://bundler.io/
+[MIT License]:               http://opensource.org/licenses/MIT
+[Ofcom]:                     https://www.ofcom.org.uk/
 [radiodns.uk]:               http://www.radiodns.uk/
 [RadioDNS]:                  http://www.radiodns.org/
-[MIT License]:               http://opensource.org/licenses/MIT
-[Transmitter Parameters]:    https://www.ofcom.org.uk/spectrum/information/radio-tech-parameters
+[Roda]:                      http://roda.jeremyevans.net/
 [Ruby]:                      http://ruby-lang.org/
-[Bundler]:                   http://bundler.io/
-[Middleman]:                 https://middlemanapp.com/
-[http://localhost:3000/]:    http://localhost:3000/
+[Sequel]:                    http://sequel.jeremyevans.net/
+[Transmitter Parameters]:    https://www.ofcom.org.uk/spectrum/information/radio-tech-parameters
+[http://localhost:9393/]:    http://localhost:9393/
