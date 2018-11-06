@@ -42,7 +42,7 @@ class Authority < Sequel::Model
   end
   
   def si_uri
-    unless radioepg_server.nil?
+    if have_radioepg?
       host, port = radioepg_server.split(':')
       URI::HTTP.build(
         :host => host,
@@ -81,6 +81,18 @@ class Authority < Sequel::Model
         update(:radioepg_server => nil)
       end
     end
+  end
+  
+  def have_radioepg?
+    !radioepg_server.nil?
+  end
+  
+  def have_radiotag?
+    !radiotag_server.nil?
+  end
+  
+  def have_radiovis?
+    !radiovis_server.nil?
   end
 
 end
