@@ -9,6 +9,9 @@
     <tr>
       <th scope="col">FQDN</th>
       <th scope="col">Name</th>
+      <th scope="col"><abbr title="TS 102 818 v3.1.1 – Service and Programme Information">RadioEPG</abbr></th>
+      <th scope="col"><abbr title="RTAG01 v1.0.0 Draft 7">RadioTag</abbr></th>
+      <th scope="col"><abbr title="TS 101 499 v3.1.1 – Slideshow">RadioVis</abbr></th>
     </tr>
   </thead>
 
@@ -20,6 +23,15 @@
         </td>
         <td>
           <%= authority.name %>
+        </td>
+        <td>
+          <%== tick_cross(authority.have_radioepg?) %>
+        </td>
+        <td>
+          <%== tick_cross(authority.have_radiotag?) %>
+        </td>
+        <td>
+          <%== tick_cross(authority.have_radiovis?) %>
         </td>
       </tr>
     <% end %>
