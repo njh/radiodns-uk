@@ -31,14 +31,22 @@
   </div>
 </div>
 
-<h2>Services</h2>
+<%== partial("applications", :locals => {:type => 'authority', :authority => @authority}) %>
 
-<% unless @authority.services.empty? %>
-  <ul>
-    <% @authority.services.each do |service| %>
-      <li><%== link_to(service.name, service.path) %></li>
+<div class="row">
+  <div class="col-md-12">
+    <h2>Services</h2>
+
+    <% unless @authority.services.empty? %>
+      <ul>
+        <% @authority.services.each do |service| %>
+          <li>
+            <%== link_to(service.name, service.path) %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p><em>This authority does not define any UK DAB or FM services.</em></p>
     <% end %>
-  </ul>
-<% else %>
-  <p><em>This authority does not define any UK DAB or FM services.</em></p>
-<% end %>
+  </div>
+</div>

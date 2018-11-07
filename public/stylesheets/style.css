@@ -7,6 +7,16 @@
   padding: 2.0ex;
 }
 
+.card-sm .card-header
+{
+  padding: .5rem .75rem;
+}
+.card-sm .card-body
+{
+  padding: .75rem;
+  font-size: 0.9rem;
+}
+
 .footer
 {
   padding-top: 2.0ex;

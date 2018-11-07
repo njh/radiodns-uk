@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col">
+    <h2>Applications</h2>
+
+    <div class="card-deck">
+      <div class="card card-sm mb-3">
+        <div class="card-header">
+          <b>RadioEPG</b>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <%== tick_cross(authority.have_radioepg?) %>
+            This authority <%= authority.have_radioepg? ? 'suppports' : 'does not support' %>
+            <abbr title="TS 102 818 v3.1.1 – Service and Programme Information">RadioEPG</abbr>.
+          </p>
+          <% if authority.have_radioepg? %>
+          <%== link_to('View SI.xml', authority.si_uri, :class => "btn btn-sm btn-primary float-right") %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="card card-sm mb-3">
+        <div class="card-header">
+          <b>RadioTag</b>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <%== tick_cross(authority.have_radiotag?) %>
+            This authority <%= authority.have_radiotag? ? 'suppports' : 'does not support' %>
+            RadioTag.
+          </p>
+          <% if authority.have_radiotag? %>
+            <p class="card-text">
+              <b>Server</b>: <code><%= authority.radiotag_server %></code>
+            </p>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="card card-sm mb-3">
+        <div class="card-header">
+          <b>RadioVis</b>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <%== tick_cross(authority.have_radiovis?) %>
+            This authority <%= authority.have_radiovis? ? 'suppports' : 'does not support' %>
+            <abbr title="TS 101 499 v3.1.1 – Slideshow">RadioVis</abbr>.
+          </p>
+          <% if authority.have_radiovis? %>
+            <p class="card-text">
+              <b>Server</b>: <code><%= authority.radiovis_server %></code>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
