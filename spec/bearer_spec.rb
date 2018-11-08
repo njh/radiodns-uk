@@ -39,6 +39,12 @@ describe Bearer do
         expect(bearer.to_s).to eql("fm:ce1.c6b1.10280")
       end
     end
+
+    describe '#radiodns_test_url' do
+      it 'should return a valid radiodns.org test URI' do
+        expect(bearer.radiodns_test_url).to eql("https://radiodns.org/nwp/tools/?action=rdns&bearer=fm&country=ce1&pi=C6B1&freq=102.8")
+      end
+    end
   end
 
   describe "DAB radio station" do
@@ -76,8 +82,14 @@ describe Bearer do
     end
 
     describe '#to_s' do
-      it 'shoudl return the uri' do
+      it 'should return the uri' do
         expect(bearer.to_s).to eql("dab:ce1.c19e.c0cb.0")
+      end
+    end
+
+    describe '#radiodns_test_url' do
+      it 'should return a valid radiodns.org test URI' do
+        expect(bearer.radiodns_test_url).to eql("https://radiodns.org/nwp/tools/?action=rdns&bearer=dab&ecc=ce1&eid=C19E&sid=C0CB&scids=0")
       end
     end
   end

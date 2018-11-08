@@ -79,6 +79,17 @@ class Bearer < Sequel::Model
     end
   end
 
+  def radiodns_test_url
+    root = "https://radiodns.org/nwp/tools/?action=rdns"
+  
+    case type
+    when TYPE_DAB
+      root + "&bearer=dab&ecc=#{UK_GCC}&eid=#{eid}&sid=#{sid}&scids=#{scids}"
+    when TYPE_FM
+      root + "&bearer=fm&country=#{UK_GCC}&pi=#{sid}&freq=#{frequency}"
+    end
+  end
+
   def to_s
     uri
   end
