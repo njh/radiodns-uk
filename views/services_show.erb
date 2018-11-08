@@ -2,16 +2,20 @@
 
 <h1><%= @service.name %></h1>
 
+<dl class="row">
+  <dt class="col-sm-3">Authority:</dt>
+  <dd class="col-sm-9"><%== link_to_authority(@service.authority) %></dd>
+</dl>
+
+<p>
+  <%= @service.description %>
+</p>
+
+
+<%== partial("applications", :locals => {:type => 'service', :authority => @service.authority, :bearer => @bearer}) %>
+
 <div class="row">
   <div class="col-md-6">
-    <p>
-      <%= @service.description %>
-    </p>
-
-    <dl class="row">
-      <dt class="col-sm-3">Authority:</dt>
-      <dd class="col-sm-9"><%== link_to_authority(@service.authority) %></dd>
-    </dl>
 
     <% unless @service.links.empty? %>
     <h3>Links</h3>
