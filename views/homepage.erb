@@ -15,7 +15,7 @@
 <div class="container">
   <p>This site has information about:</p>
   <ul>
-    <li><%= Authority.count %> RadioDNS <a href="/authorities">Authorities</a></li>
+    <li><%= Authority.valid.count %> RadioDNS <a href="/authorities">Authorities</a></li>
     <li><%= Service.count %> RadioDNS <a href="/services">Services</a></li>
     <li><%= Multiplex.count %> <a href="/multiplexes">DAB Multiplexes</a></li>
     <li><%= Transmitter.count %> <a href="/transmitters">Transmitter sites</a></li>
