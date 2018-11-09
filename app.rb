@@ -41,7 +41,7 @@ class App < Roda
     r.public
 
     r.root do
-      r.redirect '/services'
+      view('homepage')
     end
 
     r.get 'authorities' do
