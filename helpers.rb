@@ -30,3 +30,7 @@ def tick_cross(bool)
     '<span style="margin-right: 0.5em; color: red; font-weight: bolder">✗</span>'
   end
 end
+
+def canonical_url
+  "https://www.radiodns.uk" + request.path
+end
