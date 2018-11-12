@@ -1,5 +1,13 @@
 <% content_for :page_title, 'Home' %>
 
+<div id="logobar" class="container clearfix">
+  <% @logos.each do |logo| %>
+    <a href="<%= logo.service.path %>">
+    <%== content_tag('img', nil, :src => logo.url, :width => 64, :height => 64, :class => "float-left") %>
+    </a>
+  <% end %>
+</div>
+
 <div class="container">
   <p id="headline" class="lead">
     This site is a directory listing of the <em><%= Service.count %></em> radio stations in the United Kingdom

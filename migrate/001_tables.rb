@@ -88,7 +88,7 @@ Sequel.migration do
     create_table(:logos) do
       primary_key :id
       column :service_id, Integer, :index => true
-      column :size, String, :size => 12
+      column :size, String, :index => true, :size => 12
       column :url, String
       index [:service_id, :size], :unique => true
     end

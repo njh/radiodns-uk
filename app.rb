@@ -41,6 +41,11 @@ class App < Roda
     r.public
 
     r.root do
+      # 70 logos is enough for 23 * 3 rows
+      @logos = Logo.where(:size => '128x128')
+                   .order(Sequel.lit('RANDOM()'))
+                   .limit(70)
+                   .eager_graph(:service => :default_bearer).all
       view('homepage')
     end
 

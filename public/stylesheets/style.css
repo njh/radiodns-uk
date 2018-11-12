@@ -7,6 +7,15 @@
   padding: 2.0ex;
 }
 
+#logobar
+{
+  /* 192px = 3 rows of 64px high logos */
+  height: 192px;
+  overflow: hidden;
+  margin-top: 1.0rem;
+  margin-bottom: 2.0rem;
+}
+
 .card-sm .card-header
 {
   padding: .5rem .75rem;
