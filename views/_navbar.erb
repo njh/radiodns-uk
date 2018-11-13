@@ -7,21 +7,12 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-
   <div id="navbarCollapse" class="collapse navbar-collapse">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/authorities">Authorities</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/services">Services</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/transmitters">Transmitters</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/multiplexes">Multiplexes</a>
-      </li>
+      <%== nav_item("Authorities", "/authorities") %>
+      <%== nav_item("Multiplexes", "/multiplexes") %>
+      <%== nav_item("Services", "/services") %>
+      <%== nav_item("Transmitters", "/transmitters") %>
     </ul>
   </div>
 </nav>

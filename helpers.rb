@@ -15,6 +15,14 @@ def link_to(text, href=nil, options={})
   content_tag('a', text, options)
 end
 
+def nav_item(text, href)
+  klass = 'nav-item'
+  klass += ' active' if request.path.start_with?(href)
+  "<li class='#{klass}'>" +
+  link_to(text, href, :class => 'nav-link') +
+  "</li>"
+end
+
 def link_to_authority(authority)
   if authority && authority.fqdn
     link_to(authority.fqdn, authority.path)
