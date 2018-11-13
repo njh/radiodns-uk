@@ -10,7 +10,7 @@
 
 <div class="container">
   <p id="headline" class="lead">
-    This site is a directory listing of the <em><%= Service.count %></em> radio stations in the United Kingdom
+    This site is a directory listing of the <em><%= Service.valid.count %></em> radio stations in the United Kingdom
     which have <a href="https://www.radiodns.org/">RadioDNS</a> Hybrid Radio services available.
 
     The list of frequencies, identifiers, multiplexes and transmitters is retrieved from the
@@ -24,7 +24,7 @@
   <p>This site has information about:</p>
   <ul>
     <li><%= Authority.valid.count %> RadioDNS <a href="/authorities">Authorities</a></li>
-    <li><%= Service.count %> RadioDNS <a href="/services">Services</a></li>
+    <li><%= Service.valid.count %> RadioDNS <a href="/services">Services</a> (Radio Stations)</li>
     <li><%= Multiplex.count %> <a href="/multiplexes">DAB Multiplexes</a></li>
     <li><%= Transmitter.count %> <a href="/transmitters">Transmitter sites</a></li>
   </ul>

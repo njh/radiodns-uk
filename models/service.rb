@@ -21,6 +21,12 @@ class Service < Sequel::Model
     ds.where(:size => '112x32')
   end
 
+  dataset_module do
+    def valid
+      exclude({:default_bearer_id => nil})
+    end
+  end
+
   def before_save
     self.sort_name = name.
       sub(/^[\d\.]+(fm)?\s+/i, '').

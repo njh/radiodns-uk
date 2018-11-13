@@ -70,9 +70,8 @@ class App < Roda
     end
 
     r.get 'services' do
-      @services = Service.eager(:default_bearer, :logo_colour_rectangle).
-                  exclude(:default_bearer_id => nil).
-                  order(:sort_name).all
+      @services = Service.valid.order(:sort_name).
+                  eager(:default_bearer, :logo_colour_rectangle).all
       view('services_index')
     end
 
