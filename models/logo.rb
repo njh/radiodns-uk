@@ -23,3 +23,4 @@ end
 # Indexes:
 #  logos_service_id_index      | (service_id)
 #  logos_service_id_size_index | UNIQUE (service_id, size)
+#  logos_size_index            | (size)
