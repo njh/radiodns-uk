@@ -50,7 +50,7 @@ class App < Roda
     end
 
     r.get 'authorities' do
-      @authorities = Authority.valid.order(:name)
+      @authorities = Authority.valid.sort_by(&:name)
       view('authorities_index')
     end
 
