@@ -16,6 +16,7 @@ gem 'radiodns'
 gem 'roo', '~> 2.7.0'
 gem 'titleize'
 gem 'public_suffix'
+gem 'rubyzip', '~> 1.2.2'
 
 group :development do
   gem 'sequel-annotate'

@@ -10,3 +10,5 @@
 /si_files
 *.sqlite
 
+# Generated files
+/public/logos/*.zip

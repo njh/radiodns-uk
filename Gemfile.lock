@@ -65,6 +65,7 @@ DEPENDENCIES
   roda (~> 3.12)
   roo (~> 2.7.0)
   rspec (~> 3.7.0)
+  rubyzip (~> 1.2.2)
   sequel (~> 5)
   sequel-annotate
   shotgun
