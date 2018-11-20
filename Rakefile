@@ -12,8 +12,10 @@ Dir.glob('tasks/*.rake').each { |r| import r }
 
 desc "Publish the local SQLite database to the web server"
 task :publish do
+  target = 'radiodns-uk@skypi.aelius.com:/srv/www/radiodns-uk'
   raise "Not publishing empty database" if File.size('database.sqlite') < 1024
-  sh 'scp database.sqlite radiodns-uk@skypi.aelius.com:/srv/www/radiodns-uk'
+  sh "scp database.sqlite #{target}/"
+  sh "scp public/logos/*.zip #{target}/public/logos/"
 end
 
 desc "Deleted all the generated files (based on .gitignore)"
