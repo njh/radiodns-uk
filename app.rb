@@ -59,6 +59,10 @@ class App < Roda
       view('authorities_show')
     end
 
+    r.get 'logos' do
+      view('logos')
+    end
+
     r.get 'multiplexes' do
       @multiplexes = Multiplex.order(:name).all
       view('multiplexes_index')

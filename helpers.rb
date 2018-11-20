@@ -42,3 +42,9 @@ end
 def canonical_url
   "https://www.radiodns.uk" + request.path
 end
+
+def pretty_filesize(path)
+  fullpath = File.join('public', path)
+  bytes = File.size(fullpath)
+  "#{bytes / 1024}k"
+end
