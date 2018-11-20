@@ -123,7 +123,7 @@ class App < Roda
 
     r.get 'sitemap.xml' do
       models = [Authority, Multiplex, Service, Transmitter]
-      @paths = ['/']
+      @paths = ['/', '/logos']
       @paths += models.map {|m| "/#{m.table_name}"}
       @paths += models.map {|m| m.all.map {|a| a.path} }.flatten
       response['Content-Type'] = 'application/xml'
