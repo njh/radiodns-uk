@@ -1,0 +1,39 @@
+<% content_for :page_title, "Bearers that aren't known to Ofcom" %>
+
+<p class="lead">
+  The following bearers have been registered with radiodns.org, have an entry
+  in the authority's SI.xml file, but they are not in the Ofcom published 
+  spreadsheet of licensed transmissions.
+</p>
+
+<table class="table table-responsive">
+
+  <thead>
+    <tr>
+      <th scope="col">Bearer</th>
+      <th scope="col">Service Name</th>
+      <th scope="col">FQDN</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bearers.each do |bearer| %>
+      <tr>
+        <td>
+          <%= bearer.uri %>
+        </td>
+        <td>
+          <% unless bearer.service.nil? %>
+          <%== link_to(bearer.service.name, bearer.service.path) %>
+          <% end %>
+        </td>
+        <td>
+          <% unless bearer.authority.fqdn.nil? %>
+          <%== link_to(bearer.authority.fqdn, bearer.authority.path) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>

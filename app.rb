@@ -121,6 +121,14 @@ class App < Roda
       view('transmitters_show')
     end
 
+    r.on 'reports' do
+      r.get 'unknown-to-ofcom' do
+        @bearers = Bearer.where(:from_ofcom => false).
+                          eager({:service => :default_bearer}, :authority).all
+        view('reports_unknown-to-ofcom')
+      end
+    end
+
     r.get 'sitemap.xml' do
       models = [Authority, Multiplex, Service, Transmitter]
       @paths = ['/', '/logos']
