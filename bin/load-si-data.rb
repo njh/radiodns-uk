@@ -124,7 +124,7 @@ def validate_bearers(authority, xml)
       # Find or initialise a new bearer
       bearer = Bearer.find(params) || Bearer.new(params)
       if bearer.authority_id.nil?
-         $stderr.puts "  => Warning: not an Ofcom bearer #{bearer_id}"
+        $stderr.puts "  => Warning: not an Ofcom bearer #{bearer_id}"
       end
 
       # Check that the bearer matches
@@ -135,6 +135,13 @@ def validate_bearers(authority, xml)
       elsif fqdn != authority.fqdn
         $stderr.puts "  => FQDN does not match for bearer #{bearer_id} = #{authority.fqdn}"
         next
+      end
+      
+      # Set the DAB multiplex, if none set
+      if bearer.type == Bearer::TYPE_DAB and bearer.multiplex_id.nil?
+        bearer.multiplex = Multiplex.find(:eid => bearer.eid)
+        $stderr.puts "  => Warning: unknown multiplex for #{bearer_id}"
+        bearer.save
       end
 
       # Update/create the bearer
