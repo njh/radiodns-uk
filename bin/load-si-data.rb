@@ -140,7 +140,9 @@ def validate_bearers(authority, xml)
       # Set the DAB multiplex, if none set
       if bearer.type == Bearer::TYPE_DAB and bearer.multiplex_id.nil?
         bearer.multiplex = Multiplex.find(:eid => bearer.eid)
-        $stderr.puts "  => Warning: unknown multiplex for #{bearer_id}"
+        if bearer.multiplex_id.nil?
+          $stderr.puts "  => Warning: unknown multiplex for #{bearer_id}"
+        end
         bearer.save
       end
 
