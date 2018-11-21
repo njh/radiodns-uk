@@ -56,7 +56,10 @@ class Bearer < Sequel::Model
   end
 
   def authority
-    resolve! if self.authority_id.nil?
+    if self.authority_id.nil?
+      # This method doesn't save the bearer, while looking up the authority
+      self.authority_id = Authority.find_or_create(:fqdn => resolve_fqdn).id
+    end
     super
   end
 
