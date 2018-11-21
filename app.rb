@@ -127,6 +127,17 @@ class App < Roda
                           eager({:service => :default_bearer}, :authority).all
         view('reports_unknown-to-ofcom')
       end
+
+      r.get 'no-si-xml' do
+        @bearers = Bearer.where(
+          Sequel.lit('authority_id > 1')
+        ).where(
+          :service_id => nil
+        ).eager(
+          :authority
+        ).all
+        view('reports_no-si-xml')
+      end
     end
 
     r.get 'sitemap.xml' do

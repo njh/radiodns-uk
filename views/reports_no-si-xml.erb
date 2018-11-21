@@ -1,0 +1,36 @@
+<% content_for :page_title, "Stations with no service entry" %>
+
+<p class="lead">
+  The following bearers are licensed by Ofcom and have been registered with
+  radiodns.org but have no entry in the authority's SI.xml file.
+</p>
+
+<table class="table table-responsive">
+
+  <thead>
+    <tr>
+      <th scope="col">Bearer</th>
+      <th scope="col">Ofcom Label</th>
+      <th scope="col">Authoritative FQDN</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bearers.each do |bearer| %>
+      <tr>
+        <td>
+          <%= bearer.uri %>
+        </td>
+        <td>
+          <%= bearer.ofcom_label %>
+        </td>
+        <td>
+          <% unless bearer.authority.fqdn.nil? %>
+          <%== link_to(bearer.authority.fqdn, bearer.authority.path) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
