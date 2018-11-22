@@ -10,7 +10,6 @@ GEM
     mini_portile2 (2.3.0)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
-    public_suffix (3.0.3)
     rack (2.0.6)
     radiodns (0.1.3)
     rake (12.3.1)
@@ -59,7 +58,6 @@ DEPENDENCIES
   erubi (~> 1.5)
   json
   nokogiri (~> 1.8.5)
-  public_suffix
   radiodns
   rake
   roda (~> 3.12)
