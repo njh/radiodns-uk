@@ -15,7 +15,6 @@ gem 'nokogiri', '~> 1.8.5'
 gem 'radiodns'
 gem 'roo', '~> 2.7.0'
 gem 'titleize'
-gem 'public_suffix'
 gem 'rubyzip', '~> 1.2.2'
 
 group :development do

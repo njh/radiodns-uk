@@ -1,5 +1,4 @@
 require 'radiodns'
-require 'public_suffix'
 require 'titleize'
 require 'net/https'
 require 'uri'
@@ -22,8 +21,7 @@ class Authority < Sequel::Model
     unless self[:name].nil?
       self[:name]
     else
-      domain = PublicSuffix.parse(fqdn)
-      domain.sld.titleize
+      fqdn
     end
   end
 

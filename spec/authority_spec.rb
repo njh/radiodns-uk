@@ -19,8 +19,8 @@ describe Authority do
 
     describe "an authority that has no name" do
       let (:authority) { Authority.new(:fqdn => 'rdns.example.com') }
-      it 'extracts the name from the domain name' do
-        expect(authority.name).to eql("Example")
+      it 'returns the FQDN' do
+        expect(authority.name).to eql("rdns.example.com")
       end
     end
   end
