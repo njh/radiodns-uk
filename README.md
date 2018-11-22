@@ -16,6 +16,9 @@ The steps to build the site are:
 4. For each Authoritative FQDN, attempt to load the Service Information (SI.xml) file
 
 
+## Data Model
+
+<img src="https://github.com/njh/radiodns-uk/blob/master/docs/data-model.png?raw=true" width="533" height="388" alt="Data Model Diagram" />
 
 ## Development
 
