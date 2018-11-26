@@ -20,6 +20,28 @@ The steps to build the site are:
 
 <img src="https://github.com/njh/radiodns-uk/blob/master/docs/data-model.png?raw=true" width="533" height="388" alt="Data Model Diagram" />
 
+## Project Structure
+
+These are the key files and directories that make up the project:
+
+* `Gemfile` Used by [Bundler] to list all the dependencies for this project
+* `Rakefile` parent [rake] file, describing build tasks. Run `rake -T` to list all the tasks
+* `ansible` contains an [Ansible] playbook, used to deploy the application to the live server
+* `app.rb` the main web server application, request router and controllers
+* `bin` various ruby scripts, used to generate the site
+* `db.rb` this is used to initialise [Sequel] and sets the `DB` constant
+* `genres` collection of JSON files, mapping [TV Anytime] genre IDs to genre names
+* `helpers.rb` view helpers - methods to generate HTML to make the view code simpler
+* `migrate` [Sequel] database migration files that create/update the database schema
+* `models` directory containing the [Sequel] database models
+* `models.rb` require this file to setup [Sequel] and load all the database models
+* `public` static files served directly by the HTTP server
+* `si_files` the various `SI.xml` files are downloaded to this directory
+* `spec` Rspec files to run tests against the application and model code
+* `tasks` directory containing [Rake] task files
+* `views` [Erubi] templates for the the HTML and XML pages
+
+
 ## Development
 
 You may need to install a recent version of [Ruby] on your computer before you can run the scripts.
@@ -74,14 +96,17 @@ This project is intended to be a safe and welcoming space for collaboration. Con
 The gem is available as open source under the terms of the [MIT License].
 
 
-
+[Ansible]:                   http://www.ansible.com/
 [Bundler]:                   http://bundler.io/
+[Erubi]:                     https://github.com/jeremyevans/erubi
+[http://localhost:9393/]:    http://localhost:9393/
 [MIT License]:               http://opensource.org/licenses/MIT
 [Ofcom]:                     https://www.ofcom.org.uk/
 [radiodns.uk]:               http://www.radiodns.uk/
 [RadioDNS]:                  http://www.radiodns.org/
+[Rake]:                      https://github.com/ruby/rake
 [Roda]:                      http://roda.jeremyevans.net/
 [Ruby]:                      http://ruby-lang.org/
 [Sequel]:                    http://sequel.jeremyevans.net/
 [Transmitter Parameters]:    https://www.ofcom.org.uk/spectrum/information/radio-tech-parameters
-[http://localhost:9393/]:    http://localhost:9393/
+[TV Anytime]:                http://www.tv-anytime.org/
