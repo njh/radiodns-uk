@@ -13,6 +13,10 @@ describe Service do
   }
 
   describe "#name" do
+    it 'returns the long name by default' do
+      expect(service.name).to eql('BBC Radio 6 Music')
+    end
+
     describe "a service that only has a short name" do
       let(:service) { Service.new(:short_name => 'BBC 6Mus') }
       it 'returns the short name' do
@@ -31,6 +35,26 @@ describe Service do
       let(:service) { Service.new(:long_name => 'BBC Radio 6 Music') }
       it 'returns the long name' do
         expect(service.name).to eql('BBC Radio 6 Music')
+      end
+    end
+  end
+
+  describe "#description" do
+    it 'returns the long description by default' do
+      expect(service.description).to eql('The place for the best Alternative Music.')
+    end
+
+    describe "a service that only has a short description" do
+      let(:service) { Service.new(:short_description => 'Where extraordinary Music plays') }
+      it 'returns the short description' do
+        expect(service.description).to eql('Where extraordinary Music plays')
+      end
+    end
+
+    describe "a service that only has a long description" do
+      let(:service) { Service.new(:long_description => 'The place for the best Alternative Music.') }
+      it 'returns the long description' do
+        expect(service.description).to eql('The place for the best Alternative Music.')
       end
     end
   end
