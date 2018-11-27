@@ -128,6 +128,29 @@ class App < Roda
         view('reports_unknown-to-ofcom')
       end
 
+      r.get 'no-radiodns' do
+        @dab_bearers = Bearer.where(
+          :type => Bearer::TYPE_DAB
+        ).where(
+          :authority_id => 1
+        ).order(
+          :ofcom_label
+        ).eager(
+          :multiplex
+        ).all
+
+        @fm_bearers = Bearer.where(
+          :type => Bearer::TYPE_FM
+        ).where(
+          :authority_id => 1
+        ).order(
+          :ofcom_label
+        ).eager(
+          :transmitters
+        ).all
+        view('reports_no-radiodns')
+      end
+
       r.get 'no-si-xml' do
         @bearers = Bearer.where(
           Sequel.lit('authority_id > 1')

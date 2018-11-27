@@ -1,0 +1,73 @@
+<% content_for :page_title, "Bearers wth no radiodns.org entry" %>
+
+<p class="lead">
+  The following bearers are licensed by Ofcom but have not been registered with
+  radiodns.org and so have no service information.
+</p>
+
+<h3>DAB Bearers</h2>
+<table class="table table-responsive">
+
+  <thead>
+    <tr>
+      <th scope="col">Bearer</th>
+      <th scope="col">Ofcom Label</th>
+      <th scope="col">Multiplex</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dab_bearers.each do |bearer| %>
+      <tr>
+        <td>
+          <%= bearer.uri %>
+        </td>
+        <td>
+          <%= bearer.ofcom_label %>
+        </td>
+        <td>
+          <%== link_to(bearer.multiplex.name, bearer.multiplex.path) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+
+<h3>FM Bearers</h2>
+<table class="table table-responsive">
+
+  <thead>
+    <tr>
+      <th scope="col">Bearer</th>
+      <th scope="col">Frequency</th>
+      <th scope="col">Ofcom Label</th>
+      <th scope="col">Transmitters</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fm_bearers.each do |bearer| %>
+      <tr>
+        <td>
+          <%= bearer.uri %>
+        </td>
+        <td>
+          <%= bearer.frequency %> MHz
+        </td>
+        <td>
+          <%= bearer.ofcom_label %>
+        </td>
+        <td>
+          <ul class="list-unstyled">
+            <% bearer.transmitters.each do |transmitter| %>
+              <li><%== link_to(transmitter.name, transmitter.path) %></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
