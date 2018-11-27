@@ -34,6 +34,12 @@ describe Bearer do
       end
     end
 
+    describe '#path' do
+      it 'returns the website path' do
+        expect(bearer.path).to eql("/services/fm/ce1/c6b1/10280")
+      end
+    end
+
     describe '#to_s' do
       it 'shoudl return the uri' do
         expect(bearer.to_s).to eql("fm:ce1.c6b1.10280")
@@ -78,6 +84,12 @@ describe Bearer do
     describe '#fqdn' do
       it 'creates a DAB bearer FQDN' do
         expect(bearer.fqdn).to eql("0.c0cb.c19e.ce1.dab.radiodns.org")
+      end
+    end
+
+    describe '#path' do
+      it 'returns the website path' do
+        expect(bearer.path).to eql("/services/dab/ce1/c19e/c0cb/0")
       end
     end
 
