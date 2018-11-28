@@ -1,4 +1,14 @@
 <% content_for :page_title, @authority.name %>
+<% content_for :page_description, @authority.description %>
+
+<% content_for :head do %>
+  <% unless @authority.logo.nil? %>
+    <meta property="og:image:url" content="<%= @authority.logo %>" />
+    <meta property="og:image:width" content="320" />
+    <meta property="og:image:height" content="240" />
+  <% end %>
+
+<% end %>
 
 <div class="row">
   <div class="col-md-8">
