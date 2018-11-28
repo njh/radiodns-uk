@@ -45,16 +45,19 @@ end
 def parse_logos(element)
   logos = {}
   element.xpath("./mediaDescription/multimedia").each do |multimedia|
-    key = if multimedia['type'] == 'logo_colour_square'
-      '32x32'
+    if multimedia['type'] == 'logo_colour_square'
+      key = '32x32'
+      mime_type = 'image/png'
     elsif multimedia['type'] == 'logo_colour_rectangle'
-      '112x32'
+      key = '112x32'
+      mime_type = 'image/png'
     elsif multimedia['width'] && multimedia['height']
-      multimedia['width'] + 'x' + multimedia['height']
+      key = multimedia['width'] + 'x' + multimedia['height']
+      mime_type = multimedia['mimeValue']
     end
 
     unless key.nil?
-      logos[key] = { :url => multimedia['url'] }
+      logos[key] = { :url => multimedia['url'], :mime_type => mime_type }
     end
   end
   return logos

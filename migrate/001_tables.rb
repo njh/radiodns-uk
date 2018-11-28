@@ -90,6 +90,7 @@ Sequel.migration do
       column :service_id, Integer, :index => true
       column :size, String, :index => true, :size => 12
       column :url, String
+      column :mime_type, String
       index [:service_id, :size], :unique => true
     end
 
