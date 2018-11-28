@@ -35,9 +35,9 @@
   <div class="col-md-12">
     <h2>Services</h2>
 
-    <% unless @authority.services.empty? %>
+    <% unless @services.empty? %>
       <ul>
-        <% @authority.services.each do |service| %>
+        <% @services.each do |service| %>
           <li>
             <%== link_to(service.name, service.path) %>
           </li>

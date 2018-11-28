@@ -56,6 +56,9 @@ class App < Roda
 
     r.get 'authorities', String do |fqdn|
       @authority = Authority.first!(:fqdn => fqdn)
+      @services = Service.where(:authority => @authority)
+                         .order(:sort_name)
+                         .eager_graph(:default_bearer).all
       view('authorities_show')
     end
 
