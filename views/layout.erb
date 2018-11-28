@@ -7,9 +7,12 @@
 
     <title><%= content_for :page_title %> - RadioDNS.uk</title>
     <link rel="canonical" href="<%= canonical_url %>" />
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:title" content="<%= content_for :page_title %>" />
     <meta property="og:title" content="<%= content_for :page_title %>" />
     <% unless content_for(:page_description).nil? %>
     <meta property="og:description" content="<%= content_for :page_description %>" />
+    <meta property="twitter:description" content="<%= content_for :page_description %>" />
     <% end %>
     <meta property="og:url" content="<%= canonical_url %>" />
     <meta property="og:locale" content="en_GB" />
