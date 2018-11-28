@@ -5,8 +5,16 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <title><%= content_for :page_title %> - radiodns.uk</title>
+    <title><%= content_for :page_title %> - RadioDNS.uk</title>
     <link rel="canonical" href="<%= canonical_url %>" />
+    <meta property="og:title" content="<%= content_for :page_title %>" />
+    <% unless content_for(:page_description).nil? %>
+    <meta property="og:description" content="<%= content_for :page_description %>" />
+    <% end %>
+    <meta property="og:url" content="<%= canonical_url %>" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:site_name" content="RadioDNS.uk" />
+    <%== content_for :head %>
 
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
     <link rel="stylesheet" href="/leaflet/leaflet.css" />
