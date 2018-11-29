@@ -115,10 +115,10 @@ def import_fm(xlsx, sheet_name)
     transmitter.save
 
     create_fm_bearer(hash[:station], hash[:frequency], hash[:rds_pi], transmitter)
-    
+
     unless hash[:switched_pi].nil?
       create_fm_bearer(hash[:station], hash[:frequency], hash[:switched_pi], transmitter)
-    end    
+    end
   end
 end
 

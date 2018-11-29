@@ -35,7 +35,7 @@ class App < Roda
       'Cache-Control' => 'public,max-age=3600',
       'Strict-Transport-Security' => 'max-age=16070400; includeSubDomains',
       'X-Frame-Options' => 'deny'
-  end    
+  end
 
   route do |r|
     r.public

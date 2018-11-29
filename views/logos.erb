@@ -2,7 +2,7 @@
 
 <div class="container">
   <p>
-    Some cars allow you add logos for radio station presets by copying them over 
+    Some cars allow you add logos for radio station presets by copying them over
     using a memory card. These logo packs make it easy for you to download
     the latest version logos, as provided by broadcasters, for your car.
   </p>
@@ -12,14 +12,14 @@
     <% ['32x32', '112x32', '128x128'].each do |size| %>
     <li>
       <%= size %> pixels:
-      <a href="/logos/RadioStationLogos_<%= size %>.zip">RadioStationLogos_<%= size %>.zip</a> - 
+      <a href="/logos/RadioStationLogos_<%= size %>.zip">RadioStationLogos_<%= size %>.zip</a> -
       <%= pretty_filesize("logos/RadioStationLogos_#{size}.zip") %>
     </li>
     <% end %>
   </ul>
-  
+
   <p>
-    These logo packs are provided for non-commercial personal use only. 
+    These logo packs are provided for non-commercial personal use only.
     You must not use the logos for commercial purposes without obtaining permission from individual broadcasters.
   </p>
 </div>

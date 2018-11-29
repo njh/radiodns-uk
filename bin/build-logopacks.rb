@@ -78,7 +78,7 @@ IMAGE_SIZES.each do |size|
 
   dirname = "RadioStationLogos_#{size}_#{Date.today.iso8601}"
   zip_filepath = File.join(ZIPFILE_DIR, "RadioStationLogos_#{size}.zip")
-  
+
   puts "Creating logopack zip file: #{zip_filepath}"
   create_logopack_zip(zip_filepath, dirname, logos)
   puts

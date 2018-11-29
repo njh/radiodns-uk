@@ -1,6 +1,6 @@
 .bundle
 /coverage/
-/vendor/ 
+/vendor/
 
 /ansible/*.retry
 

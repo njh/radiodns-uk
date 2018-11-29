@@ -12,7 +12,7 @@ class Authority < Sequel::Model
       exclude({:fqdn => nil})
     end
   end
-  
+
   def path
     "/authorities/#{fqdn}"
   end
@@ -38,7 +38,7 @@ class Authority < Sequel::Model
   def si_filepath
     File.join(Authority.si_dir, fqdn + '.xml')
   end
-  
+
   def si_uri
     if have_radioepg?
       host, port = radioepg_server.split(':')
@@ -82,15 +82,15 @@ class Authority < Sequel::Model
       end
     end
   end
-  
+
   def have_radioepg?
     !radioepg_server.nil?
   end
-  
+
   def have_radiotag?
     !radiotag_server.nil?
   end
-  
+
   def have_radiovis?
     !radiovis_server.nil?
   end

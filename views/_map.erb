@@ -12,7 +12,7 @@
       'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     id: 'mapbox.streets'
   }).addTo(mymap);
-  
+
   var transmitters = new L.featureGroup();
   <% transmitters.each do |transmitter| %>
   L.marker([<%= transmitter.lat %>, <%= transmitter.long %>]).addTo(transmitters)

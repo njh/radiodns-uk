@@ -1,6 +1,6 @@
 class Logo < Sequel::Model
   many_to_one :service
-  
+
   def width
     size.split('x')[0].to_i
   end
@@ -8,7 +8,7 @@ class Logo < Sequel::Model
   def height
     size.split('x')[1].to_i
   end
-  
+
   def pixels
     width * height
   end

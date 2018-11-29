@@ -40,7 +40,7 @@ Sequel.migration do
       column :medium_name, String
       column :long_name, String
       column :short_description, String
-      column :long_description, String, :text => true 
+      column :long_description, String, :text => true
     end
 
     create_table(:transmitters) do

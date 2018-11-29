@@ -11,7 +11,7 @@ class Bearer < Sequel::Model
   many_to_many :transmitters, :order => :name # FM
   many_to_one :authority
   many_to_one :service
-  
+
   def self.parse_uri(str)
     if str =~ /^dab:(\w{3}).(\w{4}).(\w{4})\.(\w)$/
       {
@@ -66,7 +66,7 @@ class Bearer < Sequel::Model
   def fqdn
     uri.split(/\W+/).reverse.push(RADIODNS_ROOT).join('.')
   end
-  
+
   def path
     '/' + uri.split(/\W+/).unshift('services').join('/')
   end
@@ -84,7 +84,7 @@ class Bearer < Sequel::Model
 
   def radiodns_test_url
     root = "https://radiodns.org/nwp/tools/?action=rdns"
-  
+
     case type
     when TYPE_DAB
       root + "&bearer=dab&ecc=#{UK_GCC}&eid=#{eid}&sid=#{sid}&scids=#{scids}"

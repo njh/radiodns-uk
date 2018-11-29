@@ -79,7 +79,7 @@ Run `rake -T` to see a list of the individual tasks:
 You can then run a local webserver using:
 
     $ bundle exec shotgun
-    
+
 Shotgun will reload the application after every request, which makes development much easier.
 
 And then open the following URL in your browser: [http://localhost:9393/]

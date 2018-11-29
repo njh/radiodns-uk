@@ -144,7 +144,7 @@ def validate_bearers(authority, xml)
         $stderr.puts "  => FQDN does not match for bearer #{bearer_id} = #{authority.fqdn}"
         next
       end
-      
+
       # Set the DAB multiplex, if none set
       if bearer.type == Bearer::TYPE_DAB and bearer.multiplex_id.nil?
         bearer.multiplex = Multiplex.find(:eid => bearer.eid)
