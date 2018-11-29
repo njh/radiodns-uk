@@ -68,6 +68,8 @@ class Authority < Sequel::Model
     uri = si_uri
     if uri.nil?
       DB.log_info("No RadioEPG DNS entry for #{fqdn}")
+    elsif File.exist?(si_filepath)
+      DB.log_info("Already download SI file for #{fqdn}")
     else
       res = Net::HTTP.get_response(uri)
       if res.is_a?(Net::HTTPSuccess)
