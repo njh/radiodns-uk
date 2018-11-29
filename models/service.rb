@@ -49,8 +49,12 @@ class Service < Sequel::Model
   # Return the set of logos defiend by Project Logo
   # https://radiodns.org/get-involved/project-logo/technical-details/
   def logos_set
-    sizes = ['600x600', '320x240', '128x128', '112x32', '32x32']
-    logos_dataset.where(:size => sizes).sort {|a,b| b.pixels <=> a.pixels}
+    @logos_set ||= begin
+      sizes = ['600x600', '320x240', '128x128', '112x32', '32x32']
+      logos_dataset.where(:size => sizes).sort {|a,b| b.pixels <=> a.pixels}
+    end
+  end
+
   end
 
   def to_s
