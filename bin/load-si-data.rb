@@ -52,6 +52,11 @@ def parse_logos(element)
       key = '112x32'
       mime_type = 'image/png'
     elsif multimedia['width'] && multimedia['height']
+      unless multimedia['width'] =~ /^\d+$/ && multimedia['height'] =~ /^\d+$/
+        $stderr.puts "  => Warning: Invalid logo dimensions"
+        next
+      end
+
       key = multimedia['width'] + 'x' + multimedia['height']
       mime_type = multimedia['mimeValue']
     end
