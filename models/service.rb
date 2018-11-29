@@ -55,6 +55,8 @@ class Service < Sequel::Model
     end
   end
 
+  def logo_600
+    logos_set.find {|l| l.size == '600x600'}
   end
 
   def to_s

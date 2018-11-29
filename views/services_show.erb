@@ -12,6 +12,9 @@
     <meta property="og:image:height" content="<%= logo.height %>" />
   <% end %>
 
+  <% unless @service.logo_600.nil? %>
+    <meta property="twitter:image" content="<%= @service.logo_600.url %>" />
+  <% end %>
 <% end %>
 
 <dl class="row">
