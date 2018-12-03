@@ -27,7 +27,7 @@ These are the key files and directories that make up the project:
 * `Gemfile` Used by [Bundler] to list all the dependencies for this project
 * `Rakefile` parent [rake] file, describing build tasks. Run `rake -T` to list all the tasks
 * `ansible` contains an [Ansible] playbook, used to deploy the application to the live server
-* `app.rb` the main web server application, request router and controllers
+* `app.rb` the main web server application and top level router
 * `bin` various ruby scripts, used to generate the site
 * `db.rb` this is used to initialise [Sequel] and sets the `DB` constant
 * `genres` collection of JSON files, mapping [TV Anytime] genre IDs to genre names
@@ -37,6 +37,7 @@ These are the key files and directories that make up the project:
 * `models.rb` require this file to setup [Sequel] and load all the database models
 * `public` static files served directly by the HTTP server
 * `si_files` the various `SI.xml` files are downloaded to this directory
+* `routes` directory containing route files (controllers) for main part of application
 * `spec` Rspec files to run tests against the application and model code
 * `tasks` directory containing [Rake] task files
 * `views` [Erubi] templates for the the HTML and XML pages

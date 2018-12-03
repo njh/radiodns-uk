@@ -7,6 +7,7 @@ class App < Roda
   plugin :partials
   plugin :public
   plugin :content_for
+  plugin :multi_route
 
   plugin :not_found do
     view("error_page")
@@ -37,8 +38,12 @@ class App < Roda
       'X-Frame-Options' => 'deny'
   end
 
+
+  Dir["routes/*.rb"].each {|file| require_relative file }
+
   route do |r|
     r.public
+    r.multi_route
 
     r.root do
       # 70 logos is enough for 23 * 3 rows
@@ -49,121 +54,8 @@ class App < Roda
       view('homepage')
     end
 
-    r.get 'authorities' do
-      @authorities = Authority.valid.sort_by(&:name)
-      view('authorities_index')
-    end
-
-    r.get 'authorities', String do |fqdn|
-      @authority = Authority.first!(:fqdn => fqdn)
-      @services = Service.where(:authority => @authority)
-                         .order(:sort_name)
-                         .eager_graph(:default_bearer).all
-      view('authorities_show')
-    end
-
     r.get 'logos' do
       view('logos')
-    end
-
-    r.get 'multiplexes' do
-      @multiplexes = Multiplex.order(:name).all
-      view('multiplexes_index')
-    end
-
-    r.get 'multiplexes', String do |eid|
-      @multiplex = Multiplex.first!(:eid => eid.upcase)
-      view('multiplexes_show')
-    end
-
-    r.get 'services' do
-      @services = Service.valid.order(:sort_name).
-                  eager(:default_bearer, :logo_colour_rectangle).all
-      view('services_index')
-    end
-
-    r.on 'services' do
-      # FIXME: there must be a nicer way of passing 'r'
-      def services_show(r)
-        @service = @bearer.service
-        raise Sequel::NoMatchingRow.new(Service) if @service.nil?
-        if @bearer.path != @service.path
-          r.redirect(@service.path, 301)
-        else
-          view('services_show')
-        end
-      end
-
-      r.get 'dab', String, String, String, String do |gcc, eid, sid, scids|
-        @bearer = Bearer.first!(
-          :type => Bearer::TYPE_DAB,
-          :eid => eid.upcase,
-          :sid => sid.upcase,
-          :scids => scids.upcase
-        )
-        services_show(r)
-      end
-
-      r.get 'fm', String, String, String do |gcc, sid, frequency|
-        @bearer = Bearer.first!(
-          :type => Bearer::TYPE_FM,
-          :frequency => frequency.to_f / 100,
-          :sid => sid.upcase
-        )
-        services_show(r)
-      end
-    end
-
-    r.get 'transmitters' do
-      @transmitters = Transmitter.order(:name).all
-      view('transmitters_index')
-    end
-
-    r.get 'transmitters', String do |ngr|
-      @transmitter = Transmitter.first!(:ngr => ngr.upcase)
-      view('transmitters_show')
-    end
-
-    r.on 'reports' do
-      r.get 'unknown-to-ofcom' do
-        @bearers = Bearer.where(:from_ofcom => false).
-                          eager({:service => :default_bearer}, :authority).all
-        view('reports_unknown-to-ofcom')
-      end
-
-      r.get 'no-radiodns' do
-        @dab_bearers = Bearer.where(
-          :type => Bearer::TYPE_DAB
-        ).where(
-          :authority_id => 1
-        ).order(
-          :ofcom_label
-        ).eager(
-          :multiplex
-        ).all
-
-        @fm_bearers = Bearer.where(
-          :type => Bearer::TYPE_FM
-        ).where(
-          :authority_id => 1
-        ).order(
-          :ofcom_label
-        ).eager(
-          :transmitters
-        ).all
-        view('reports_no-radiodns')
-      end
-
-      r.get 'no-si-xml' do
-        @bearers = Bearer.where(
-          Sequel.lit('authority_id > 1')
-        ).where(
-          :service_id => nil
-        ).eager(
-          :authority
-        ).all
-        view('reports_no-si-xml')
-      end
     end
 
     r.get 'sitemap.xml' do
@@ -180,7 +72,6 @@ class App < Roda
       view('gems')
     end
   end
-
 
   require './helpers'
 end
