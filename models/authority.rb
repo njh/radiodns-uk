@@ -17,16 +17,8 @@ class Authority < Sequel::Model
     "/authorities/#{fqdn}"
   end
 
-  def name
-    unless self[:name].nil?
-      self[:name]
-    else
-      fqdn
-    end
-  end
-
   def to_s
-    fqdn
+    name || fqdn
   end
 
   def self.si_dir

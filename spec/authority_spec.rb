@@ -15,22 +15,6 @@ describe Authority do
     end
   end
 
-  describe '#name' do
-    describe "an authority that has a name" do
-      let (:authority) { Authority.new(:fqdn => 'rdns.example.com', :name => "Example Broadcaster") }
-      it 'returns the name' do
-        expect(authority.name).to eq("Example Broadcaster")
-      end
-    end
-
-    describe "an authority that has no name" do
-      let (:authority) { Authority.new(:fqdn => 'rdns.example.com') }
-      it 'returns the FQDN' do
-        expect(authority.name).to eq("rdns.example.com")
-      end
-    end
-  end
-
   describe '.si_dir' do
     it 'returns the full path for local storage of SI files' do
       expect(Authority.si_dir).to match(%r|^/\w+/.+/si_files$|)
@@ -108,9 +92,18 @@ describe Authority do
   end
 
   describe '#to_s' do
-    it 'returns the FQDN' do
-      expect(authority.to_s).to eq("rdns.example.com")
+    describe "an authority that has a name" do
+      let (:authority) { Authority.new(:fqdn => 'rdns.example.com', :name => "Example Broadcaster") }
+      it 'returns the name' do
+        expect(authority.to_s).to eq("Example Broadcaster")
+      end
+    end
+
+    describe "an authority that has no name" do
+      let (:authority) { Authority.new(:fqdn => 'rdns.example.com') }
+      it 'returns the FQDN' do
+        expect(authority.to_s).to eq("rdns.example.com")
+      end
     end
   end
-
 end

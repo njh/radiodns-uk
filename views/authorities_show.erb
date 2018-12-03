@@ -1,4 +1,4 @@
-<% content_for :page_title, @authority.name %>
+<% content_for :page_title, @authority %>
 <% content_for :page_description, @authority.description %>
 
 <% content_for :head do %>
@@ -34,7 +34,7 @@
         src="<%= @authority.logo %>"
         width="320" height="240"
         class="img-thumbnail mb-3"
-        alt="<%= @authority.name %> 320x240 Logo" />
+        alt="<%= @authority %> 320x240 Logo" />
     <% end %>
 
   </div>

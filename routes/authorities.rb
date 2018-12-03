@@ -1,7 +1,7 @@
 class App
   route('authorities') do |r|
     r.get true do
-      @authorities = Authority.valid.sort_by(&:name)
+      @authorities = Authority.valid.sort_by(&:to_s)
       view('authorities_index')
     end
 
