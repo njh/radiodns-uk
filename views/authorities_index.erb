@@ -20,7 +20,7 @@
           <%== link_to(authority.fqdn, authority.path) %></a>
         </td>
         <td>
-          <%= authority %>
+          <%= authority.name || '-' %>
         </td>
         <td>
           <%== tick_cross(authority.have_radioepg?) %>
