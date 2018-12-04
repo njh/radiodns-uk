@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+json = @transmitters.map do |transmitter|
+  {
+    '@id' => transmitter.uri, 
+    'ngr' => transmitter.ngr, 
+    'name' => transmitter.name,
+    'area' => transmitter.area,
+    'lat' => transmitter.lat,
+    'long' => transmitter.long,
+    'site_height' => transmitter.site_height,
+    'updated_at' => transmitter.updated_at
+  }
+end

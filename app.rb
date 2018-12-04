@@ -8,6 +8,7 @@ class App < Roda
   plugin :public
   plugin :content_for
   plugin :multi_route
+  plugin :type_routing
 
   plugin :not_found do
     view("error_page")

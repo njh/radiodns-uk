@@ -2,7 +2,10 @@ class App
   route('transmitters') do |r|
     r.get true do
       @transmitters = Transmitter.order(:name).all
-      view('transmitters_index')
+
+      r.html { view('transmitters_index') }
+      r.json { render('transmitters_index', :engine => 'yajl') }
+      "Unsupported format"
     end
 
     r.get String do |ngr|

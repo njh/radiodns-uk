@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+json = @authorities.map do |authority|
+  {
+    '@id' => authority.uri,
+    'fqdn' => authority.fqdn,
+    'name' => authority.name,
+    'description' => authority.description,
+    'link' => authority.link,
+    'logo' => authority.logo,
+    'si_uri' => authority.si_uri,
+    'radiotag_server' => authority.radiotag_server,
+    'radiovis_server' => authority.radiovis_server,
+    'radioweb_server' => authority.radioweb_server
+  }
+end

@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+json = @services.map do |service|
+  {
+    '@id' => service.uri, 
+    'short_name' => service.short_name,
+    'medium_name' => service.medium_name,
+    'long_name' => service.long_name
+  }
+end

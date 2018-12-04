@@ -2,7 +2,10 @@ class App
   route('authorities') do |r|
     r.get true do
       @authorities = Authority.valid.sort_by(&:to_s)
-      view('authorities_index')
+
+      r.html { view('authorities_index') }
+      r.json { render('authorities_index', :engine => 'yajl') }
+      "Unsupported format"
     end
 
     r.get String do |fqdn|

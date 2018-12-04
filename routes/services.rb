@@ -3,7 +3,10 @@ class App
     r.get true do
       @services = Service.valid.order(:sort_name).
                   eager(:default_bearer, :logo_colour_rectangle).all
-      view('services_index')
+
+      r.html { view('services_index') }
+      r.json { render('services_index', :engine => 'yajl') }
+      "Unsupported format"
     end
 
     # FIXME: there must be a nicer way of passing 'r'

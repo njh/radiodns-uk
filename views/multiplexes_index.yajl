@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+json = @multiplexes.map do |multiplex|
+  {
+    '@id' => multiplex.uri,
+    'eid' => multiplex.eid,
+    'name' => multiplex.name,
+    'area' => multiplex.area,
+    'block' => multiplex.block,
+    'frequency' => multiplex.frequency,
+    'licence_number' => multiplex.licence_number,
+    'updated_at' => multiplex.updated_at,
+  }
+end

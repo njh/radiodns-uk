@@ -8,6 +8,7 @@ gem 'roda', '~> 3.12'
 gem 'sequel', '~> 5'
 gem 'sqlite3', '~> 1.3.13'
 gem 'thin', '~> 1.7.2'
+gem 'yajl-ruby'
 
 gem 'json'
 gem 'rake'
