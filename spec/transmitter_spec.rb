@@ -23,4 +23,10 @@ describe Transmitter do
       expect(transmitter.path).to eq("/transmitters/se222281")
     end
   end
+
+  describe '#uri' do
+    it 'returns website URI, including the NGR' do
+      expect(transmitter.uri).to eq("https://www.radiodns.uk/transmitters/se222281")
+    end
+  end
 end

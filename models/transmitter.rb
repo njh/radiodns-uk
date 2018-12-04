@@ -8,6 +8,9 @@ class Transmitter < Sequel::Model
     "/transmitters/#{ngr.downcase}"
   end
 
+  def uri
+    RADIODNS_UK_BASE + path
+  end
 end
 
 # Table: transmitters

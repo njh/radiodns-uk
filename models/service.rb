@@ -46,6 +46,10 @@ class Service < Sequel::Model
     default_bearer.path unless default_bearer.nil?
   end
 
+  def uri
+    RADIODNS_UK_BASE + path unless path.nil?
+  end
+
   # Return the set of logos defiend by Project Logo
   # https://radiodns.org/get-involved/project-logo/technical-details/
   def logos_set

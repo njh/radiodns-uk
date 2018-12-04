@@ -5,6 +5,10 @@ class Multiplex < Sequel::Model
   def path
     "/multiplexes/#{eid.downcase}"
   end
+
+  def uri
+    RADIODNS_UK_BASE + path
+  end
 end
 
 # Table: multiplexes

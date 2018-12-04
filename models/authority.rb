@@ -17,6 +17,10 @@ class Authority < Sequel::Model
     "/authorities/#{fqdn}"
   end
 
+  def uri
+    RADIODNS_UK_BASE + path
+  end
+
   def to_s
     name || fqdn
   end

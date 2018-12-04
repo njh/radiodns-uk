@@ -15,6 +15,12 @@ describe Authority do
     end
   end
 
+  describe '#uri' do
+    it 'returns website URI, including the FQDN' do
+      expect(authority.uri).to eq("https://www.radiodns.uk/authorities/rdns.example.com")
+    end
+  end
+
   describe '.si_dir' do
     it 'returns the full path for local storage of SI files' do
       expect(Authority.si_dir).to match(%r|^/\w+/.+/si_files$|)

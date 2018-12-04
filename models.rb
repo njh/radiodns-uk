@@ -1,6 +1,8 @@
 require_relative 'db'
 require 'sequel/model'
 
+RADIODNS_UK_BASE = 'https://www.radiodns.uk'
+
 Sequel.inflections do |inflect|
   inflect.irregular 'multiplex', 'multiplexes'
 end

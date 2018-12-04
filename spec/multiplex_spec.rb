@@ -8,4 +8,10 @@ describe Multiplex do
       expect(multiplex.path).to eq("/multiplexes/ce15")
     end
   end
+
+  describe '#uri' do
+    it 'returns website URI, including the EID' do
+      expect(multiplex.uri).to eq("https://www.radiodns.uk/multiplexes/ce15")
+    end
+  end
 end
