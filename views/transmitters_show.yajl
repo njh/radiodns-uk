@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+
+json = {
+  '@id' => @transmitter.uri, 
+  'ngr' => @transmitter.ngr, 
+  'name' => @transmitter.name,
+  'area' => @transmitter.area,
+  'lat' => @transmitter.lat,
+  'long' => @transmitter.long,
+  'site_height' => @transmitter.site_height,
+  'updated_at' => @transmitter.updated_at
+}
+
+json[:multiplexes] = @transmitter.multiplexes.map do |multiplex|
+  {
+    '@id' => multiplex.uri,
+    'eid' => multiplex.eid,
+    'name' => multiplex.name,
+    'area' => multiplex.area,
+    'block' => multiplex.block,
+    'frequency' => multiplex.frequency,
+    'licence_number' => multiplex.licence_number,
+    'updated_at' => multiplex.updated_at,
+  }
+end
+
+json[:fm_bearers] = @transmitter.bearers.map do |bearer|
+  hash = {
+    '@id' => bearer.uri, 
+    'ofcom_label' => bearer.ofcom_label,
+    'authority' => bearer.authority.uri,
+    'service' => nil
+  }
+  unless bearer.service.nil?
+    hash[:service] = {
+      '@id' => bearer.service.uri, 
+      'short_name' => bearer.service.short_name,
+      'medium_name' => bearer.service.medium_name,
+      'long_name' => bearer.service.long_name
+    }
+  end
+  hash
+end

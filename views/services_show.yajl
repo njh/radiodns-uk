@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+json = {
+  '@id' => @service.default_bearer.uri, 
+  'authority' => @service.authority.uri,
+  'short_name' => @service.short_name,
+  'medium_name' => @service.medium_name,
+  'long_name' => @service.long_name,
+  'short_description' => @service.short_description,
+  'long_description' => @service.long_description,
+  'genres' => Hash[@service.genres.map {|g| [g.urn, g.name]}],
+  'links' => Hash[@service.links.map {|l| [l.description, l.uri]}],
+  'logos' => Hash[@service.logos.map {|l| [l.size, l.url]}]
+}
+
+json['bearers'] = @service.bearers.map do |bearer|
+  {
+    '@id' => bearer.uri,
+    'ofcom_label' => bearer.ofcom_label,
+    'bitrate' => bearer.bitrate,
+    'cost' => bearer.cost,
+    'offset' => bearer.offset,
+    'mime_type' => bearer.mime_type
+  }
+end

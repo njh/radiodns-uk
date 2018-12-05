@@ -13,7 +13,10 @@ class App
       @services = Service.where(:authority => @authority)
                          .order(:sort_name)
                          .eager_graph(:default_bearer).all
-      view('authorities_show')
+
+      r.html { view('authorities_show') }
+      r.json { render('authorities_show', :engine => 'yajl') }
+      "Unsupported format"
     end
   end
 end

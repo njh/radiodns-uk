@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+json = {
+  '@id' => @authority.uri,
+  'fqdn' => @authority.fqdn,
+  'name' => @authority.name,
+  'description' => @authority.description,
+  'link' => @authority.link,
+  'logo' => @authority.logo,
+  'si_uri' => @authority.si_uri,
+  'radiotag_server' => @authority.radiotag_server,
+  'radiovis_server' => @authority.radiovis_server,
+  'radioweb_server' => @authority.radioweb_server
+}
+
+json[:services] = @services.map do |service|
+  {
+    '@id' => service.uri, 
+    'short_name' => service.short_name,
+    'medium_name' => service.medium_name,
+    'long_name' => service.long_name
+  }
+end

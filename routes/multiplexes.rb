@@ -10,7 +10,10 @@ class App
 
     r.get String do |eid|
       @multiplex = Multiplex.first!(:eid => eid.upcase)
-      view('multiplexes_show')
+
+      r.html { view('multiplexes_show') }
+      r.json { render('multiplexes_show', :engine => 'yajl') }
+      "Unsupported format"
     end
   end
 end
