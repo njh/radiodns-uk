@@ -14,11 +14,11 @@ class Authority < Sequel::Model
   end
 
   def path
-    "/authorities/#{fqdn}"
+    "/authorities/#{fqdn}" unless fqdn.nil?
   end
 
   def uri
-    RADIODNS_UK_BASE + path
+    RADIODNS_UK_BASE + path unless path.nil?
   end
 
   def to_s

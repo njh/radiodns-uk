@@ -10,8 +10,34 @@ describe Authority do
   end
 
   describe '#path' do
-    it 'returns website path, including the FQDN' do
-      expect(authority.path).to eq("/authorities/rdns.example.com")
+     describe "an authority that has a FQDN defined" do
+      let (:authority) { Authority.new(:fqdn => 'rdns.example.com') }
+      it 'returns website path, including the FQDN' do
+        expect(authority.path).to eq("/authorities/rdns.example.com")
+      end
+    end
+
+    describe "an authority that has no FQDN defined" do
+      let (:authority) { Authority.new(:fqdn => nil) }
+      it 'returns nil' do
+        expect(authority.path).to be_nil
+      end
+    end
+  end
+
+  describe '#uri' do
+     describe "an authority that has a FQDN defined" do
+      let (:authority) { Authority.new(:fqdn => 'rdns.example.com') }
+      it 'returns website uri, including the FQDN' do
+        expect(authority.uri).to eq("https://www.radiodns.uk/authorities/rdns.example.com")
+      end
+    end
+
+    describe "an authority that has no FQDN defined" do
+      let (:authority) { Authority.new(:fqdn => nil) }
+      it 'returns nil' do
+        expect(authority.uri).to be_nil
+      end
     end
   end
 
