@@ -4,6 +4,7 @@ format_csv(
   csv,
   @services,
   :uri,
+  :authority_fqdn,
   :short_name,
   :medium_name,
   :long_name

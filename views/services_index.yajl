@@ -2,7 +2,8 @@
 
 json = @services.map do |service|
   {
-    '@id' => service.uri, 
+    '@id' => service.uri,
+    'authority' => authority_fqdn,
     'short_name' => service.short_name,
     'medium_name' => service.medium_name,
     'long_name' => service.long_name
