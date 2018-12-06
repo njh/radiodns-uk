@@ -3,7 +3,7 @@ require 'erubi'
 require './models'
 
 class App < Roda
-  plugin :render
+  plugin :render, :escape => true
   plugin :partials
   plugin :public
   plugin :content_for
