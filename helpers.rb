@@ -48,3 +48,13 @@ def pretty_filesize(path)
   bytes = File.size(fullpath)
   "#{bytes / 1024}k"
 end
+
+def format_csv(csv, objects, *keys)
+  # Header Row
+  csv << keys.map {|key| key.to_s.gsub(/_/,' ').titleize}
+
+  # Data Row
+  objects.each do |obj|
+    csv << keys.map {|key| obj.send(key)}
+  end
+end

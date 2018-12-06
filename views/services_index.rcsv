@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+format_csv(
+  csv,
+  @services,
+  :uri,
+  :short_name,
+  :medium_name,
+  :long_name
+)

@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+format_csv(
+  csv,
+  @authorities,
+  :fqdn,
+  :name,
+  :description,
+  :link,
+  :logo,
+  :si_uri,
+  :radiotag_server,
+  :radiovis_server,
+  :radioweb_server,
+)

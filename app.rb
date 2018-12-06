@@ -3,12 +3,14 @@ require 'erubi'
 require './models'
 
 class App < Roda
-  plugin :render, :escape => true
+  plugin :render
   plugin :partials
   plugin :public
   plugin :content_for
   plugin :multi_route
-  plugin :type_routing
+  plugin :type_routing, :types => {
+    :csv => 'text/csv'
+  }
 
   plugin :not_found do
     view("error_page")

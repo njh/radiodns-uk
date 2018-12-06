@@ -5,6 +5,7 @@ class App
 
       r.html { view('transmitters_index') }
       r.json { render('transmitters_index', :engine => 'yajl') }
+      r.csv { render('transmitters_index', :engine => 'rcsv') }
       "Unsupported format"
     end
 

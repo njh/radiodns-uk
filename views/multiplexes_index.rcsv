@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+format_csv(
+  csv,
+  @multiplexes,
+  :eid,
+  :name,
+  :area,
+  :block,
+  :frequency,
+  :licence_number,
+  :updated_at,
+)
