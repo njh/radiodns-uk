@@ -70,6 +70,10 @@ class Service < Sequel::Model
   def to_s
     name
   end
+  
+  def updated_at
+    authority.updated_at
+  end
 end
 
 # Table: services

@@ -238,6 +238,12 @@ Authority.valid.each do |authority|
 
     si = doc.at("/serviceInformation")
     if si
+      # Set Creation Time on the Authority
+      unless si['creationTime'].nil?
+        authority.update(:updated_at => DateTime.parse(si['creationTime']))
+      end
+
+      # Load Service Provider information
       sp = si.at("./services/serviceProvider")
       process_service_provider(authority, sp) unless sp.nil?
 

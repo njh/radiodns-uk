@@ -29,6 +29,7 @@ Sequel.migration do
       column :radiotag_server, String
       column :radiovis_server, String
       column :radioweb_server, String
+      column :updated_at, DateTime
     end
 
     create_table(:services) do

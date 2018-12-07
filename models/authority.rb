@@ -105,5 +105,6 @@ end
 #  radiotag_server | varchar(255) |
 #  radiovis_server | varchar(255) |
 #  radioweb_server | varchar(255) |
+#  updated_at      | timestamp    |
 # Indexes:
 #  sqlite_autoindex_authorities_1 | UNIQUE (fqdn)

@@ -137,5 +137,12 @@
 
 </div>
 
-<div class="row">
+<div class="row mt-3">
+  <div class="col-md-12">
+    <p class="text-secondary mt-3">
+      Most of the data on this page comes the SI.xml file from
+      <%== link_to(@service.authority.fqdn, @service.authority.path) %>
+      that was last updated: <%= @service.authority.updated_at || 'n/a' %>.
+    </p>
+  </div>
 </div>

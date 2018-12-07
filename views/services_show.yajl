@@ -10,7 +10,8 @@ json = {
   'long_description' => @service.long_description,
   'genres' => Hash[@service.genres.map {|g| [g.urn, g.name]}],
   'links' => Hash[@service.links.map {|l| [l.description, l.uri]}],
-  'logos' => Hash[@service.logos.map {|l| [l.size, l.url]}]
+  'logos' => Hash[@service.logos.map {|l| [l.size, l.url]}],
+  'updated_at' => @service.updated_at
 }
 
 json['bearers'] = @service.bearers.map do |bearer|

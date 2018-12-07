@@ -10,7 +10,8 @@ json = {
   'si_uri' => @authority.si_uri,
   'radiotag_server' => @authority.radiotag_server,
   'radiovis_server' => @authority.radiovis_server,
-  'radioweb_server' => @authority.radioweb_server
+  'radioweb_server' => @authority.radioweb_server,
+  'updated_at' => @authority.updated_at
 }
 
 json[:services] = @services.map do |service|

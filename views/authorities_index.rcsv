@@ -12,4 +12,5 @@ format_csv(
   :radiotag_server,
   :radiovis_server,
   :radioweb_server,
+  :updated_at,
 )

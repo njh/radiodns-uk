@@ -7,5 +7,6 @@ format_csv(
   :authority_fqdn,
   :short_name,
   :medium_name,
-  :long_name
+  :long_name,
+  :updated_at
 )

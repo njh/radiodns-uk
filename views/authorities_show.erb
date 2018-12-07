@@ -23,6 +23,8 @@
         <dt class="col-sm-4">Website</dt>
         <dd class="col-sm-8"><%== link_to(@authority.link) %></dd>
       <% end %>
+      <dt class="col-sm-4">Last Updated</dt>
+      <dd class="col-sm-8"><%= @authority.updated_at || 'n/a' %></dd>
     </dl>
 
   </div>
