@@ -22,6 +22,7 @@ end
 #  lat         | double precision |
 #  long        | double precision |
 #  site_height | integer          |
+#  total_power | double precision |
 #  updated_at  | date             |
 # Indexes:
 #  sqlite_autoindex_transmitters_1 | UNIQUE (ngr)

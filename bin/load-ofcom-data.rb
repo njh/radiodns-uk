@@ -111,6 +111,8 @@ def import_fm(xlsx, sheet_name)
     transmitter.lat ||= hash[:lat]
     transmitter.long ||= hash[:long]
     transmitter.site_height ||= hash[:site_ht]
+    transmitter.total_power ||= 0
+    transmitter.total_power += hash[:in_useerp_hp].to_f + hash[:in_useerp_vp].to_f
     transmitter.updated_at ||= hash[:date]
     transmitter.save
 
@@ -140,6 +142,8 @@ def import_dab(xlsx, sheet_name)
     transmitter.lat ||= hash[:lat]
     transmitter.long ||= hash[:long]
     transmitter.site_height ||= hash[:site_height]
+    transmitter.total_power ||= 0
+    transmitter.total_power += hash[:in_use_erp_total].to_f
     transmitter.updated_at ||= hash[:date]
     transmitter.save
 
