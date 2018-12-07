@@ -52,6 +52,7 @@ Sequel.migration do
       column :lat, Float
       column :long, Float
       column :site_height, Integer
+      column :total_power, Float
       column :updated_at, Date
     end
 
