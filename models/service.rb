@@ -34,6 +34,10 @@ class Service < Sequel::Model
       downcase
   end
 
+  def authority_fqdn
+    authority.fqdn unless authority.nil?
+  end
+
   def name
     long_name || medium_name || short_name
   end
