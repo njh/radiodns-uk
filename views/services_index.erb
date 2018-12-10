@@ -1,35 +1,37 @@
 <% content_for :page_title, "Stations with RadioDNS in the UK" %>
 
-<table class="table table-responsive">
+<div class="row">
+  <table class="table table-responsive">
 
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Name</th>
-      <th scope="col">Description</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @services.each do |service| %>
+    <thead>
       <tr>
-        <td>
-          <% unless service.logo_colour_rectangle.nil? %>
-            <a href="<%= service.path %>">
-            <img src="<%= service.logo_colour_rectangle.url %>"
-                 width="112" height="32"
-                 alt="Logo for <%= service.name %>"
-            /></a>
-          <% end %>
-        </td>
-        <td>
-          <%== link_to(service.name, service.path) %>
-        </td>
-        <td>
-          <%= service.short_description %>
-        </td>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
       </tr>
-    <% end %>
-  </tbody>
+    </thead>
 
-</table>
+    <tbody>
+      <% @services.each do |service| %>
+        <tr>
+          <td>
+            <% unless service.logo_colour_rectangle.nil? %>
+              <a href="<%= service.path %>">
+              <img src="<%= service.logo_colour_rectangle.url %>"
+                   width="112" height="32"
+                   alt="Logo for <%= service.name %>"
+              /></a>
+            <% end %>
+          </td>
+          <td>
+            <%== link_to(service.name, service.path) %>
+          </td>
+          <td>
+            <%= service.short_description %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+</div>
