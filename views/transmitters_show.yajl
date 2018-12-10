@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
 json = {
-  '@id' => @transmitter.uri, 
-  'ngr' => @transmitter.ngr, 
+  '@id' => @transmitter.uri,
+  'ngr' => @transmitter.ngr,
   'name' => @transmitter.name,
   'area' => @transmitter.area,
   'lat' => @transmitter.lat,
@@ -26,14 +26,14 @@ end
 
 json[:fm_bearers] = @transmitter.bearers.map do |bearer|
   hash = {
-    '@id' => bearer.uri, 
+    '@id' => bearer.uri,
     'ofcom_label' => bearer.ofcom_label,
     'authority' => bearer.authority.uri,
     'service' => nil
   }
   unless bearer.service.nil?
     hash[:service] = {
-      '@id' => bearer.service.uri, 
+      '@id' => bearer.service.uri,
       'short_name' => bearer.service.short_name,
       'medium_name' => bearer.service.medium_name,
       'long_name' => bearer.service.long_name

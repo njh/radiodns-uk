@@ -2,8 +2,8 @@
 
 json = @transmitters.map do |transmitter|
   {
-    '@id' => transmitter.uri, 
-    'ngr' => transmitter.ngr, 
+    '@id' => transmitter.uri,
+    'ngr' => transmitter.ngr,
     'name' => transmitter.name,
     'area' => transmitter.area,
     'lat' => transmitter.lat,

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 json = {
-  '@id' => @service.default_bearer.uri, 
+  '@id' => @service.default_bearer.uri,
   'authority' => @service.authority.uri,
   'short_name' => @service.short_name,
   'medium_name' => @service.medium_name,
