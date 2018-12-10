@@ -44,3 +44,26 @@ a:hover { color: #125270; }
 .footer a {
   color: #156286;
 }
+
+.alternative-formats {
+  float: right;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.alternative-formats .format-button
+{
+  background: #5f24dd;
+  color: #FFF;
+  font-family: Geneva, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  padding: 6px;
+  margin: 2px;
+  vertical-align: middle;
+}
+
+.alternative-formats .format-button:hover {
+  color: #DDD;
+  text-decoration: none;
+}

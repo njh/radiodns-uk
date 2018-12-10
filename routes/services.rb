@@ -4,6 +4,7 @@ class App
       @services = Service.valid.order(:sort_name).
                   eager(:default_bearer, :logo_colour_rectangle).all
 
+      @alternatives = ['json']
       r.html { view('services_index') }
       r.json { render('services_index', :engine => 'yajl') }
       r.csv { render('services_index', :engine => 'rcsv') }
@@ -17,6 +18,7 @@ class App
       if @bearer.path != @service.path
         r.redirect(@service.path, 301)
       else
+        @alternatives = ['json']
         r.html { view('services_show') }
         r.json { render('services_show', :engine => 'yajl') }
         "Unsupported format"

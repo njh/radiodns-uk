@@ -3,6 +3,7 @@ class App
     r.get true do
       @authorities = Authority.valid.sort_by(&:to_s)
 
+      @alternatives = ['json']
       r.html { view('authorities_index') }
       r.json { render('authorities_index', :engine => 'yajl') }
       r.csv { render('authorities_index', :engine => 'rcsv') }
@@ -15,6 +16,7 @@ class App
                          .order(:sort_name)
                          .eager_graph(:default_bearer).all
 
+      @alternatives = ['json']
       r.html { view('authorities_show') }
       r.json { render('authorities_show', :engine => 'yajl') }
       "Unsupported format"

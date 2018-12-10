@@ -3,6 +3,7 @@ class App
     r.get true do
       @transmitters = Transmitter.order(:name).all
 
+      @alternatives = ['json']
       r.html { view('transmitters_index') }
       r.json { render('transmitters_index', :engine => 'yajl') }
       r.csv { render('transmitters_index', :engine => 'rcsv') }
@@ -12,6 +13,7 @@ class App
     r.get String do |ngr|
       @transmitter = Transmitter.first!(:ngr => ngr.upcase)
 
+      @alternatives = ['json']
       r.html { view('transmitters_show') }
       r.json { render('transmitters_show', :engine => 'yajl') }
       "Unsupported format"

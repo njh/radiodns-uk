@@ -1,3 +1,13 @@
+   <% unless @alternatives.nil? %>
+   <div class="alternative-formats">
+    Alternative formats: 
+    <% basename = File.basename(request.path,File.extname(request.path)) %>
+     <% @alternatives.each do |alt| %>
+       <a href="<%= basename %>.<%= alt %>" class="format-button align-middle"><%= alt.upcase %></a>
+     <% end %>
+   </div>
+   <% end %>
+
    <footer class="footer">
     <div class="container">
       <p>
