@@ -4,7 +4,7 @@ gem 'bundler', '1.13.6'
 
 gem 'tilt', '~> 2.0.6'
 gem 'erubi', '~> 1.5'
-gem 'roda', '~> 3.12'
+gem 'roda', '~> 3.15'
 gem 'sequel', '~> 5'
 gem 'sqlite3', '~> 1.3.13'
 gem 'thin', '~> 1.7.2'
