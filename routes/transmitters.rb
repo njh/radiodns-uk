@@ -3,7 +3,7 @@ class App
     r.get true do
       @transmitters = Transmitter.order(:name).all
 
-      @alternatives = ['json']
+      @alternatives = ['json', 'csv']
       r.html { view('transmitters_index') }
       r.json { render('transmitters_index', :engine => 'yajl') }
       r.csv { render('transmitters_index', :engine => 'rcsv') }

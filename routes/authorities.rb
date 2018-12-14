@@ -3,7 +3,7 @@ class App
     r.get true do
       @authorities = Authority.valid.sort_by(&:to_s)
 
-      @alternatives = ['json']
+      @alternatives = ['json', 'csv']
       r.html { view('authorities_index') }
       r.json { render('authorities_index', :engine => 'yajl') }
       r.csv { render('authorities_index', :engine => 'rcsv') }

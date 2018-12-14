@@ -3,7 +3,7 @@ class App
     r.get true do
       @multiplexes = Multiplex.order(:name).all
 
-      @alternatives = ['json']
+      @alternatives = ['json', 'csv']
       r.html { view('multiplexes_index') }
       r.json { render('multiplexes_index', :engine => 'yajl') }
       r.csv { render('multiplexes_index', :engine => 'rcsv') }

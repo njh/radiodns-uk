@@ -4,7 +4,7 @@ class App
       @services = Service.valid.order(:sort_name).
                   eager(:default_bearer, :logo_colour_rectangle).all
 
-      @alternatives = ['json']
+      @alternatives = ['json', 'csv']
       r.html { view('services_index') }
       r.json { render('services_index', :engine => 'yajl') }
       r.csv { render('services_index', :engine => 'rcsv') }
