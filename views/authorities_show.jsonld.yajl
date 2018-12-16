@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+json = {
+  '@context' => 'http://schema.org',
+  '@id' => @authority.uri,
+  '@type' => 'Organization',
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "GB"
+  },
+}
+
+json['name'] = @authority.name unless @authority.name.nil?
+json['description'] = @authority.description unless @authority.description.nil?
+json['logo'] = @authority.logo unless @authority.logo.nil?
+json['url'] = @authority.link unless @authority.link.nil?

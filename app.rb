@@ -9,7 +9,8 @@ class App < Roda
   plugin :content_for
   plugin :multi_route
   plugin :type_routing, :types => {
-    :csv => 'text/csv'
+    :csv => 'text/csv',
+    :jsonld => 'application/ld+json'
   }
 
   plugin :not_found do

@@ -16,9 +16,10 @@ class App
                          .order(:sort_name)
                          .eager_graph(:default_bearer).all
 
-      @alternatives = ['json']
+      @alternatives = ['json', 'json-ld']
       r.html { view('authorities_show') }
       r.json { render('authorities_show', :engine => 'yajl') }
+      r.jsonld { render('authorities_show.jsonld', :engine => 'yajl') }
       "Unsupported format"
     end
   end
