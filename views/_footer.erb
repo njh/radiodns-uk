@@ -1,10 +1,10 @@
    <% unless @alternatives.nil? %>
    <div class="alternative-formats">
     Alternative formats: 
-    <% basename = File.basename(request.path,File.extname(request.path)) %>
-     <% @alternatives.each do |alt| %>
-       <a href="<%= basename %>.<%= alt %>" class="format-button align-middle"><%= alt.upcase %></a>
-     <% end %>
+    <% basename = File.basename(request.path) %>
+    <% @alternatives.each do |alt| %>
+      <a href="<%= basename %>.<%= alt.gsub(/\W+/, '') %>" class="format-button align-middle"><%= alt.upcase %></a>
+    <% end %>
    </div>
    <% end %>
 
