@@ -14,6 +14,7 @@ json = {
   'geo': {
     '@type': 'GeoCoordinates',
     'latitude': @transmitter.lat,
-    'longitude': @transmitter.long
+    'longitude': @transmitter.long,
+    'elevation': @transmitter.site_height
   }
 }
