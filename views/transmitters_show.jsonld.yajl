@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+json = {
+  '@context' => 'http://schema.org',
+  '@id' => @transmitter.uri,
+  '@type' => 'Place',
+  'name' => @transmitter.name,
+  'publicAccess': false,
+  'address': {
+    '@type': 'PostalAddress',
+    'addressLocality': @transmitter.area,
+    'addressCountry': 'GB'
+  },
+  'geo': {
+    '@type': 'GeoCoordinates',
+    'latitude': @transmitter.lat,
+    'longitude': @transmitter.long
+  }
+}

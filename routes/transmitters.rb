@@ -13,9 +13,10 @@ class App
     r.get String do |ngr|
       @transmitter = Transmitter.first!(:ngr => ngr.upcase)
 
-      @alternatives = ['json']
+      @alternatives = ['json', 'json-ld']
       r.html { view('transmitters_show') }
       r.json { render('transmitters_show', :engine => 'yajl') }
+      r.jsonld { render('transmitters_show.jsonld', :engine => 'yajl') }
       "Unsupported format"
     end
   end
