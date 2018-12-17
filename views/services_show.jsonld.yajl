@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+json = {
+  '@context' => 'http://schema.org',
+  '@id' => @service.uri,
+  '@type' => 'BroadcastService',
+  'broadcastTimezone' => '+00:00',
+  'name' => @service.name,
+  'broadcastDisplayName' => @service.medium_name || @service.short_name,
+  'description' => @service.description
+}
+
+json['url'] = @service.links.first.uri unless @service.links.empty?
+
+@service.logos_set.each do |logo|
+  json['logo'] ||= []
+  json['logo'] << {
+    '@type' => 'ImageObject',
+    'width' => logo.width,
+    'height' => logo.height,
+    'url' => logo.url
+  }
+end
+
+@service.fm_bearers.each do |bearer|
+  json['broadcastFrequency'] ||= []
+  json['broadcastFrequency'] << {
+    '@id' => bearer.uri,
+    '@type' => 'BroadcastFrequencySpecification',
+    'broadcastFrequencyValue' => bearer.frequency
+  }
+end

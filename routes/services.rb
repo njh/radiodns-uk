@@ -18,9 +18,10 @@ class App
       if @bearer.path != @service.path
         r.redirect(@service.path, 301)
       else
-        @alternatives = ['json']
+        @alternatives = ['json', 'json-ld']
         r.html { view('services_show') }
         r.json { render('services_show', :engine => 'yajl') }
+        r.jsonld { render('services_show.jsonld', :engine => 'yajl') }
         "Unsupported format"
       end
     end
