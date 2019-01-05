@@ -5,6 +5,7 @@
 #
 
 from osgeo import ogr
+from collections import OrderedDict
 import json
 import os
 import re
@@ -77,10 +78,13 @@ def processShapeFile( name ):
           simple = geom.Simplify(SIMPLIFY_TOLERENCE)
           feature.SetGeometry(simple)
           data = feature.ExportToJson(as_object=True, options=GEOJSON_OPTIONS)
-          data['properties'] = {"name": name}
-          del data['id']
+          output = OrderedDict([
+            ('type', 'Feature'),
+            ("properties", {'name': name}),
+            ("geometry", data['geometry'])
+          ])
 
-          writeJson(json_filename, data)
+          writeJson(json_filename, output)
 
 
 processShapeFile(OSGB_WGS84_SHP_FILE)
