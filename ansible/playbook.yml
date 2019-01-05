@@ -12,6 +12,7 @@
         - nginx
         - ruby
         - bundler
+        - python-gdal
       state: present
 
   - name: "Ensure group radiodns-uk exists"
