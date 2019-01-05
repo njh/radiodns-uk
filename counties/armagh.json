@@ -1,7 +1,7 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "ARMAGH"
+    "name": "Armagh"
   }, 
   "geometry": {
     "type": "Polygon", 

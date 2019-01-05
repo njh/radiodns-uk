@@ -1,7 +1,7 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "ANTRIM"
+    "name": "Antrim"
   }, 
   "geometry": {
     "type": "MultiPolygon", 

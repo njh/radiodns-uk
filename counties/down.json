@@ -1,7 +1,7 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "DOWN"
+    "name": "Down"
   }, 
   "geometry": {
     "type": "MultiPolygon", 

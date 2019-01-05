@@ -1,7 +1,7 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "LONDONDERRY"
+    "name": "Londonderry"
   }, 
   "geometry": {
     "type": "Polygon", 
