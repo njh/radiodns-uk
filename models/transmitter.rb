@@ -19,6 +19,7 @@ end
 #  ngr         | varchar(8)       |
 #  name        | varchar(255)     |
 #  area        | varchar(255)     |
+#  county      | varchar(255)     |
 #  lat         | double precision |
 #  long        | double precision |
 #  site_height | integer          |

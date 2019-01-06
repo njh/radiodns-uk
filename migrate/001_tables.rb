@@ -49,6 +49,7 @@ Sequel.migration do
       column :ngr, String, :size => 8, :unique => true
       column :name, String
       column :area, String
+      column :county, String
       column :lat, Float
       column :long, Float
       column :site_height, Integer

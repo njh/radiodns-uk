@@ -11,6 +11,11 @@ namespace :load do
     ruby "bin/load-ofcom-data.rb"
   end
 
+  desc "Set counties for each transmitter"
+  task :counties do
+    sh "bin/set-transmitters-county.py"
+  end
+
   desc "Load authority information for each bearer from radiodns.org"
   task :authorities do
     ruby "bin/load-radiodns-data.rb"
@@ -22,5 +27,5 @@ namespace :load do
   end
 
   desc "Load all data into the database"
-  task :all => [:genres, :ofcom, :authorities, :si]
+  task :all => [:genres, :ofcom, :counties, :authorities, :si]
 end

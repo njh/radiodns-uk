@@ -47,11 +47,21 @@ These are the key files and directories that make up the project:
 
 You may need to install a recent version of [Ruby] on your computer before you can run the scripts.
 
-First make sure you have [Bundler] installed:
+To perform the geographic calculations on the transmitter locations, you also need Python 2.7 and the GDAL library.
+
+To install GDAL on a Mac run:
+
+    $ brew install gdal
+    
+To install GDAL on Debian/Ubuntu run:
+
+    $ apt-get install python-gdal
+
+Then make sure you have ruby [Bundler] installed:
 
     $ gem install bundler
 
-Then install all the dependencies:
+And install all the dependencies:
 
     $ bundle install
 
