@@ -37,7 +37,7 @@ end
 def logo_filename(logo)
   name = logo.service.medium_name || logo.service.short_name || logo.service.long_name
   name.gsub!(/[^a-zA-Z0-9]+/, '-')
-  name.sub!(/-^/, '')
+  name.sub!(/-$/, '')
 
   if logo.url =~ /(\.\w+)$/
     name + $1
