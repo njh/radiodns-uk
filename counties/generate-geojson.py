@@ -45,7 +45,7 @@ def getFieldNames( layer ):
 def writeJson(filename, data):
     str = json.dumps(data, indent=2)
     
-    # Hacky way of changing co-ordinates to be on a single line
+    # Hacky way of changing coordinates to be on a single line
     # Results in smaller files and easier diffs
     str = re.sub(r'\[\s*(\-?\d+\.\d+),\s*(\-?\d+\.\d+)\s*\]', r'[\1, \2]', str)    
 
