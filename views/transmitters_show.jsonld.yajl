@@ -9,6 +9,7 @@ json = {
   'address': {
     '@type': 'PostalAddress',
     'addressLocality': @transmitter.area,
+    'addressRegion': @transmitter.county,
     'addressCountry': 'GB'
   },
   'geo': {

@@ -5,6 +5,7 @@ json = {
   'ngr' => @transmitter.ngr,
   'name' => @transmitter.name,
   'area' => @transmitter.area,
+  'county' => @transmitter.county,
   'lat' => @transmitter.lat,
   'long' => @transmitter.long,
   'site_height' => @transmitter.site_height,
