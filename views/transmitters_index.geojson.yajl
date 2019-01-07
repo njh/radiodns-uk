@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+json = {
+  'type' => 'FeatureCollection',
+  'features' => []
+}
+
+@transmitters.each do |transmitter|
+  json['features'] << {
+    'id' => transmitter.ngr,
+    'type' => 'Feature',
+    'properties' => {
+       'name' => transmitter.name,
+       'area' => transmitter.area,
+       'county' => transmitter.county
+    },
+    'geometry' => {
+       'type': 'Point',
+       'coordinates' => [transmitter.long, transmitter.lat, transmitter.site_height]
+    }
+  }
+end
