@@ -17,10 +17,12 @@ conn = sqlite3.connect('database.sqlite')
 conn.row_factory = sqlite3.Row
 
 
-def set_county(conn, transmitter_id, county):
+def set_county(conn, transmitter_id, county, area):
+    if area == county:
+      area = None
     cur = conn.cursor()
-    sql = 'UPDATE transmitters SET county=? WHERE id=?'
-    result = cur.execute(sql, (county, transmitter_id))
+    sql = 'UPDATE transmitters SET county=?, area=? WHERE id=?'
+    result = cur.execute(sql, (county, area, transmitter_id))
     if result.rowcount != 1:
         raise Exception('Failed to set county for transmitter ' + str(transmitter_id))
     conn.commit()
@@ -49,7 +51,7 @@ for transmitter in cur:
     for feature in features:
       ply = feature.GetGeometryRef()
       if ply.Contains(pt):
-          set_county(conn, transmitter['id'], feature['name'])
+          set_county(conn, transmitter['id'], feature['name'], transmitter['area'])
           found_feature = True
           break
 
