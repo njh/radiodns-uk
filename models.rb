@@ -14,6 +14,7 @@ end
 Sequel::Model.plugin :auto_validations
 Sequel::Model.plugin :prepared_statements
 Sequel::Model.plugin :subclasses unless ENV['RACK_ENV'] == 'development'
+Sequel::Model.plugin :update_or_create
 
 Dir["models/*.rb"].each {|file| require_relative file }
 
