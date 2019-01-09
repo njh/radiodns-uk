@@ -64,7 +64,7 @@
               <%== link_to(transmitter.name, transmitter.path) %>
             </td>
             <td>
-              <%= transmitter.area %>
+              <%= transmitter.area || transmitter.county %>
             </td>
           </tr>
         <% end %>
