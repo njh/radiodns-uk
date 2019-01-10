@@ -9,6 +9,7 @@ from collections import OrderedDict
 import json
 import os
 import re
+import csv
 import subprocess
 
 OSGB36_SHP_FILE = 'boundary-line-ceremonial-counties-shp/Boundary-line-ceremonial-counties_region.shp'
@@ -42,6 +43,12 @@ def getFieldNames( layer ):
         fieldNames.append(fdefn.name)
     return fieldNames
 
+def intOrNone(str):
+    if str == '':
+      return None
+    else:
+      return int(str)
+
 def writeJson(filename, data):
     str = json.dumps(data, indent=2)
     
@@ -53,9 +60,10 @@ def writeJson(filename, data):
         outfile.write(str)
 
 
-def processShapeFile( name ):
+def processShapeFile(filename, counties):
     "convert a ShapeFile to multiple GeoJSON"
-    file = ogr.Open(name)
+    print "Processing: " + os.path.basename(filename)
+    file = ogr.Open(filename)
     layer = file.GetLayer(0)
 
     featureCount = layer.GetFeatureCount()
@@ -69,24 +77,35 @@ def processShapeFile( name ):
 
     print "Number of features is: %d" % featureCount
     for feature in layer:
-        name = feature.GetField(countyField)
-        json_filename = re.sub(r"\W+", '-', name.lower()) + '.json'
+        feature_name = feature.GetField(countyField)
+        county = counties[feature_name]
+        json_filename = re.sub(r"\W+", '-', county['Name'].lower()) + '.json'
 
         if not os.path.exists(json_filename):
-          print "Generating: " + json_filename
+          print " => Generating: " + json_filename
           geom = feature.geometry()
           simple = geom.Simplify(SIMPLIFY_TOLERENCE)
           feature.SetGeometry(simple)
           data = feature.ExportToJson(as_object=True, options=GEOJSON_OPTIONS)
           output = OrderedDict([
             ('type', 'Feature'),
-            ("properties", {'name': name}),
+            ("properties", OrderedDict([
+              ('name', county['Name']),
+              ('country', county['Country']),
+              ('wikidata-id', county['Wikidata ID']),
+              ('osm-relation-id', intOrNone(county['OSM Relation ID']))
+            ])),
             ("geometry", data['geometry'])
           ])
 
           writeJson(json_filename, output)
 
+counties = {}
+with open('counties.csv', 'rb') as csvfile:
+  reader = csv.DictReader(csvfile)
+  for row in reader:
+    counties[row['Shapefile Feature Name']] = row
 
-processShapeFile(OSGB_WGS84_SHP_FILE)
-processShapeFile(OSNI_WGS84_SHP_FILE)
+processShapeFile(OSGB_WGS84_SHP_FILE, counties)
+processShapeFile(OSNI_WGS84_SHP_FILE, counties)
 
