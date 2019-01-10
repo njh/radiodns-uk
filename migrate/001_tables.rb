@@ -109,6 +109,21 @@ Sequel.migration do
       index [:genre_id, :service_id], :unique => true
     end
 
+    create_table(:counties) do
+      primary_key :id
+      column :name, String
+      column :country_id, Integer, :index => true
+      column :wikidata_id, String, :index => true
+      column :osm_relation_id, Integer, :index => true
+    end
+
+    create_table(:countries) do
+      primary_key :id
+      column :name, String
+      column :wikidata_id, String, :index => true
+      column :osm_relation_id, Integer, :index => true
+    end
+
   end
 end
 

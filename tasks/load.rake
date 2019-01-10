@@ -13,6 +13,7 @@ namespace :load do
 
   desc "Set counties for each transmitter"
   task :counties do
+    ruby "bin/load-county-data.rb"
     sh "bin/set-transmitters-county.py"
   end
 
