@@ -1,6 +1,10 @@
 class County < Sequel::Model
   many_to_one :country
+  one_to_many :transmitters
 
+  def to_s
+    name
+  end
 end
 
 # Table: counties

@@ -18,11 +18,11 @@ conn.row_factory = sqlite3.Row
 
 
 def set_county(conn, transmitter_id, county, area):
-    if area == county:
-      area = None
+    if area == county['name']:
+        area = None
     cur = conn.cursor()
-    sql = 'UPDATE transmitters SET county=?, area=? WHERE id=?'
-    result = cur.execute(sql, (county, area, transmitter_id))
+    sql = 'UPDATE transmitters SET county_id=?, area=? WHERE id=?'
+    result = cur.execute(sql, (county['id'], area, transmitter_id))
     if result.rowcount != 1:
         raise Exception('Failed to set county for transmitter ' + str(transmitter_id))
     conn.commit()
@@ -40,6 +40,14 @@ for file in glob.glob('counties/*.json'):
 print 'Loaded ' + str(len(features)) + ' geographic features'
 
 
+# Load database ids for each of the counties
+counties = {}
+cur = conn.cursor()
+cur.execute('SELECT * FROM counties')
+for county in cur:
+    counties[county['name']] = county
+
+
 # Next try and work out which county each transmitter is within
 cur = conn.cursor()
 cur.execute('SELECT * FROM transmitters ORDER BY ngr')
@@ -49,14 +57,15 @@ for transmitter in cur:
 
     found_feature = False
     for feature in features:
-      ply = feature.GetGeometryRef()
-      if ply.Contains(pt):
-          set_county(conn, transmitter['id'], feature['name'], transmitter['area'])
-          found_feature = True
-          break
+        ply = feature.GetGeometryRef()
+        if ply.Contains(pt):
+            county = counties[feature['name']]
+            set_county(conn, transmitter['id'], county, transmitter['area'])
+            found_feature = True
+            break
 
     if found_feature == False:
-      print 'Warning: failed to find county for ' + transmitter['name']
+        print 'Warning: failed to find county for ' + transmitter['name']
 
 
 conn.close()

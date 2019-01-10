@@ -1,6 +1,10 @@
 class Country < Sequel::Model
   one_to_many :counties
+  one_to_many :transmitters
 
+  def to_s
+    name
+  end
 end
 
 # Table: countries

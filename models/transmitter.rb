@@ -3,6 +3,7 @@ require 'digest'
 class Transmitter < Sequel::Model
   many_to_many :multiplexes, :order => :name  # DAB
   many_to_many :bearers      # FM
+  many_to_one :county
 
   def path
     "/transmitters/#{ngr.downcase}"
@@ -19,7 +20,7 @@ end
 #  ngr         | varchar(8)       |
 #  name        | varchar(255)     |
 #  area        | varchar(255)     |
-#  county      | varchar(255)     |
+#  county_id   | integer          |
 #  lat         | double precision |
 #  long        | double precision |
 #  site_height | integer          |
@@ -27,3 +28,4 @@ end
 #  updated_at  | date             |
 # Indexes:
 #  sqlite_autoindex_transmitters_1 | UNIQUE (ngr)
+#  transmitters_county_id_index    | (county_id)

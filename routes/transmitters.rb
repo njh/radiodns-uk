@@ -1,7 +1,7 @@
 class App
   route('transmitters') do |r|
     r.get true do
-      @transmitters = Transmitter.order(:name).all
+      @transmitters = Transmitter.order(:name).eager(:county).all
 
       @alternatives = ['geojson', 'json', 'csv']
       r.html { view('transmitters_index') }
