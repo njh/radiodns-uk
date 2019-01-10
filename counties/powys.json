@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Powys"
+    "name": "Powys", 
+    "country": "Wales", 
+    "wikidata-id": "Q156150", 
+    "osm-relation-id": 134324
   }, 
   "geometry": {
     "type": "Polygon", 

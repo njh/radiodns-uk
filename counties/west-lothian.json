@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "West Lothian"
+    "name": "West Lothian", 
+    "country": "Scotland", 
+    "wikidata-id": "Q204940", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

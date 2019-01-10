@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Dyfed"
+    "name": "Dyfed", 
+    "country": "Wales", 
+    "wikidata-id": "Q1067991", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "MultiPolygon", 

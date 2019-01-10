@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Midlothian"
+    "name": "Midlothian", 
+    "country": "Scotland", 
+    "wikidata-id": "Q206934", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

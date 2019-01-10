@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Nottinghamshire"
+    "name": "Nottinghamshire", 
+    "country": "England", 
+    "wikidata-id": "Q23092", 
+    "osm-relation-id": 77268
   }, 
   "geometry": {
     "type": "Polygon", 

@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Somerset"
+    "name": "Somerset", 
+    "country": "England", 
+    "wikidata-id": "Q23157", 
+    "osm-relation-id": 3125930
   }, 
   "geometry": {
     "type": "MultiPolygon", 

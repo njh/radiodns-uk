@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Lancashire"
+    "name": "Lancashire", 
+    "country": "England", 
+    "wikidata-id": "Q23077", 
+    "osm-relation-id": 118082
   }, 
   "geometry": {
     "type": "Polygon", 

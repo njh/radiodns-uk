@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Gwent"
+    "name": "Gwent", 
+    "country": "Wales", 
+    "wikidata-id": "Q1376956", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "MultiPolygon", 

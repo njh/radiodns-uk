@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Berkshire"
+    "name": "Berkshire", 
+    "country": "England", 
+    "wikidata-id": "Q23220", 
+    "osm-relation-id": 88070
   }, 
   "geometry": {
     "type": "Polygon", 

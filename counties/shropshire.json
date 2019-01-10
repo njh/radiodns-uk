@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Shropshire"
+    "name": "Shropshire", 
+    "country": "England", 
+    "wikidata-id": "Q23103", 
+    "osm-relation-id": 57511
   }, 
   "geometry": {
     "type": "Polygon", 

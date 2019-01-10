@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "East Lothian"
+    "name": "East Lothian", 
+    "country": "Scotland", 
+    "wikidata-id": "Q207257", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "MultiPolygon", 

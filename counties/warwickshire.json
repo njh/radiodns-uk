@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Warwickshire"
+    "name": "Warwickshire", 
+    "country": "England", 
+    "wikidata-id": "Q23140", 
+    "osm-relation-id": 57516
   }, 
   "geometry": {
     "type": "Polygon", 

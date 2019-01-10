@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Durham"
+    "name": "Durham", 
+    "country": "England", 
+    "wikidata-id": "Q23082", 
+    "osm-relation-id": 156050
   }, 
   "geometry": {
     "type": "Polygon", 

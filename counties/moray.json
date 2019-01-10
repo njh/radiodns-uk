@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Moray"
+    "name": "Moray", 
+    "country": "Scotland", 
+    "wikidata-id": "Q211106", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "MultiPolygon", 

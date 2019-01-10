@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Tweeddale"
+    "name": "Tweeddale", 
+    "country": "Scotland", 
+    "wikidata-id": "Q3542517", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

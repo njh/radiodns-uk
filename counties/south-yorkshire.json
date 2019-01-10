@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "South Yorkshire"
+    "name": "South Yorkshire", 
+    "country": "England", 
+    "wikidata-id": "Q23095", 
+    "osm-relation-id": 88078
   }, 
   "geometry": {
     "type": "Polygon", 

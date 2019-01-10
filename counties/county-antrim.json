@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Antrim"
+    "name": "County Antrim", 
+    "country": "Northern Ireland", 
+    "wikidata-id": "Q189592", 
+    "osm-relation-id": 1119534
   }, 
   "geometry": {
     "type": "MultiPolygon", 

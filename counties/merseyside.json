@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Merseyside"
+    "name": "Merseyside", 
+    "country": "England", 
+    "wikidata-id": "Q23100", 
+    "osm-relation-id": 147564
   }, 
   "geometry": {
     "type": "Polygon", 

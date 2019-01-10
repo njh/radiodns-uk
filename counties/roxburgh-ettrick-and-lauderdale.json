@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Roxburgh, Ettrick and Lauderdale"
+    "name": "Roxburgh, Ettrick and Lauderdale", 
+    "country": "Scotland", 
+    "wikidata-id": "Q7372390", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

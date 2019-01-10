@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Kent"
+    "name": "Kent", 
+    "country": "England", 
+    "wikidata-id": "Q23298", 
+    "osm-relation-id": 88071
   }, 
   "geometry": {
     "type": "Polygon", 

@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "West Sussex"
+    "name": "West Sussex", 
+    "country": "England", 
+    "wikidata-id": "Q23287", 
+    "osm-relation-id": 3336390
   }, 
   "geometry": {
     "type": "Polygon", 

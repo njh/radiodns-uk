@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "West Yorkshire"
+    "name": "West Yorkshire", 
+    "country": "England", 
+    "wikidata-id": "Q23083", 
+    "osm-relation-id": 88079
   }, 
   "geometry": {
     "type": "Polygon", 

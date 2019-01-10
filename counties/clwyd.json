@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Clwyd"
+    "name": "Clwyd", 
+    "country": "Wales", 
+    "wikidata-id": "Q1067984", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

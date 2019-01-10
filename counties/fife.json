@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Fife"
+    "name": "Fife", 
+    "country": "Scotland", 
+    "wikidata-id": "Q201149", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "MultiPolygon", 

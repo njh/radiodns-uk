@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Londonderry"
+    "name": "County Londonderry", 
+    "country": "Northern Ireland", 
+    "wikidata-id": "Q192208", 
+    "osm-relation-id": 1959598
   }, 
   "geometry": {
     "type": "Polygon", 

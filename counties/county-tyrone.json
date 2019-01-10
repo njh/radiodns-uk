@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Tyrone"
+    "name": "County Tyrone", 
+    "country": "Northern Ireland", 
+    "wikidata-id": "Q192229", 
+    "osm-relation-id": 1117773
   }, 
   "geometry": {
     "type": "Polygon", 

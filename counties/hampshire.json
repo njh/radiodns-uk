@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Hampshire"
+    "name": "Hampshire", 
+    "country": "England", 
+    "wikidata-id": "Q23204", 
+    "osm-relation-id": 2698314
   }, 
   "geometry": {
     "type": "Polygon", 

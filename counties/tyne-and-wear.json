@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Tyne & Wear"
+    "name": "Tyne and Wear", 
+    "country": "England", 
+    "wikidata-id": "Q23080", 
+    "osm-relation-id": 154376
   }, 
   "geometry": {
     "type": "Polygon", 

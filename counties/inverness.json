@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Inverness"
+    "name": "Inverness", 
+    "country": "Scotland", 
+    "wikidata-id": "Q1247390", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "MultiPolygon", 

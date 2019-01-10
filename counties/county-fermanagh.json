@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Fermanagh"
+    "name": "County Fermanagh", 
+    "country": "Northern Ireland", 
+    "wikidata-id": "Q190678", 
+    "osm-relation-id": 1118085
   }, 
   "geometry": {
     "type": "Polygon", 

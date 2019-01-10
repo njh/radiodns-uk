@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Greater London"
+    "name": "Greater London", 
+    "country": "England", 
+    "wikidata-id": "Q23306", 
+    "osm-relation-id": 175342
   }, 
   "geometry": {
     "type": "Polygon", 

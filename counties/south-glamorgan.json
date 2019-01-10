@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "South Glamorgan"
+    "name": "South Glamorgan", 
+    "country": "Wales", 
+    "wikidata-id": "Q1152204", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "MultiPolygon", 

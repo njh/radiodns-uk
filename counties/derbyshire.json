@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Derbyshire"
+    "name": "Derbyshire", 
+    "country": "England", 
+    "wikidata-id": "Q23098", 
+    "osm-relation-id": 88077
   }, 
   "geometry": {
     "type": "Polygon", 

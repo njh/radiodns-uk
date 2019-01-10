@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Cumbria"
+    "name": "Cumbria", 
+    "country": "England", 
+    "wikidata-id": "Q23066", 
+    "osm-relation-id": 88065
   }, 
   "geometry": {
     "type": "Polygon", 

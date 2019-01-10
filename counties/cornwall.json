@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Cornwall"
+    "name": "Cornwall", 
+    "country": "England", 
+    "wikidata-id": "Q23148", 
+    "osm-relation-id": 1987628
   }, 
   "geometry": {
     "type": "MultiPolygon", 

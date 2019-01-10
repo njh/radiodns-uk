@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Leicestershire"
+    "name": "Leicestershire", 
+    "country": "England", 
+    "wikidata-id": "Q23106", 
+    "osm-relation-id": 78309
   }, 
   "geometry": {
     "type": "Polygon", 

@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Bristol"
+    "name": "Bristol", 
+    "country": "England", 
+    "wikidata-id": "Q23154", 
+    "osm-relation-id": 6103050
   }, 
   "geometry": {
     "type": "MultiPolygon", 

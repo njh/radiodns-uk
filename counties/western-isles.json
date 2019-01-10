@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Western Isles"
+    "name": "Western Isles", 
+    "country": "Scotland", 
+    "wikidata-id": "Q80967", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "MultiPolygon", 

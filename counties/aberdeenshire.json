@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Aberdeenshire"
+    "name": "Aberdeenshire", 
+    "country": "Scotland", 
+    "wikidata-id": "Q3290674", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "MultiPolygon", 

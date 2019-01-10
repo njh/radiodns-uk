@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Kincardineshire"
+    "name": "Kincardineshire", 
+    "country": "Scotland", 
+    "wikidata-id": "Q376914", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "MultiPolygon", 

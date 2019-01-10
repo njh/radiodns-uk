@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Gloucestershire"
+    "name": "Gloucestershire", 
+    "country": "England", 
+    "wikidata-id": "Q23165", 
+    "osm-relation-id": 2700308
   }, 
   "geometry": {
     "type": "Polygon", 

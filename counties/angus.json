@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Angus"
+    "name": "Angus", 
+    "country": "Scotland", 
+    "wikidata-id": "Q202177", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

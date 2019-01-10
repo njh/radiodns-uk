@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Cambridgeshire"
+    "name": "Cambridgeshire", 
+    "country": "England", 
+    "wikidata-id": "Q23112", 
+    "osm-relation-id": 87521
   }, 
   "geometry": {
     "type": "Polygon", 

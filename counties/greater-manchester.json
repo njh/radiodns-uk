@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Greater Manchester"
+    "name": "Greater Manchester", 
+    "country": "England", 
+    "wikidata-id": "Q23099", 
+    "osm-relation-id": 88084
   }, 
   "geometry": {
     "type": "Polygon", 

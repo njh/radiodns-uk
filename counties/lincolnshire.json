@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Lincolnshire"
+    "name": "Lincolnshire", 
+    "country": "England", 
+    "wikidata-id": "Q23090", 
+    "osm-relation-id": 1916530
   }, 
   "geometry": {
     "type": "Polygon", 

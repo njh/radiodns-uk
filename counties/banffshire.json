@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Banffshire"
+    "name": "Banffshire", 
+    "country": "Scotland", 
+    "wikidata-id": "Q806432", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

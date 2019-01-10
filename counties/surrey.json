@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Surrey"
+    "name": "Surrey", 
+    "country": "England", 
+    "wikidata-id": "Q23276", 
+    "osm-relation-id": 5700081
   }, 
   "geometry": {
     "type": "Polygon", 

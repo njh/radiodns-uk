@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Herefordshire"
+    "name": "Herefordshire", 
+    "country": "England", 
+    "wikidata-id": "Q23129", 
+    "osm-relation-id": 3548318
   }, 
   "geometry": {
     "type": "Polygon", 

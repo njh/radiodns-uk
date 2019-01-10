@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "City of Aberdeen"
+    "name": "City of Aberdeen", 
+    "country": "Scotland", 
+    "wikidata-id": "Q36405", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "City of Edinburgh"
+    "name": "City of Edinburgh", 
+    "country": "Scotland", 
+    "wikidata-id": "Q23436", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "MultiPolygon", 

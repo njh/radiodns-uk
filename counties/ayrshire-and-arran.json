@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Ayrshire and Arran"
+    "name": "Ayrshire and Arran", 
+    "country": "Scotland", 
+    "wikidata-id": "Q2440447", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "MultiPolygon", 

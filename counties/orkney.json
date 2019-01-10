@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Orkney"
+    "name": "Orkney", 
+    "country": "Scotland", 
+    "wikidata-id": "Q100166", 
+    "osm-relation-id": 375982
   }, 
   "geometry": {
     "type": "MultiPolygon", 

@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Norfolk"
+    "name": "Norfolk", 
+    "country": "England", 
+    "wikidata-id": "Q23109", 
+    "osm-relation-id": 57397
   }, 
   "geometry": {
     "type": "Polygon", 

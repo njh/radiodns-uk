@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Essex"
+    "name": "Essex", 
+    "country": "England", 
+    "wikidata-id": "Q23240", 
+    "osm-relation-id": 62162
   }, 
   "geometry": {
     "type": "Polygon", 

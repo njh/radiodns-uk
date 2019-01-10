@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Rutland"
+    "name": "Rutland", 
+    "country": "England", 
+    "wikidata-id": "Q23107", 
+    "osm-relation-id": 2703126
   }, 
   "geometry": {
     "type": "Polygon", 

@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Bedfordshire"
+    "name": "Bedfordshire", 
+    "country": "England", 
+    "wikidata-id": "Q23143", 
+    "osm-relation-id": 88082
   }, 
   "geometry": {
     "type": "Polygon", 

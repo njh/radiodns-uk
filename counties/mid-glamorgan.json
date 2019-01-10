@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Mid Glamorgan"
+    "name": "Mid Glamorgan", 
+    "country": "Wales", 
+    "wikidata-id": "Q1191288", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

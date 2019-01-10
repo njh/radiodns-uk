@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "The Stewartry of Kirkcudbright"
+    "name": "Kirkcudbrightshire", 
+    "country": "Scotland", 
+    "wikidata-id": "Q17582096", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "MultiPolygon", 

@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Staffordshire"
+    "name": "Staffordshire", 
+    "country": "England", 
+    "wikidata-id": "Q23105", 
+    "osm-relation-id": 57515
   }, 
   "geometry": {
     "type": "Polygon", 

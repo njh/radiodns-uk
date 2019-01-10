@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Perth and Kinross"
+    "name": "Perth and Kinross", 
+    "country": "Scotland", 
+    "wikidata-id": "Q207679", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

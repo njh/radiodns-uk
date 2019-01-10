@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Dunbartonshire"
+    "name": "Dunbartonshire", 
+    "country": "Scotland", 
+    "wikidata-id": "Q140090", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

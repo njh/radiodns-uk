@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Berwickshire"
+    "name": "Berwickshire", 
+    "country": "Scotland", 
+    "wikidata-id": "Q786649", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

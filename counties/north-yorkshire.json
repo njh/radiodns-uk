@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "North Yorkshire"
+    "name": "North Yorkshire", 
+    "country": "England", 
+    "wikidata-id": "Q23086", 
+    "osm-relation-id": 3123501
   }, 
   "geometry": {
     "type": "Polygon", 

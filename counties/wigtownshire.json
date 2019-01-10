@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Wigtown"
+    "name": "Wigtownshire", 
+    "country": "Scotland", 
+    "wikidata-id": "Q550606", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

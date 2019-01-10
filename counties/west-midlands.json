@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "West Midlands"
+    "name": "West Midlands", 
+    "country": "England", 
+    "wikidata-id": "Q23124", 
+    "osm-relation-id": 57517
   }, 
   "geometry": {
     "type": "Polygon", 

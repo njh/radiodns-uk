@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Shetland"
+    "name": "Shetland", 
+    "country": "Scotland", 
+    "wikidata-id": "Q47134", 
+    "osm-relation-id": 2235077
   }, 
   "geometry": {
     "type": "MultiPolygon", 

@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Argyll and Bute"
+    "name": "Argyll and Bute", 
+    "country": "Scotland", 
+    "wikidata-id": "Q202174", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "MultiPolygon", 

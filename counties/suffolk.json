@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Suffolk"
+    "name": "Suffolk", 
+    "country": "England", 
+    "wikidata-id": "Q23111", 
+    "osm-relation-id": 28595
   }, 
   "geometry": {
     "type": "Polygon", 

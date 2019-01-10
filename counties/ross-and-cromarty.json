@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Ross and Cromarty"
+    "name": "Ross and Cromarty", 
+    "country": "Scotland", 
+    "wikidata-id": "Q1586842", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "MultiPolygon", 

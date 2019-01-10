@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Isle of Wight"
+    "name": "Isle of Wight", 
+    "country": "England", 
+    "wikidata-id": "Q9679", 
+    "osm-relation-id": 3336389
   }, 
   "geometry": {
     "type": "MultiPolygon", 

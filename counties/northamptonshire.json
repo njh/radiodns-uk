@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Northamptonshire"
+    "name": "Northamptonshire", 
+    "country": "England", 
+    "wikidata-id": "Q23115", 
+    "osm-relation-id": 63375
   }, 
   "geometry": {
     "type": "Polygon", 

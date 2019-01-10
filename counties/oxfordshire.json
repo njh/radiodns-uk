@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Oxfordshire"
+    "name": "Oxfordshire", 
+    "country": "England", 
+    "wikidata-id": "Q23169", 
+    "osm-relation-id": 6103258
   }, 
   "geometry": {
     "type": "Polygon", 

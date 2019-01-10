@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Northumberland"
+    "name": "Northumberland", 
+    "country": "England", 
+    "wikidata-id": "Q23079", 
+    "osm-relation-id": 88066
   }, 
   "geometry": {
     "type": "Polygon", 

@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Clackmannan"
+    "name": "Clackmannanshire", 
+    "country": "Scotland", 
+    "wikidata-id": "Q207268", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "East Riding of Yorkshire"
+    "name": "East Riding of Yorkshire", 
+    "country": "England", 
+    "wikidata-id": "Q23088", 
+    "osm-relation-id": 3125734
   }, 
   "geometry": {
     "type": "Polygon", 

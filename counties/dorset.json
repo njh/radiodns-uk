@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Dorset"
+    "name": "Dorset", 
+    "country": "England", 
+    "wikidata-id": "Q23159", 
+    "osm-relation-id": 2698375
   }, 
   "geometry": {
     "type": "Polygon", 

@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Wiltshire"
+    "name": "Wiltshire", 
+    "country": "England", 
+    "wikidata-id": "Q23183", 
+    "osm-relation-id": 2694420
   }, 
   "geometry": {
     "type": "Polygon", 

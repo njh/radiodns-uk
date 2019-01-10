@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "City of Glasgow"
+    "name": "City of Glasgow", 
+    "country": "Scotland", 
+    "wikidata-id": "Q4093", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

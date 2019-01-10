@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Worcestershire"
+    "name": "Worcestershire", 
+    "country": "England", 
+    "wikidata-id": "Q23135", 
+    "osm-relation-id": 57581
   }, 
   "geometry": {
     "type": "Polygon", 

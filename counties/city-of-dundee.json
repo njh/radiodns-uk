@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "City of Dundee"
+    "name": "City of Dundee", 
+    "country": "Scotland", 
+    "wikidata-id": "Q123709", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

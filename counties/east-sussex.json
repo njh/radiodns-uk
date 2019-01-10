@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "East Sussex"
+    "name": "East Sussex", 
+    "country": "England", 
+    "wikidata-id": "Q23293", 
+    "osm-relation-id": 2126747
   }, 
   "geometry": {
     "type": "Polygon", 

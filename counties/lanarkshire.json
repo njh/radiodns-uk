@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Lanarkshire"
+    "name": "Lanarkshire", 
+    "country": "Scotland", 
+    "wikidata-id": "Q530296", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

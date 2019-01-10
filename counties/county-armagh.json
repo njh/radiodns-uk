@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Armagh"
+    "name": "County Armagh", 
+    "country": "Northern Ireland", 
+    "wikidata-id": "Q192761", 
+    "osm-relation-id": 1119535
   }, 
   "geometry": {
     "type": "Polygon", 

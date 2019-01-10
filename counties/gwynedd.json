@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Gwynedd"
+    "name": "Gwynedd", 
+    "country": "Wales", 
+    "wikidata-id": "Q109128", 
+    "osm-relation-id": 77961
   }, 
   "geometry": {
     "type": "MultiPolygon", 

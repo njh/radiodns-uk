@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Stirling and Falkirk"
+    "name": "Stirling and Falkirk", 
+    "country": "Scotland", 
+    "wikidata-id": "Q7617588", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

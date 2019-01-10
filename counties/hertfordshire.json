@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Hertfordshire"
+    "name": "Hertfordshire", 
+    "country": "England", 
+    "wikidata-id": "Q3410", 
+    "osm-relation-id": 57032
   }, 
   "geometry": {
     "type": "Polygon", 

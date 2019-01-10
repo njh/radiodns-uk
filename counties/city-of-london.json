@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "City and County of the City of London"
+    "name": "City of London", 
+    "country": "England", 
+    "wikidata-id": "Q23311", 
+    "osm-relation-id": 51800
   }, 
   "geometry": {
     "type": "Polygon", 

@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Down"
+    "name": "County Down", 
+    "country": "Northern Ireland", 
+    "wikidata-id": "Q190684", 
+    "osm-relation-id": 1119533
   }, 
   "geometry": {
     "type": "MultiPolygon", 

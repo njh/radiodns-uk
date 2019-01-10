@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Renfrewshire"
+    "name": "Renfrewshire", 
+    "country": "Scotland", 
+    "wikidata-id": "Q1249400", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Caithness"
+    "name": "Caithness", 
+    "country": "Scotland", 
+    "wikidata-id": "Q864668", 
+    "osm-relation-id": 374913
   }, 
   "geometry": {
     "type": "MultiPolygon", 

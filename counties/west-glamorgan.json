@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "West Glamorgan"
+    "name": "West Glamorgan", 
+    "country": "Wales", 
+    "wikidata-id": "Q166803", 
+    "osm-relation-id": null
   }, 
   "geometry": {
     "type": "Polygon", 

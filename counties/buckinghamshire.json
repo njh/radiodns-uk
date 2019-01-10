@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Buckinghamshire"
+    "name": "Buckinghamshire", 
+    "country": "England", 
+    "wikidata-id": "Q23229", 
+    "osm-relation-id": 87460
   }, 
   "geometry": {
     "type": "Polygon", 

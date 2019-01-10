@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Cheshire"
+    "name": "Cheshire", 
+    "country": "England", 
+    "wikidata-id": "Q23064", 
+    "osm-relation-id": 57512
   }, 
   "geometry": {
     "type": "Polygon", 

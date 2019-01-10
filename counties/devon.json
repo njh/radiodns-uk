@@ -1,7 +1,10 @@
 {
   "type": "Feature", 
   "properties": {
-    "name": "Devon"
+    "name": "Devon", 
+    "country": "England", 
+    "wikidata-id": "Q23156", 
+    "osm-relation-id": 57538
   }, 
   "geometry": {
     "type": "MultiPolygon", 
