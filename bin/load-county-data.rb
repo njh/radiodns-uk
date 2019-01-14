@@ -11,6 +11,7 @@ CSV.foreach("counties/countries.csv", :headers => true, :header_converters => [:
   next if row[:name].nil?
 
   Country.update_or_create(:name => row[:name]) do |country|
+    country.iso_code = row[:iso_code]
     country.wikidata_id = row[:wikidata_id]
     country.osm_relation_id = row[:osm_relation_id]
   end

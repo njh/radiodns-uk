@@ -120,6 +120,7 @@ Sequel.migration do
     create_table(:countries) do
       primary_key :id
       column :name, String
+      column :iso_code, String
       column :wikidata_id, String, :index => true
       column :osm_relation_id, Integer, :index => true
     end

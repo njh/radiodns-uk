@@ -11,6 +11,7 @@ end
 # Columns:
 #  id              | integer      | PRIMARY KEY AUTOINCREMENT
 #  name            | varchar(255) |
+#  iso_code        | varchar(255) |
 #  wikidata_id     | varchar(255) |
 #  osm_relation_id | integer      |
 # Indexes:
