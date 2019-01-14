@@ -11,6 +11,7 @@ CSV.foreach("counties/countries.csv", :headers => true, :header_converters => [:
   next if row[:name].nil?
 
   Country.update_or_create(:name => row[:name]) do |country|
+    country.url_key = row[:name].gsub(/\W+/, '-').downcase
     country.iso_code = row[:iso_code]
     country.wikidata_id = row[:wikidata_id]
     country.osm_relation_id = row[:osm_relation_id]
@@ -26,6 +27,7 @@ CSV.foreach("counties/counties.csv", :headers => true, :header_converters => [:d
   next if row[:name].nil?
 
   County.update_or_create(:name => row[:name]) do |county|
+    county.url_key = row[:name].gsub(/\W+/, '-').downcase
     county.country = countries[row[:country]]
     $stderr.puts "Warning: failed to identify country for #{row[:name]}" if county.country.nil?
 

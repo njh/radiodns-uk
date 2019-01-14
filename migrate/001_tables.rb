@@ -112,6 +112,7 @@ Sequel.migration do
     create_table(:counties) do
       primary_key :id
       column :name, String
+      column :url_key, String, :index => true
       column :country_id, Integer, :index => true
       column :wikidata_id, String, :index => true
       column :osm_relation_id, Integer, :index => true
@@ -120,6 +121,7 @@ Sequel.migration do
     create_table(:countries) do
       primary_key :id
       column :name, String
+      column :url_key, String, :index => true
       column :iso_code, String
       column :wikidata_id, String, :index => true
       column :osm_relation_id, Integer, :index => true
