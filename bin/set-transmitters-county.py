@@ -21,8 +21,8 @@ def set_county(conn, transmitter_id, county, area):
     if area == county['name']:
         area = None
     cur = conn.cursor()
-    sql = 'UPDATE transmitters SET county_id=?, area=? WHERE id=?'
-    result = cur.execute(sql, (county['id'], area, transmitter_id))
+    sql = 'UPDATE transmitters SET county_id=?, country_id=?, area=? WHERE id=?'
+    result = cur.execute(sql, (county['id'], county['country_id'], area, transmitter_id))
     if result.rowcount != 1:
         raise Exception('Failed to set county for transmitter ' + str(transmitter_id))
     conn.commit()

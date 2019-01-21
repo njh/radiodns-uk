@@ -50,6 +50,7 @@ Sequel.migration do
       column :name, String
       column :area, String
       column :county_id, Integer, :index => true
+      column :country_id, Integer, :index => true
       column :lat, Float
       column :long, Float
       column :site_height, Integer
