@@ -17,7 +17,7 @@
       <dt class="col-sm-4">Site Height</dt>
       <dd class="col-sm-8"><%= @transmitter.site_height %>m</dd>
       <dt class="col-sm-4">Total Power</dt>
-      <dd class="col-sm-8"><%= @transmitter.total_power %> kW</dd>
+      <dd class="col-sm-8"><%= format_power(@transmitter.total_power) %></dd>
     </dl>
 
     <% unless @transmitter.multiplexes.count == 0 %>

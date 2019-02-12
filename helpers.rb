@@ -58,3 +58,11 @@ def format_csv(csv, objects, *keys)
     csv << keys.map {|key| obj.send(key)}
   end
 end
+
+def format_power(kilowatts)
+  if kilowatts >= 1.0
+    format("%2.2f kW", kilowatts)
+  else
+    format("%d Watts", kilowatts * 1000)
+  end
+end
