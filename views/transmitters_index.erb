@@ -1,31 +1,24 @@
-<% content_for :page_title, "List of Radio Transmitters in the UK" %>
+<% content_for :page_title, "Radio Transmitters by country or region" %>
+
+<p>
+ You can also view a list of
+ <a href="/transmitters/all">all the transmitter sites in the UK</a>.
+</p>
 
 <div class="row">
-  <table class="table table-responsive">
+<% @countries.each do |country| %>
+  <% next if country.counties.count == 0 %>
 
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Area</th>
-      <th scope="col">County</th>
-    </tr>
-  </thead>
+  <div class="col-sm">
+  <h3><%= country.name %></h3>
 
-  <tbody>
-    <% @transmitters.each do |transmitter| %>
-      <tr>
-        <td>
-          <%== link_to(transmitter.name, transmitter.path) %>
-        </td>
-        <td>
-          <%= transmitter.area %>
-        </td>
-        <td>
-          <%= transmitter.county %>
-        </td>
-      </tr>
+  <ul>
+    <% country.counties.each do |county| %>
+      <% next if county.transmitters_dataset.empty? %>
+      <li><%== link_to(county.name, "/transmitters/counties/#{county.url_key}") %></li>
     <% end %>
-  </tbody>
+  </ul>
+  </div>
 
-  </table>
+<% end %>
 </div>

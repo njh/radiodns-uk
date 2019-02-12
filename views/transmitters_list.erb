@@ -1,0 +1,35 @@
+<% content_for :page_title, @page_title %>
+
+<div class="row">
+  <table class="table table-responsive">
+
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Area</th>
+      <% if @county.nil? %>
+      <th scope="col">County</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transmitters.each do |transmitter| %>
+      <tr>
+        <td>
+          <%== link_to(transmitter.name, transmitter.path) %>
+        </td>
+        <td>
+          <%= transmitter.area %>
+        </td>
+        <% if @county.nil? %>
+        <td>
+          <%= transmitter.county %>
+        </td>
+      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+
+  </table>
+</div>
