@@ -68,6 +68,8 @@ class App < Roda
       @paths = ['/', '/logos']
       @paths += models.map {|m| "/#{m.table_name}"}
       @paths += models.map {|m| m.all.map {|a| a.path} }.flatten
+      @paths += County.all.map {|c| "/transmitters/counties/#{c.url_key}" }
+      @paths += ['/transmitters/all']
       r.xml { render('sitemap') }
     end
 
