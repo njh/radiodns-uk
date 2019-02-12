@@ -1,6 +1,7 @@
 <% content_for :page_title, @page_title %>
 
 <div class="row">
+  <div class="col-md">
   <table class="table table-responsive">
 
   <thead>
@@ -32,4 +33,12 @@
   </tbody>
 
   </table>
+  </div>
+
+  <% if @transmitters.count < 50 %>
+  <div class="col-md pb-4">
+    <h3>Map</h3>
+    <%== partial('map', :locals => {:transmitters => @transmitters}) %>
+  </div>
+  <% end %>
 </div>
