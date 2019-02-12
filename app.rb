@@ -63,13 +63,12 @@ class App < Roda
       view('logos')
     end
 
-    r.get 'sitemap.xml' do
+    r.get 'sitemap' do
       models = [Authority, Multiplex, Service, Transmitter]
       @paths = ['/', '/logos']
       @paths += models.map {|m| "/#{m.table_name}"}
       @paths += models.map {|m| m.all.map {|a| a.path} }.flatten
-      response['Content-Type'] = 'application/xml'
-      render('sitemap')
+      r.xml { render('sitemap') }
     end
 
     r.get 'gems' do
