@@ -18,8 +18,16 @@
 <% end %>
 
 <dl class="row">
-  <dt class="col-sm-3">Authority:</dt>
+  <dt class="col-sm-3">Authority</dt>
   <dd class="col-sm-9"><%== link_to_authority(@service.authority) %></dd>
+  <dt class="col-sm-3">Service Identifier</dt>
+  <dd class="col-sm-9">
+    <% if @service.fqdn && @service.service_identifier %>
+      <%= @service.fqdn %> / <%= @service.service_identifier %>
+    <% else %>
+      <i>n/a</i>
+    <% end %>
+  </dd>
 </dl>
 
 <p>
