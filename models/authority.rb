@@ -24,6 +24,17 @@ class Authority < Sequel::Model
   def to_s
     name || fqdn
   end
+  
+  def construct_spi_uri(subpath)
+    if have_radioepg?
+      host, port = radioepg_server.split(':')
+      URI::HTTP.build(
+        :host => host,
+        :port => port,
+        :path => '/radiodns/spi/3.1/' + subpath
+      )
+    end
+  end
 
   def self.si_dir
     path = File.join(__dir__, '..', 'si_files')
@@ -36,14 +47,7 @@ class Authority < Sequel::Model
   end
 
   def si_uri
-    if have_radioepg?
-      host, port = radioepg_server.split(':')
-      URI::HTTP.build(
-        :host => host,
-        :port => port,
-        :path => '/radiodns/spi/3.1/SI.xml'
-      )
-    end
+    construct_spi_uri('SI.xml')
   end
 
   def lookup_applications!

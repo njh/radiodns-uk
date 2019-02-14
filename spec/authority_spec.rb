@@ -59,6 +59,22 @@ describe Authority do
     end
   end
 
+  describe '#construct_spi_uri' do
+    describe "an authority with a radioepg server" do
+      let (:authority) { Authority.new(:fqdn => 'rdns.example.com', :radioepg_server => "epg.example.com:80") }
+      it 'should be true' do
+        expect(authority.construct_spi_uri('foo/bar.xml')).to eq(URI('http://epg.example.com/radiodns/spi/3.1/foo/bar.xml'))
+      end
+    end
+
+    describe "an authority that has no radioepg server" do
+      let (:authority) { Authority.new(:fqdn => 'rdns.example.com') }
+      it 'should be false' do
+        expect(authority.construct_spi_uri('foo/bar.xml')).to be_nil
+      end
+    end
+  end
+
   describe '#si_uri' do
     describe "an authority with a radioepg server" do
       let (:authority) { Authority.new(:fqdn => 'rdns.example.com', :radioepg_server => "epg.example.com:80") }
