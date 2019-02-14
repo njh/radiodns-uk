@@ -78,12 +78,14 @@ end
 
 # Table: services
 # Columns:
-#  id                | integer      | PRIMARY KEY AUTOINCREMENT
-#  default_bearer_id | integer      |
-#  authority_id      | integer      |
-#  sort_name         | varchar(255) |
-#  short_name        | varchar(255) |
-#  medium_name       | varchar(255) |
-#  long_name         | varchar(255) |
-#  short_description | varchar(255) |
-#  long_description  | text         |
+#  id                 | integer      | PRIMARY KEY AUTOINCREMENT
+#  default_bearer_id  | integer      |
+#  service_identifier | varchar(255) |
+#  fqdn               | varchar(255) |
+#  authority_id       | integer      |
+#  sort_name          | varchar(255) |
+#  short_name         | varchar(255) |
+#  medium_name        | varchar(255) |
+#  long_name          | varchar(255) |
+#  short_description  | varchar(255) |
+#  long_description   | text         |

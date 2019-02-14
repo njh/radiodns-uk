@@ -190,6 +190,13 @@ def process_service(authority, xml)
   service.long_description = xml.content_at('./mediaDescription/longDescription')
   service.authority_id = authority.id
   service.default_bearer_id = default_bearer.id
+
+  radiodns = xml.at('./radiodns')
+  unless radiodns.nil?
+    service.fqdn = radiodns['fqdn']
+    service.service_identifier = radiodns['serviceIdentifier']
+  end
+
   service.save
 
   # Update the service ID to each of the bearers
