@@ -1,4 +1,4 @@
-<% bearer ||= nil %>
+<% service ||= nil %>
 
 <div class="row">
   <div class="col">
@@ -50,8 +50,8 @@
             <abbr title="TS 101 499 v3.1.1 – Slideshow">RadioVis</abbr>.
           </p>
           <% if authority.have_radiovis? %>
-            <% if bearer %>
-              <%== link_to('Test Tool', bearer.radiodns_test_url, :class => "btn btn-sm btn-primary float-right") %>
+            <% if service %>
+              <%== link_to('Test Tool', service.default_bearer.radiodns_test_url, :class => "btn btn-sm btn-primary float-right") %>
             <% else %>
               <p class="card-text">
                 <b>Server</b>: <code><%= authority.radiovis_server %></code>
