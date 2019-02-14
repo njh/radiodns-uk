@@ -34,6 +34,19 @@ class Service < Sequel::Model
       downcase
   end
 
+  def pi_uri(date=nil)
+    date = Date.today if date.nil?
+    unless authority.nil?
+      yyyymmdd = date.strftime('%Y%m%d')
+      if fqdn && service_identifier
+        authority.construct_spi_uri("id/#{fqdn}/#{service_identifier}/#{yyyymmdd}_PI.xml")
+      else
+        path = default_bearer.uri.gsub(/[:.]/, '/')
+        authority.construct_spi_uri("#{path}/#{yyyymmdd}_PI.xml")
+      end
+    end
+  end
+
   def authority_fqdn
     authority.fqdn unless authority.nil?
   end
@@ -89,3 +102,4 @@ end
 #  long_name          | varchar(255) |
 #  short_description  | varchar(255) |
 #  long_description   | text         |
+#  have_pi            | boolean      |

@@ -44,6 +44,7 @@ Sequel.migration do
       column :long_name, String
       column :short_description, String
       column :long_description, String, :text => true
+      column :have_pi, TrueClass
     end
 
     create_table(:transmitters) do

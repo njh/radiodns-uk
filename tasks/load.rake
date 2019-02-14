@@ -27,6 +27,11 @@ namespace :load do
     ruby "bin/load-si-data.rb"
   end
 
+  desc "Check which services have PI files"
+  task :pi do
+    ruby "bin/check-pi-data.rb"
+  end
+
   desc "Load all data into the database"
-  task :all => [:genres, :ofcom, :counties, :authorities, :si]
+  task :all => [:genres, :ofcom, :counties, :authorities, :si, :pi]
 end
