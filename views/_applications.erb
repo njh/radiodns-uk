@@ -12,12 +12,23 @@
         <div class="card-body">
           <p class="card-text">
             <%== tick_cross(authority.have_radioepg?) %>
-            This <%= type %> <%= authority.have_radioepg? ? 'suppports' : 'does not support' %>
-            <abbr title="TS 102 818 v3.1.1 – Service and Programme Information">RadioEPG</abbr>.
+            <% if authority.have_radioepg? %>
+              Has Service Information
+              <%== link_to('View SI.xml', authority.si_uri, :class => "btn btn-xs btn-primary") %>
+            <% else %>
+              No Service Information
+            <% end %>
+            <br />
+            <% if service && !service.have_pi.nil? %>
+              <%== tick_cross(service.have_pi) %> 
+              <% if service.have_pi %>
+                Has Programme Information
+              <% else %>
+                No Programme Information
+              <% end %>
+              <%== link_to('View PI.xml', service.pi_uri, :class => "btn btn-xs btn-primary") %>
+            <% end %>
           </p>
-          <% if authority.have_radioepg? %>
-          <%== link_to('View SI.xml', authority.si_uri, :class => "btn btn-sm btn-primary float-right") %>
-          <% end %>
         </div>
       </div>
 
