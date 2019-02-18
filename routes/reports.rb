@@ -3,6 +3,11 @@ class App
     r.get 'unknown-to-ofcom' do
       @bearers = Bearer.where(:from_ofcom => false).
                         eager({:service => :default_bearer}, :authority).all
+
+      # Filter out DAB bearers where SCIdS is not 0
+      # Ofcom does not control/have any knowledge of these
+      @bearers.reject! {|b| b.type == Bearer::TYPE_DAB && b.scids != '0'}
+
       view('reports_unknown-to-ofcom')
     end
 
