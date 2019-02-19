@@ -112,7 +112,10 @@ def import_fm(xlsx, sheet_name)
     transmitter.long ||= hash[:long]
     transmitter.site_height ||= hash[:site_ht]
     transmitter.total_power ||= 0
-    transmitter.total_power += hash[:in_useerp_hp].to_f + hash[:in_useerp_vp].to_f
+    # This is a bit lengthy due to Ofcom changing column names
+    transmitter.total_power +=
+      hash[:in_useerp_hp].to_f + hash[:in_useerp_vp].to_f +
+      hash[:in_use_erp_hp].to_f + hash[:in_use_erp_vp].to_f
     transmitter.updated_at ||= hash[:date]
     transmitter.save
 
