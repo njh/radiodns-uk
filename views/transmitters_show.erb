@@ -8,7 +8,11 @@
       <dd class="col-sm-8"><%= @transmitter.area %></dd>
       <dt class="col-sm-4">County</dt>
       <dd class="col-sm-8">
-        <%== link_to(@transmitter.county, "/transmitters/counties/#{@transmitter.county.url_key}") %>
+        <% if @transmitter.county %>
+          <%== link_to(@transmitter.county, "/transmitters/counties/#{@transmitter.county.url_key}") %>
+        <% else %>
+          <i>n/a</i>
+        <% end %>
       </dd>
       <dt class="col-sm-4">National Grid Reference</dt>
       <dd class="col-sm-8"><%= @transmitter.ngr %></dd>
