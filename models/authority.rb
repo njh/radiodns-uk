@@ -57,7 +57,11 @@ class Authority < Sequel::Model
       begin
         service = RadioDNS::Service.new(fqdn)
         app = service.application(type)
-        update(key => "#{app.host}:#{app.port}")
+        if app.nil?
+          update(key => nil)
+        else
+          update(key => "#{app.host}:#{app.port}")
+        end
       rescue Resolv::ResolvError
         update(key => nil)
       end
