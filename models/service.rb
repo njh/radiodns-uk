@@ -3,7 +3,7 @@ class Service < Sequel::Model
   many_to_one :authority
   many_to_one :default_bearer, :class => :Bearer
   one_to_many :links
-  one_to_many :logos
+  one_to_many :logos, :order => :pixels
   many_to_many :genres, :order => :name
   one_to_many :dab_bearers, :class => :Bearer do |ds|
     ds.where(:type => Bearer::TYPE_DAB).

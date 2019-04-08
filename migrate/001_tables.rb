@@ -96,6 +96,7 @@ Sequel.migration do
       primary_key :id
       column :service_id, Integer, :index => true
       column :size, String, :index => true, :size => 12
+      column :pixels, Integer, :index => true
       column :url, String
       column :mime_type, String
       index [:service_id, :size], :unique => true
