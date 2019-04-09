@@ -3,7 +3,7 @@
 
 <% content_for :head do %>
   <meta property="og:type" content="music.radio_station" />
-  <% @service.logos_set.each do |logo| %>
+  <% @service.logos.each do |logo| %>
     <meta property="og:image:url" content="<%= logo.url %>" />
     <% unless logo.mime_type.nil? %>
     <meta property="og:image:type" content="<%= logo.mime_type %>" />
@@ -129,19 +129,35 @@
     <% end %>
   </div>
 
+  <% unless @service.logos.empty? %>
   <div class="col-md-6">
-    <% @service.logos_set.each do |logo| %>
-      <div style="margin-bottom: 2em">
+    <h3>Logos</h3>
+    <div class="clearfix">
+    <% @service.logos.each do |logo| %>
+      <% break if logo.pixels > 76800 %>
+      <div class="float-left m-2">
       <h5><%= logo.size %></h5>
+        <a href="<%= logo.url %>">
         <img class="img-thumbnail"
              src="<%= logo.url %>"
              width="<%= logo.width %>"
              height="<%= logo.height %>"
              alt="<%= @service.name %> <%= logo.size %> Logo"
-        />
+        /></a>
       </div>
     <% end %>
+    </div>
+
+    <h4>Other Sizes</h4>
+    <ul>
+    <% @service.logos.each do |logo| %>
+      <% if logo.pixels > 76800 %>
+      <li><%== link_to(logo.size, logo.url) %></li>
+      <% end %>
+    <% end %>
+    </ul>
   </div>
+  <% end %>
 
 </div>
 

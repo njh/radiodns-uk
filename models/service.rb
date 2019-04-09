@@ -67,17 +67,8 @@ class Service < Sequel::Model
     RADIODNS_UK_BASE + path unless path.nil?
   end
 
-  # Return the set of logos defiend by Project Logo
-  # https://radiodns.org/get-involved/project-logo/technical-details/
-  def logos_set
-    @logos_set ||= begin
-      sizes = ['600x600', '320x240', '128x128', '112x32', '32x32']
-      logos_dataset.where(:size => sizes).sort {|a,b| b.pixels <=> a.pixels}
-    end
-  end
-
   def logo_600
-    logos_set.find {|l| l.size == '600x600'}
+    @logo_600 ||= logos.find {|l| l.size == '600x600'}
   end
 
   def to_s

@@ -12,7 +12,7 @@ json = {
 
 json['url'] = @service.links.first.uri unless @service.links.empty?
 
-@service.logos_set.each do |logo|
+@service.logos.each do |logo|
   json['logo'] ||= []
   json['logo'] << {
     '@type' => 'ImageObject',
