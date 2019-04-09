@@ -22,6 +22,7 @@ describe Logo do
 
   describe '#pixels' do
     it 'returns the number of pixels in the logo' do
+      logo.before_save
       expect(logo.pixels).to eql(3584)
     end
   end
