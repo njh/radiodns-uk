@@ -77,3 +77,11 @@ a:hover { color: #125270; }
   color: #DDD;
   text-decoration: none;
 }
+
+.tick-cross
+{
+  margin-right: 0.5em;
+  font-weight: bolder;
+  font-size: 130%;
+  vertical-align: middle;
+}

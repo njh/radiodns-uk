@@ -33,9 +33,9 @@ end
 
 def tick_cross(bool)
   if bool
-    '<span style="margin-right: 0.5em; color: green; font-weight: bolder">✓</span>'
+    '<span class="tick-cross" style="color: green">✓</span>'
   else
-    '<span style="margin-right: 0.5em; color: red; font-weight: bolder">✗</span>'
+    '<span class="tick-cross" style="color: red">✗</span>'
   end
 end
 
