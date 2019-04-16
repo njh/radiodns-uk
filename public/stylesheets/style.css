@@ -18,12 +18,11 @@
 
 .btn-group-xs > .btn, .btn-xs
 {
-  padding: .4rem;
+  padding: .5rem;
   font-size: .75rem;
   line-height: .5;
   border-radius: .2rem;
-  margin-right: .3rem;
-  margin-left: .3rem;
+  margin: .45rem;
 }
 
 .card-sm .card-header
