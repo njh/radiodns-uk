@@ -45,13 +45,7 @@ end
 def parse_logos(element)
   logos = {}
   element.xpath("./mediaDescription/multimedia").each do |multimedia|
-    if multimedia['type'] == 'logo_colour_square'
-      key = '32x32'
-      mime_type = 'image/png'
-    elsif multimedia['type'] == 'logo_colour_rectangle'
-      key = '112x32'
-      mime_type = 'image/png'
-    elsif multimedia['width'] && multimedia['height']
+    if multimedia['width'] && multimedia['height']
       unless multimedia['width'] =~ /^\d+$/ && multimedia['height'] =~ /^\d+$/
         $stderr.puts "  => Warning: Invalid logo dimensions"
         next
@@ -59,6 +53,12 @@ def parse_logos(element)
 
       key = multimedia['width'] + 'x' + multimedia['height']
       mime_type = multimedia['mimeValue']
+    elsif multimedia['type'] == 'logo_colour_square'
+      key = '32x32'
+      mime_type = 'image/png'
+    elsif multimedia['type'] == 'logo_colour_rectangle'
+      key = '112x32'
+      mime_type = 'image/png'
     end
 
     unless key.nil?
