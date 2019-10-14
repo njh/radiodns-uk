@@ -79,7 +79,7 @@ def create_fm_bearer(label, frequency, pi_code, transmitter)
   bearer = Bearer.find_or_create(
     :type => Bearer::TYPE_FM,
     :frequency => frequency.to_f,
-    :sid => pi_code
+    :sid => pi_code.upcase
   )
 
   bearer.from_ofcom = true
@@ -173,8 +173,8 @@ def import_dab(xlsx, sheet_name)
 
       bearer = Bearer.find_or_create(
         :type => Bearer::TYPE_DAB,
-        :eid => hash[:eid],
-        :sid => sid
+        :eid => hash[:eid].upcase,
+        :sid => sid.upcase
       )
 
       bearer.from_ofcom = true
