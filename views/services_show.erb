@@ -60,7 +60,8 @@
 
     <% unless @service.dab_bearers.empty? %>
     <h3>DAB Multiplexes</h3>
-    <table class="table table-sm table-responsive">
+    <div class="table-responsive">
+    <table class="table table-sm">
       <thead>
         <tr>
           <th scope="col">Bearer ID</th>
@@ -93,11 +94,13 @@
         <% end %>
       </tbody>
     </table>
+    </div>
     <% end %>
 
     <% unless @service.fm_bearers.empty? %>
     <h3>FM Transmitters</h3>
-    <table class="table table-sm table-responsive">
+    <div class="table-responsive">
+    <table class="table table-sm">
       <thead>
         <tr>
           <th scope="col">Bearer ID</th>
@@ -126,6 +129,7 @@
         <% end %>
       </tbody>
     </table>
+    </div>
     <% end %>
   </div>
 
