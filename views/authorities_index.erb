@@ -7,6 +7,7 @@
     <tr>
       <th scope="col">FQDN</th>
       <th scope="col">Name</th>
+      <th scope="col">Services</th>
       <th scope="col"><abbr title="TS 102 818 v3.1.1 – Service and Programme Information">RadioEPG</abbr></th>
       <th scope="col">RadioTag</th>
       <th scope="col"><abbr title="TS 101 499 v3.1.1 – Slideshow">RadioVis</abbr></th>
@@ -21,6 +22,9 @@
         </td>
         <td>
           <%= authority.name || '-' %>
+        </td>
+        <td>
+          <%= authority.services.count %>
         </td>
         <td>
           <%== tick_cross(authority.have_radioepg?) %>
