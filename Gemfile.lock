@@ -10,7 +10,7 @@ GEM
     mini_portile2 (2.4.0)
     nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
-    rack (2.0.7)
+    rack (2.0.8)
     radiodns (0.1.3)
     rake (13.0.0)
     roda (3.25.0)
