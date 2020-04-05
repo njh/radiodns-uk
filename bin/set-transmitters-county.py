@@ -37,7 +37,7 @@ for file in glob.glob('counties/*.json'):
     for feature in layer:
         features.append(feature)
 
-print 'Loaded ' + str(len(features)) + ' geographic features'
+print('Loaded ' + str(len(features)) + ' geographic features')
 
 
 # Load database ids for each of the counties
@@ -65,7 +65,7 @@ for transmitter in cur:
             break
 
     if found_feature == False:
-        print 'Warning: failed to find county for ' + transmitter['name']
+        print('Warning: failed to find county for ' + transmitter['name'])
 
 
 conn.close()
