@@ -24,7 +24,7 @@ def download_ofcom_data(filename)
   html_doc = Nokogiri::HTML(res.body)
   html_doc.css("a").each do |a|
     href_uri = URI.parse(a['href'])
-    if File.basename(href_uri.path) =~ /(TxParams|Tx_Params|TechParams)\w*\.xlsx/i
+    if File.basename(href_uri.path) =~ /(TxParams|Tx_Params|TechParams)-?\w*\.xlsx/i
       file_uri = href_uri
     end
   end
