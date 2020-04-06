@@ -69,6 +69,12 @@ Sequel.migration do
       column :block, String
       column :frequency, Float
       column :licence_number, String
+      column :homepage, String
+      column :twitter_username, String
+      column :wikidata_id, String
+      column :wikipedia_url, String
+      column :owner, String
+      column :launch_date, Date
       column :updated_at, Date
     end
 

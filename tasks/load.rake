@@ -11,6 +11,11 @@ namespace :load do
     ruby "bin/load-ofcom-data.rb"
   end
 
+  desc "Load multiplex information from Wikidata into the database"
+  task :wikidata do
+    ruby "bin/load-wikidata.rb"
+  end
+
   desc "Set counties for each transmitter"
   task :counties do
     ruby "bin/load-county-data.rb"
@@ -33,5 +38,5 @@ namespace :load do
   end
 
   desc "Load all data into the database"
-  task :all => [:genres, :ofcom, :counties, :authorities, :si, :pi]
+  task :all => [:genres, :ofcom, :wikidata, :counties, :authorities, :si, :pi]
 end

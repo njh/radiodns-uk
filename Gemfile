@@ -12,6 +12,7 @@ gem 'yajl-ruby'
 
 gem 'json'
 gem 'rake'
+gem 'sparql-client', '~> 3.1.0'
 gem 'nokogiri', '~> 1.10'
 gem 'radiodns'
 gem 'roo', '~> 2.8'
