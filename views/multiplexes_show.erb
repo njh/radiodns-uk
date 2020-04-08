@@ -23,24 +23,20 @@
     </dl>
 
     <h3>Links</h3>
-    <dl class="row">
+    <ul>
       <% if @multiplex.homepage %>
-      <dt class="col-sm-4">Official Homepage</dt>
-      <dd class="col-sm-8"><%== link_to(@multiplex.homepage) %></dd>
+      <li><%== link_to('Official Homepage', @multiplex.homepage) %></li>
       <% end %>
       <% if @multiplex.twitter_username %>
-      <dt class="col-sm-4">Twitter</dt>
-      <dd class="col-sm-8"><%== link_to('@'+@multiplex.twitter_username, @multiplex.twitter_url) %></dd>
+      <li>Twitter: <%== link_to('@'+@multiplex.twitter_username, @multiplex.twitter_url) %></li>
       <% end %>
       <% if @multiplex.wikipedia_url %>
-      <dt class="col-sm-4">Wikipedia</dt>
-      <dd class="col-sm-8"><%== link_to(@multiplex.wikipedia_url) %></dd>
+      <li><%== link_to('Wikipedia Page', @multiplex.wikipedia_url) %></li>
       <% end %>
       <% if @multiplex.wikidata_id %>
-      <dt class="col-sm-4">Wikidata</dt>
-      <dd class="col-sm-8"><%== link_to(@multiplex.wikidata_id, @multiplex.wikidata_url) %></dd>
+      <li>Wikidata: <%== link_to(@multiplex.wikidata_id, @multiplex.wikidata_url) %></li>
       <% end %>
-    </dl>
+    </ul>
 
     <h3>Services</h3>
     <div class="table-responsive">
