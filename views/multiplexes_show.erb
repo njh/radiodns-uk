@@ -8,10 +8,38 @@
       <dd class="col-sm-8"><%= @multiplex.eid %></dd>
       <dt class="col-sm-4">Licensed Area</dt>
       <dd class="col-sm-8"><%= @multiplex.area %></dd>
+      <% if @multiplex.owner %>
+      <dt class="col-sm-4">Owner</dt>
+      <dd class="col-sm-8"><%= @multiplex.owner %></dd>
+      <% end %>
+      <% if @multiplex.launch_date %>
+      <dt class="col-sm-4">Launch Date</dt>
+      <dd class="col-sm-8"><%= @multiplex.launch_date %></dd>
+      <% end %>
       <dt class="col-sm-4">Frequency</dt>
       <dd class="col-sm-8"><%= @multiplex.block %> (<%= @multiplex.frequency %> MHz)</dd>
       <dt class="col-sm-4">Ofcom License Number</dt>
       <dd class="col-sm-8"><%= @multiplex.licence_number %></dd>
+    </dl>
+
+    <h3>Links</h3>
+    <dl class="row">
+      <% if @multiplex.homepage %>
+      <dt class="col-sm-4">Official Homepage</dt>
+      <dd class="col-sm-8"><%== link_to(@multiplex.homepage) %></dd>
+      <% end %>
+      <% if @multiplex.twitter_username %>
+      <dt class="col-sm-4">Twitter</dt>
+      <dd class="col-sm-8"><%== link_to('@'+@multiplex.twitter_username, @multiplex.twitter_url) %></dd>
+      <% end %>
+      <% if @multiplex.wikipedia_url %>
+      <dt class="col-sm-4">Wikipedia</dt>
+      <dd class="col-sm-8"><%== link_to(@multiplex.wikipedia_url) %></dd>
+      <% end %>
+      <% if @multiplex.wikidata_id %>
+      <dt class="col-sm-4">Wikidata</dt>
+      <dd class="col-sm-8"><%== link_to(@multiplex.wikidata_id, @multiplex.wikidata_url) %></dd>
+      <% end %>
     </dl>
 
     <h3>Services</h3>
