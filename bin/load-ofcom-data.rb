@@ -65,15 +65,6 @@ def titleize_if_caps(str)
   end
 end
 
-# Parse National Grid Reference (OSGB36) - we only use 6-digits
-def parse_ngr(ngr)
-  if ngr =~ /^([A-Z]{2})\s*(\d{3,5})\s*(\d{3,5})$/
-    $1 + $2[0,3] + $3[0,3]
-  else
-    $stderr.puts "Failed to parse National Grid Reference: #{ngr}"
-  end
-end
-
 
 def create_fm_bearer(label, frequency, pi_code, transmitter)
   bearer = Bearer.find_or_create(
@@ -102,7 +93,7 @@ def import_fm(xlsx, sheet_name)
 
     next if hash[:station].nil? or hash[:frequency].nil? or hash[:rds_pi].nil?
 
-    ngr = parse_ngr(hash[:ngr])
+    ngr = Transmitter.normalise_ngr(hash[:ngr])
     next if ngr.nil?
 
     transmitter = Transmitter.find_or_create(:ngr => ngr)
@@ -136,7 +127,7 @@ def import_dab(xlsx, sheet_name)
     row = sheet.row(row_num)
     hash = Hash[column_names.zip(row)]
 
-    ngr = parse_ngr(hash[:ngr])
+    ngr = Transmitter.normalise_ngr(hash[:ngr])
     next if ngr.nil?
 
     transmitter = Transmitter.find_or_create(:ngr => ngr)
