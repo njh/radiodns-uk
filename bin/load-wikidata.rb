@@ -16,7 +16,7 @@ sparql = SPARQL::Client.new(
 
 
 query = <<END
-SELECT *
+SELECT ?item ?itemLabel ?ownerLabel ?inception ?homepage ?twitter ?bearer ?article
 WHERE 
 {
   ?item wdt:P31 wd:Q5204199 .   # instance of: DAB Ensemble
@@ -40,7 +40,9 @@ WHERE
 END
 
 
+puts "Querying Wikidata SPARQL endpoint"
 result = sparql.query(query)
+puts "Recieved information about #{result.count} multiplexes"
 
 result.each do |row|
   unless row[:bearer].to_s =~ /^dab:([0-9a-f]{3})\.([0-9a-f]{4})$/
@@ -63,6 +65,7 @@ result.each do |row|
 
   # Store in database
   multiplex.name = row[:itemLabel]
+  multiplex.owner = row[:ownerLabel].to_s
   multiplex.launch_date = row[:inception].to_s
   multiplex.homepage = row[:homepage]
   multiplex.twitter_username = row[:twitter]
