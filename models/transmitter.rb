@@ -13,19 +13,6 @@ class Transmitter < Sequel::Model
   def uri
     RADIODNS_UK_BASE + path
   end
-
-  # Normalise National Grid Reference (OSGB36) - we only use 6-digits
-  def self.normalise_ngr(ngr)
-    if ngr =~ /^([A-Z]{2})\s*(\d{3})\s*(\d{3})$/
-      $1 + $2 + $3
-    elsif ngr =~ /^([A-Z]{2})\s*(\d{4})\s*(\d{4})$/
-      $1 + $2[0,3] + $3[0,3]
-    elsif ngr =~ /^([A-Z]{2})\s*(\d{5})\s*(\d{5})$/
-      $1 + $2[0,3] + $3[0,3]
-    else
-      $stderr.puts "Failed to parse National Grid Reference: #{ngr}"
-    end
-  end
 end
 
 # Table: transmitters

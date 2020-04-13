@@ -6,6 +6,7 @@ Bundler.require(:default)
 require 'net/https'
 require 'uri'
 require_relative '../models'
+require_relative '../lib/osgb'
 
 filename = 'TxParams.xlsx'
 
@@ -93,7 +94,7 @@ def import_fm(xlsx, sheet_name)
 
     next if hash[:station].nil? or hash[:frequency].nil? or hash[:rds_pi].nil?
 
-    ngr = Transmitter.normalise_ngr(hash[:ngr])
+    ngr = OSGB.normalise(hash[:ngr])
     next if ngr.nil?
 
     transmitter = Transmitter.find_or_create(:ngr => ngr)
@@ -127,7 +128,7 @@ def import_dab(xlsx, sheet_name)
     row = sheet.row(row_num)
     hash = Hash[column_names.zip(row)]
 
-    ngr = Transmitter.normalise_ngr(hash[:ngr])
+    ngr = OSGB.normalise(hash[:ngr])
     next if ngr.nil?
 
     transmitter = Transmitter.find_or_create(:ngr => ngr)
