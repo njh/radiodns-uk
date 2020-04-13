@@ -37,4 +37,60 @@ describe OSGB do
       expect(OSGB.normalise('TQ 7905 8671')).to eq('TQ790867')
     end
   end
+  
+  describe '.letters_to_metres' do
+    it 'returns the northing and easting for the false origin' do
+      expect(OSGB.letters_to_metres('SV')).to eq([0,0])
+    end
+
+    it 'returns the northing and easting for the furthest south-west point' do
+      expect(OSGB.letters_to_metres('VV')).to eq([-1000000, -500000])
+    end
+
+    it 'returns the northing and easting for the furthest north-east point' do
+      expect(OSGB.letters_to_metres('EE')).to eq([1400000, 1900000])
+    end
+
+    it 'returns the northing and easting for "HP"' do
+      expect(OSGB.letters_to_metres('HP')).to eq([400000,1200000])
+    end
+
+    it 'returns the northing and easting for "TQ"' do
+      expect(OSGB.letters_to_metres('TQ')).to eq([500000,100000])
+    end
+
+    it 'returns the northing and easting for "NO"' do
+      expect(OSGB.letters_to_metres('NO')).to eq([300000,700000])
+    end
+  end
+
+  describe '.osgb_to_metres' do
+    it 'returns the northing and easting for HU396753 (Sullom Voe oil terminal)' do
+      expect(OSGB.osgb_to_metres('HU396753')).to eq([439600,1175300])
+    end
+
+    it 'returns the northing and easting for NN166712 (Ben Nevis)' do
+      expect(OSGB.osgb_to_metres('NN166712')).to eq([216600,771200])
+    end
+
+    it 'returns the northing and easting for TQ299804 (Trafalgar Square)' do
+      expect(OSGB.osgb_to_metres('TQ299804')).to eq([529900,180400])
+    end
+
+    it 'returns the northing and easting for SV911124 (Isles of Scilly)' do
+      expect(OSGB.osgb_to_metres('SV911124')).to eq([91100,12400])
+    end
+
+    it 'returns the northing and easting for TQ595604 (Wrotham Transmitter Station)' do
+      expect(OSGB.osgb_to_metres('TQ595604')).to eq([559500,160400])
+    end
+
+    it 'returns the northing and easting for NO39484078 (Angus Transmitter Station)' do
+      expect(OSGB.osgb_to_metres('NO39484078')).to eq([339480,740780])
+    end
+
+    it 'returns the northing and easting for TR1964035775 (Shornecliffe Camp)' do
+      expect(OSGB.osgb_to_metres('TR1964035775')).to eq([619640,135775])
+    end
+  end
 end
