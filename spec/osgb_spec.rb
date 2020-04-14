@@ -93,4 +93,26 @@ describe OSGB do
       expect(OSGB.osgb_to_metres('TR1964035775')).to eq([619640,135775])
     end
   end
+
+  describe '.distance' do
+    it 'returns 0 for the same grid reference with different accuracies' do
+      expect(OSGB.distance('SU37301550', 'SU373155')).to eq(0)
+    end
+  
+    it 'returns 78 for two grid references for the same place with different accuracies' do
+      expect(OSGB.distance('SD66051446', 'SD660144')).to eq(78)
+    end
+
+    it 'returns 10 for a grid ref 10 metres east' do
+      expect(OSGB.distance('SU 3730 1550', 'SU 3731 1550')).to eq(10)
+    end
+
+    it 'returns 1 for a grid ref 1 metres east' do
+      expect(OSGB.distance('SU 37300 15500', 'SU 37301 15500')).to eq(1)
+    end
+
+    it "returns the distance from Land's End to John o' Groats" do
+      expect(OSGB.distance('SW 34177 25339', 'ND380734')).to eq(969723)
+    end
+  end
 end

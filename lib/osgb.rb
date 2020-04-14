@@ -85,4 +85,12 @@ module OSGB
     metres
   end
 
+  # Calculate the distance between two gird reference points
+  def self.distance(ngr1, ngr2)
+    e1, n1 = osgb_to_metres(ngr1)
+    e2, n2 = osgb_to_metres(ngr2)
+    a = e2 - e1
+    b = n2 - n1
+    Math.sqrt((a*a) + (b*b)).floor
+  end
 end
