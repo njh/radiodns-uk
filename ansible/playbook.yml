@@ -10,6 +10,7 @@
         - libxml2-dev
         - zlib1g-dev
         - nginx
+        - dehydrated
         - ruby
         - bundler
         - python-gdal
@@ -93,6 +94,20 @@
       name: radiodns-uk
       daemon_reload: yes
 
+  - name: 'Download dhparam file from Mozilla'
+    get_url:
+      url: https://ssl-config.mozilla.org/ffdhe2048.txt
+      dest: /etc/nginx/dhparam.txt
+      mode: '0644'
+
+  - name: 'Copy over modern SSL nginx settings'
+    copy:
+      src: modern-ssl.inc
+      dest: /etc/nginx/conf.d/modern-ssl.inc
+      mode: '0644'
+    notify:
+    - 'Restart Nginx'
+
   - name: 'Copy accross Nginx configuration file'
     copy:
       src: nginx.conf
@@ -108,10 +123,35 @@
     notify:
     - 'Restart Nginx'
 
+  - name: "Ensure that dehydrated's domains.txt exists"
+    file:
+      path: /etc/dehydrated/domains.txt
+      state: file
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: 'Give dehydrated a contact email address'
+    copy:
+      content: "CONTACT_EMAIL=njh@aelius.com\n"
+      dest: /etc/dehydrated/conf.d/contact.sh
+
+  - name: "Add domains to dehydrated's domains.txt"
+    lineinfile:
+      path: /etc/dehydrated/domains.txt
+      line: "{{ item }}"
+    with_items:
+      - "origin.radiodns.uk"
+      - "redirect.radiodns.uk"
+    notify:
+      - 'Run dehydrated'
+
   handlers:
   - name: 'Restart Nginx'
     become: true
     service: name=nginx state=restarted
+  - name: 'Run dehydrated'
+    command: dehydrated -c
   - name: 'Restart Ruby App'
     become: true
     service: name=radiodns-uk state=restarted
