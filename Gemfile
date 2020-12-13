@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem 'bundler', '~> 2.1.4'
+gem 'bundler', '~> 2.2.0'
 
 gem 'tilt', '~> 2.0'
 gem 'erubi', '~> 1.8'
