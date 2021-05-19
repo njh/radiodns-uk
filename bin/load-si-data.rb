@@ -225,7 +225,7 @@ end
 
 
 Authority.valid.each do |authority|
-  puts "Loading SI file for: #{authority}"
+  puts "Loading SI file for: #{authority} (#{authority.fqdn})"
 
   begin
     authority.download_si_file
