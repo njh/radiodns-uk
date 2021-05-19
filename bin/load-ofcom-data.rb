@@ -157,11 +157,11 @@ def import_dab(xlsx, sheet_name)
       multiplex.add_transmitter(transmitter)
     end
 
-
-    # There can be up to 20 services per ensemble
-    (1..20).each do |num|
-      sid = hash["sid_#{num}_hex".to_sym]
-      next if sid.nil?
+    # Go through each of the columns and look for services
+    hash.each_pair do |key,sid|
+      next unless key =~ /^sid_(\d+)_hex$/
+      num = $1.to_i
+      next unless sid =~ /^[0-9a-fA-Z]{4}$/
 
       bearer = Bearer.find_or_create(
         :type => Bearer::TYPE_DAB,
