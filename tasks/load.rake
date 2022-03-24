@@ -19,7 +19,7 @@ namespace :load do
   desc "Set counties for each transmitter"
   task :counties do
     ruby "bin/load-county-data.rb"
-    sh "python bin/set-transmitters-county.py"
+    sh "python3 bin/set-transmitters-county.py"
   end
 
   desc "Load authority information for each bearer from radiodns.org"
