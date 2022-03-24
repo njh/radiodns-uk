@@ -1,27 +1,27 @@
 source "https://rubygems.org"
 
-gem 'bundler', '~> 2.2.0'
+gem 'bundler', '~> 2.3.10'
 
 gem 'tilt', '~> 2.0'
-gem 'erubi', '~> 1.8'
-gem 'roda', '~> 3.23'
+gem 'erubi', '~> 1.10'
+gem 'roda', '~> 3.54'
 gem 'sequel', '~> 5'
 gem 'sqlite3', '~> 1.4'
-gem 'thin', '~> 1.7'
+gem 'thin', '~> 1.8'
 gem 'yajl-ruby'
 
 gem 'json'
 gem 'rake'
-gem 'sparql-client', '~> 3.1.0'
-gem 'nokogiri', '~> 1.10'
+gem 'sparql-client', '~> 3.2.1'
+gem 'nokogiri', '~> 1.13.3'
 gem 'radiodns'
-gem 'roo', '~> 2.8'
+gem 'roo', '~> 2.9'
 gem 'titleize'
-gem 'rubyzip', '~> 1.3'
+gem 'rubyzip', '~> 2.3.2'
 
 group :development do
   gem 'sequel-annotate'
-  gem 'rspec', '~> 3.8'
+  gem 'rspec', '~> 3.11'
   gem 'simplecov'
   gem 'shotgun'
 end
