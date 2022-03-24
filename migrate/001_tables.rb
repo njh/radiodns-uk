@@ -138,6 +138,12 @@ Sequel.migration do
       column :osm_relation_id, Integer, :index => true
     end
 
+    create_table(:non_authorative_errors) do
+      primary_key :id
+      column :authority_id, Integer, :index => true
+      column :bearer_fqdn, String
+      column :service_name, String
+    end
   end
 end
 

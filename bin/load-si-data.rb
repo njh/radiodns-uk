@@ -107,8 +107,7 @@ def process_genres(service, xml)
   end
 end
 
-
-def validate_bearers(authority, xml)
+def validate_bearers(service_name, authority, xml)
   bearers = {}
   xml.xpath("bearer").each do |xmlbearer|
     if xmlbearer['id']
@@ -139,9 +138,19 @@ def validate_bearers(authority, xml)
       fqdn = bearer.authority.fqdn
       if fqdn.nil?
         $stderr.puts "  => Unable to resolve bearer #{bearer_id}"
-        next
+         NonAuthorativeError.create(
+          :authority => authority,
+          :bearer_fqdn => nil,
+          :service_name => service_name
+        )
+       next
       elsif fqdn != authority.fqdn
-        $stderr.puts "  => FQDN does not match for bearer #{bearer_id} = #{authority.fqdn}"
+        $stderr.puts "  => FQDN does not match for bearer #{bearer_id} = #{fqdn}"
+        NonAuthorativeError.create(
+          :authority => authority,
+          :bearer_fqdn => bearer.fqdn,
+          :service_name => service_name
+        )
         next
       end
 
@@ -171,8 +180,9 @@ end
 
 
 def process_service(authority, xml)
-  puts "  #{xml.content_at('./longName') || xml.content_at('./mediumName')}"
-  bearers = validate_bearers(authority, xml)
+  service_name = xml.content_at('./mediumName') || xml.content_at('./longName')
+  puts "  #{service_name}"
+  bearers = validate_bearers(service_name, authority, xml)
   if bearers.empty?
     $stderr.puts "  => Warning: service has no valid UK DAB or FM bearers"
     return

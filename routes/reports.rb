@@ -44,5 +44,15 @@ class App
       ).all
       view('reports_no-si-xml')
     end
+
+    r.get 'non-authoritative-in-si' do
+      @errors = {}
+      NonAuthorativeError.eager(:authority).each do |err|
+        @errors[err.authority.fqdn] ||= []
+        @errors[err.authority.fqdn] << err
+      end
+
+      view('reports_non-authoritative-in-si')
+    end
   end
 end
