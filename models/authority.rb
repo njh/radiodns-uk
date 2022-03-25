@@ -3,6 +3,8 @@ require 'titleize'
 require 'net/https'
 require 'uri'
 
+require_relative '../lib/fqdn'
+
 class Authority < Sequel::Model
   one_to_many :bearers
   one_to_many :services, :order => :sort_name
@@ -60,9 +62,19 @@ class Authority < Sequel::Model
         if app.nil?
           update(key => nil)
         else
-          update(key => "#{app.host}:#{app.port}")
+          if !FQDN.valid?(app.host)
+            raise "Invalid hostname: #{app.host}"
+          elsif app.port < 1 or app.port > 65535
+            raise "Invalid port: #{app.port}"
+          else
+            update(key => "#{app.host}:#{app.port}")
+          end
         end
       rescue Resolv::ResolvError
+        update(key => nil)
+      rescue StandardError => e
+        $stderr.puts "#{fqdn}: #{type}"
+        $stderr.puts e.message
         update(key => nil)
       end
     end
