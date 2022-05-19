@@ -12,8 +12,10 @@ GEM
     mini_portile2 (2.8.0)
     net-http-persistent (4.0.1)
       connection_pool (~> 2.2)
-    nokogiri (1.13.3)
+    nokogiri (1.13.5)
       mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
+    nokogiri (1.13.5-x86_64-linux)
       racc (~> 1.4)
     racc (1.6.0)
     rack (2.2.3)
@@ -65,12 +67,13 @@ GEM
 
 PLATFORMS
   -darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   bundler (~> 2.3.10)
   erubi (~> 1.10)
   json
-  nokogiri (~> 1.13.3)
+  nokogiri (~> 1.13.5)
   radiodns
   rake
   roda (~> 3.54)
