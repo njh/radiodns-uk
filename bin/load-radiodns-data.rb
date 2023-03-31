@@ -18,6 +18,9 @@ Bearer.all.each do |bearer|
 end
 
 
+puts "Checking for services available from each Authority:"
 Authority.valid.each do |authority|
+  puts "#{authority.fqdn}"
   authority.lookup_applications!
+  puts
 end

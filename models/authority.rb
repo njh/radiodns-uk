@@ -70,11 +70,12 @@ class Authority < Sequel::Model
             update(key => "#{app.host}:#{app.port}")
           end
         end
-      rescue Resolv::ResolvError
+        puts self.send(key)
+      rescue Resolv::ResolvError => e
+        puts "ResolvError: #{e.message}"
         update(key => nil)
       rescue StandardError => e
-        $stderr.puts "#{fqdn}: #{type}"
-        $stderr.puts e.message
+        puts "StandardError: #{e.message}"
         update(key => nil)
       end
     end
