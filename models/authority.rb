@@ -26,7 +26,7 @@ class Authority < Sequel::Model
   def to_s
     name || fqdn
   end
-  
+
   def construct_spi_uri(subpath)
     if have_radioepg?
       host, port = radioepg_server.split(':')
@@ -81,20 +81,32 @@ class Authority < Sequel::Model
     end
   end
 
+  def get_recursive(url, limit=10)
+    raise "Too many redirects" if limit < 1
+
+    uri = URI.parse(url.to_s)
+    res = Net::HTTP.get_response(uri)
+    if res.code =~ /^3/ and res['Location']
+      return get_recursive(res['Location'], limit - 1)
+    else
+      return res
+    end
+  end
+
   def download_si_file
     uri = si_uri
     if uri.nil?
-      DB.log_info("No RadioEPG DNS entry for #{fqdn}")
+      puts "  No RadioEPG DNS entry for #{fqdn}"
     elsif File.exist?(si_filepath)
-      DB.log_info("Already download SI file for #{fqdn}")
+      puts "  Already download SI file for #{fqdn}"
     else
-      res = Net::HTTP.get_response(uri)
+      res = get_recursive(uri)
       if res.is_a?(Net::HTTPSuccess)
         File.open(si_filepath, 'wb') do |file|
           file.write res.body
         end
       else
-        DB.log_info("No SI file for #{fqdn} : #{res.message}")
+        puts "  No SI file for #{fqdn} : #{res.message}"
         update(:radioepg_server => nil)
       end
     end

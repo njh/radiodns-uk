@@ -230,7 +230,7 @@ Authority.valid.each do |authority|
   begin
     authority.download_si_file
     if authority.si_uri.nil?
-      puts " => No RadioEPG"
+      puts "  => No RadioEPG"
       next
     end
 
