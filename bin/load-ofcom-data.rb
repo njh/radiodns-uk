@@ -13,7 +13,7 @@ filename = 'TxParams.xlsx'
 
 def download_ofcom_data(filename)
   # First: download the Technical parameters HTML page from Ofcom
-  uri = URI.parse('https://www.ofcom.org.uk/spectrum/information/radio-tech-parameters')
+  uri = URI.parse('https://www.ofcom.org.uk/tv-radio-and-on-demand/coverage-and-transmitters/radio-tech-parameters')
   res = Net::HTTP.get_response(uri)
   unless res.is_a?(Net::HTTPSuccess)
     raise "Failed to get radio-tech-parameters: #{res}"
@@ -25,8 +25,16 @@ def download_ofcom_data(filename)
   html_doc = Nokogiri::HTML(res.body)
   html_doc.css("a").each do |a|
     href_uri = URI.parse(a['href'])
+    next unless href_uri.path
     if File.basename(href_uri.path) =~ /(TxParams|Tx_Params|TechParams)-?\w*\.xlsx/i
-      file_uri = href_uri
+      if href_uri.host
+        # Link is a complete URI
+        file_uri = href_uri
+      else
+        # Link is a partial URI - use the hostname from the first page
+        file_uri = uri
+        file_uri.path = href_uri.path
+      end
     end
   end
 
