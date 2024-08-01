@@ -10,6 +10,18 @@ require_relative '../lib/osgb'
 
 filename = 'TxParams.xlsx'
 
+## FIXME: the must be a better way of contructing a new URI relative to an existing one
+def parse_relative_uri(url, relative_to)
+  uri = URI.parse(url)
+  if uri.host.nil? and uri.path =~ %r|^/|
+    http_uri = relative_to.clone
+    http_uri.path = uri.path
+    http_uri.query = uri.query
+    return http_uri
+  end
+
+  return uri
+end
 
 def download_ofcom_data(filename)
   # First: download the Technical parameters HTML page from Ofcom
@@ -24,17 +36,11 @@ def download_ofcom_data(filename)
   file_uri = nil
   html_doc = Nokogiri::HTML(res.body)
   html_doc.css("a").each do |a|
-    href_uri = URI.parse(a['href'])
+    href_uri = parse_relative_uri(a['href'], uri)
     next unless href_uri.path
-    if File.basename(href_uri.path) =~ /(TxParams|Tx_Params|TechParams)-?\w*\.xlsx/i
-      if href_uri.host
-        # Link is a complete URI
-        file_uri = href_uri
-      else
-        # Link is a partial URI - use the hostname from the first page
-        file_uri = uri
-        file_uri.path = href_uri.path
-      end
+
+    if href_uri.path =~ /(TxParams|Tx_Params|TechParams)-?\w*\.xlsx/i
+      file_uri = href_uri
     end
   end
 
@@ -45,17 +51,17 @@ def download_ofcom_data(filename)
 
   # Third: download the file
   puts "Downloading: #{file_uri}"
-  File.open(filename, 'wb') do |file|
-    begin
-      Net::HTTP.get_response(file_uri) do |resp|
-        resp.read_body do |segment|
-          file.write(segment)
-        end
+  begin
+    # FIXME: do we need to be able to follow redirects?
+    Net::HTTP.get_response(file_uri) do |resp|
+      raise "Failed to download TxParams: #{resp.message}" unless resp.code == '200'
+      File.open(filename, 'wb') do |file|
+        resp.read_body { |segment| file.write(segment) }
       end
-    rescue => exp
-      File.delete(filename)
-      raise exp
     end
+  rescue => exp
+    File.delete(filename) if File.exist?(filename)
+    raise exp
   end
 end
 
